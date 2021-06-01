@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
+// const csurf = require('csurf');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -9,9 +10,12 @@ router.get('/', function(req, res, next) {
   res.render('respond with a resource', {users});
 });
 
-router.get('/signup', (req, res, next) =>{
+router.get('/signup', csrfProtection, (req, res, next) =>{
   const user = db.User.build();
-  res.render('users-signup');
+  res.render('users-signup', {
+    csrfToken: req.csrfToken(),
+    user
+  });
 });
 
 router.post('/signup', asyncHandler(async(req, res, next) =>{
