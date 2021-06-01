@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
-const {check, validationResult} = require('express-validator')
+const { check, validationResult } = require('express-validator')
+const bcrypt = require('bcryptjs')
 
 router.get('/', function(req, res, next) {
   const users = Users.FindAll()
@@ -48,8 +49,8 @@ const signupValidators = [
     .withMessage('Email must be 255 characters or fewer.')
     .isEmail()
     .withMessage('Please enter a valid email address.')
-    .custom((email) => {
-      return db.User.findOne({where: {email}})
+    .custom((value) => {
+      return db.User.findOne({where: {email: value}})
         .then((user) => {
           if (user) {
             return Promise.reject('The provided email address is already in use; please pick another.')
@@ -61,10 +62,19 @@ const signupValidators = [
     .withMessage('Password cannot be empty.')
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
     .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
-  
+  check('confirmPassword')
+    .exists({ checkFalsy: true })
+    .withMessage('Please confirm your password in this field')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('The confirmed password field does not match the password field')
+      } else {
+        return true;
+      }
+    })
 ]
 
-router.post('/signup', csrfProtection, asyncHandler(async(req, res, next) =>{
+router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req, res, next) =>{
   const {
     firstName,
     lastName,
@@ -73,7 +83,7 @@ router.post('/signup', csrfProtection, asyncHandler(async(req, res, next) =>{
     password
   } = req.body;
 
-  const user = await db.User.build({
+  const user = db.User.build({
     firstName,
     lastName,
     username,
@@ -82,13 +92,23 @@ router.post('/signup', csrfProtection, asyncHandler(async(req, res, next) =>{
 
   const signupErrors = validationResult(req)
 
-
-
-  res.send('respond with a resource');
+  if (signupErrors.isEmpty()) {
+    const hashPassword = await bcrypt.hash(password, 10);
+    user.hashPassword = hashPassword;
+    await user.save();
+    res.redirect('/');
+  } else {
+    const errors = signupErrors.array().map((error) => error.msg);
+    res.render('users-signup', {
+      user,
+      errors,
+      csrfToken: req.csrfToken()
+    })
+  }
 }));
 
 router.get('/login', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('');
 });
 
 
