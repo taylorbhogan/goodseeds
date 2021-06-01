@@ -49,8 +49,8 @@ const signupValidators = [
     .withMessage('Email must be 255 characters or fewer.')
     .isEmail()
     .withMessage('Please enter a valid email address.')
-    .custom((value) => {
-      return db.User.findOne({where: {email: value}})
+    .custom((email) => {
+      return db.User.findOne({where: {email}})
         .then((user) => {
           if (user) {
             return Promise.reject('The provided email address is already in use; please pick another.')
@@ -107,10 +107,56 @@ router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req,
   }
 }));
 
-router.get('/login', function(req, res, next) {
-  res.send('');
+router.get('/login', csrfProtection, (req, res, next)=>{
+  res.render('users-login', {
+    csrfToken: req.csrfToken()
+  });
 });
 
+const loginValidators = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
+];
 
+router.post('/login', csrfProtection, loginValidators,
+  asyncHandler(async (req, res) => {
+    const {
+      email,
+      password,
+    } = req.body;
+
+    let errors = [];
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+      // TODO Attempt to login the user.
+      const user = await db.User.findOne({ where: { email } });
+
+      if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
+
+      if (passwordMatch) {
+        // If the password hashes match, then login the user
+        // and redirect them to the default route.
+        // TODO Login the user.
+        return res.redirect('/');
+      }
+    }
+    errors.push('Login failed for the provided email address and password');
+    } else {
+      errors = validatorErrors.array().map((error) => error.msg);
+    }
+
+    res.render('users-login', {
+      title: 'Login',
+      email,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }));
 
 module.exports = router;
