@@ -4,13 +4,17 @@ include utils.pug
 
 block content
 
-  form(action='/user/signup' method='post')
+  form(action='/users/signup' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     +field('First Name', 'firstName', user.firstName)
     +field('Last Name', 'lastName', user.lastName)
+    +field('Username', 'username', user.username)
     +field('Email Address', 'emailAddress', user.emailAddress)
     +field('Password', 'password', user.password, 'password')
     +field('Confirm Password', 'confirmPassword', '', 'password')
-    div(class='py-4')
-      button(type='submit' class='btn btn-primary') Register
-      a(href='/' class='btn btn-warning ml-2') Cancel
+    div
+      button(type='submit') Signup
+      a(href='/') Cancel
+    div
+      span Already A Member?
+      a(href="/users/login") Login 
