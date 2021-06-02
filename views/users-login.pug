@@ -4,13 +4,14 @@ include utils.pug
 
 block content
   +validationErrorSummary(errors)
-  form(action='/users/login' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Email Address', 'email', null)
-    +field('Password', 'password', null, 'password')
-    div
-      button(type='submit') Login
-      a(href='/') Cancel
-    div
-      span Want to be a member?
-      a(href="/users/signup") Sign Up!
+  container.form-container
+    form(action='/users/login' method='post' class='form')
+      div.form-inputs
+        input(type='hidden' name='_csrf' value=csrfToken)
+        +field('Email Address', 'email', null)
+        +field('Password', 'password', null, 'password')
+      div.form-links
+        button(type='submit' class='button-primary') Login
+      div.form-links
+        span Want to be a member?
+        a(href="/users/signup") Sign Up!
