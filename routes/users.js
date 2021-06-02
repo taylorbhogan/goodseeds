@@ -6,10 +6,10 @@ const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const {loginUser} = require('../auth');
 
-router.get('/', function(req, res, next) {
-  const users = Users.FindAll()
-  res.render('respond with a resource', {users});
-});
+router.get('/', asyncHandler(async(req, res, next) => {
+  const users = await db.User.findAll()
+  res.render('users', { users });
+}));
 
 router.get('/signup', csrfProtection, (req, res, next) =>{
   const user = db.User.build();
