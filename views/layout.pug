@@ -10,8 +10,9 @@ html
         span
           a(href="/" class="main-logo") GoodSeeds
         nav.left-nav
-          a(href="/users") Users
-          a(href="/plants") Plants
+          span
+            a(href="/users") Users
+            a(href="/plants") Plants
       div
         nav.right-nav
           if locals.authenticated
@@ -22,5 +23,5 @@ html
             span
               a(href="/users/login") Log in
               a(href="/users/signup") Sign Up
-    div
+    div.main-body
       block content
