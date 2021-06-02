@@ -6,6 +6,7 @@
 .signup-form{
   width: 500px;
   border: 2px solid black;
+  border-radius: 1em;
   padding: 20px;
 }
 
@@ -17,14 +18,25 @@
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 5px;
+  margin-top: 30px;
 }
 
 .form-inputs{
   margin-bottom: 30px;
 }
 
-.button-signup{
-  font-size: 16px;
-  padding: 5px;
+.form-labels{
+  font-size: 14px;
 }
 
+.button-signup{
+  font-size: 16px;
+  padding: 10px 0 10px 0;
+  width: auto;
+  flex-grow: 1;
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 1em;
+}
