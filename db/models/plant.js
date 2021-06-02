@@ -9,7 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     imgUrl: DataTypes.STRING
   }, {});
   Plant.associate = function(models) {
-    // associations can be defined here
+    const columnMapping = {
+      through: 'PlantToShelf',
+      foreignKey: 'plantId',
+      otherKey: 'shelfId'
+    }
+
+    Plant.belongsToMany(models.Shelf, columnMapping)
   };
   return Plant;
 };
