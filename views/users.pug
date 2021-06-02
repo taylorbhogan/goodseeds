@@ -1,0 +1,17 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    table Users
+        thead
+            tr
+                th Username
+        tbody
+            each user in users
+                tr
+                    td
+                        a(href=`./plants/${plant.id}`) #{plant.name}
+                    td= plant.scientificName
+                    td
+                        a(href=plant.imgUrl) #{plant.imgUrl}
