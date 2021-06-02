@@ -6,15 +6,14 @@ html
         link(rel='stylesheet' href='/stylesheets/index.css')
   body
     container.main-nav
-      div.left-nav
+      div.logo-div
         span
           a(href="/" class="main-logo") GoodSeeds
-        nav
-          div
-            a(href="/users") Users
-            a(href="/plants") Plants
-      div.right-nav
-        nav
+        nav.left-nav
+          a(href="/users") Users
+          a(href="/plants") Plants
+      div
+        nav.right-nav
           if locals.authenticated
             span Welcome #{user.firstName}
             form(action="/users/logout" method="post")
