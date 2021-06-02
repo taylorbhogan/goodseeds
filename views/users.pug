@@ -7,11 +7,10 @@ block content
         thead
             tr
                 th Username
+                th Shelves
         tbody
             each user in users
                 tr
+                    td= user.username
                     td
-                        a(href=`./plants/${plant.id}`) #{plant.name}
-                    td= plant.scientificName
-                    td
-                        a(href=plant.imgUrl) #{plant.imgUrl}
+                        a(href=`./users/${user.id}/shelves`) #{user.username}'s Shelves

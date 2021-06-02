@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     imgUrl: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Shelf, {foreignKey: 'userId'})// associations can be defined here
   };
   return User;
 };

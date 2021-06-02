@@ -4,7 +4,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
-const {loginUser} = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
 
 router.get('/', asyncHandler(async(req, res, next) => {
   const users = await db.User.findAll()
@@ -17,6 +17,11 @@ router.get('/signup', csrfProtection, (req, res, next) =>{
     csrfToken: req.csrfToken(),
     user
   });
+});
+
+router.post('/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('/users/login');
 });
 
 const signupValidators = [
@@ -162,5 +167,12 @@ router.post('/login', csrfProtection, loginValidators,
       csrfToken: req.csrfToken(),
     });
   }));
+
+  router.get('/:id/shelves', asyncHandler(async(req, res, next) => {
+    const user = await db.User.findByPk(req.params.id);
+    // const userShelves = await db.Shelves.findAll({where: userId===user.id})
+    res.render('users-id-shelves', {user})
+
+  }))
 
 module.exports = router;
