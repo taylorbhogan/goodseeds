@@ -1,0 +1,37 @@
+
+
+.plant-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.plant-card{
+  border: 1px solid black;
+  /* flex-grow: 1; */
+  /* overflow-x: scroll; */
+  /* flex-basis: auto; */
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-wrap: normal;
+  margin-bottom: 40px;
+  margin-right: 60px;
+}
+
+.plant-image{
+  height: 350px;
+  width: 350px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.plant-name{
+  font-size: 20px;
+}
+
+.plant-scientific-name{
+  font-style: italic;
+}
