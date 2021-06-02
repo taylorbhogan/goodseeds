@@ -1,0 +1,30 @@
+.signup-container{
+  display:flex;
+  justify-content: center;
+}
+
+.signup-form{
+  width: 500px;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.form-group{
+  padding: 10px;
+}
+
+.form-links{
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5px;
+}
+
+.form-inputs{
+  margin-bottom: 30px;
+}
+
+.button-signup{
+  font-size: 16px;
+  padding: 5px;
+}
+
