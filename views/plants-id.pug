@@ -3,4 +3,10 @@ extends layout.pug
 include utils.pug
 
 block content
-    table #{plant.name}
+    a(href=plant.imgUrl) #{plant.imgUrl}
+    div #{plant.name}
+    div #{plant.scientificName}
+    button(type='submit') Add To Shelf
+    div Cumulative Rating
+    div Tags
+    div Reviews
