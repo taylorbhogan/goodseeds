@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const plantsRouter = require('./routes/plants');
 const { sessionSecret } = require('./config');
-
+const {restoreUser} = require('./auth.js');
 
 
 const app = express();
@@ -34,10 +34,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
   })
-);
+  );
 
-// create Session table if it doesn't already exist
-store.sync();
+  app.use(restoreUser);
+  // create Session table if it doesn't already exist
+  store.sync();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
