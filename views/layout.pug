@@ -3,21 +3,24 @@ html
   head
       block head
         title="GoodSeeds"
-        //- link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
   body
-    nav
-      a(href="/") GoodSeeds
+    container.main-nav
+      div.logo-div
+        span
+          a(href="/" class="main-logo") GoodSeeds
+        nav.left-nav
+          a(href="/users") Users
+          a(href="/plants") Plants
       div
-        ul
-          li Plants
-          li Users
-        if locals.authenticated
-          span Welcome #{user.firstName}
-          form(action="/users/logout" method="post")
-            button(type="submit") Logout
-        else
-          span
-            a(href="/users/login") Login
-            a(href="/users/signup") Sign Up
+        nav.right-nav
+          if locals.authenticated
+            span Welcome #{user.firstName}
+            form(action="/users/logout" method="post")
+              button(type="submit") Logout
+          else
+            span
+              a(href="/users/login") Log in
+              a(href="/users/signup") Sign Up
     div
       block content

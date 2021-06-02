@@ -1,0 +1,33 @@
+/* div > h1 {
+  background-color: chartreuse;
+} */
+
+.main-nav{
+  display: flex;
+  background-color: olivedrab;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 150px;
+  padding: 20px;
+}
+
+.logo-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.main-logo{
+  font-size: 20px;
+  padding: 20px;
+}
+
+.right-nav{
+  display: flex;
+  justify-content: space-around;
+}
