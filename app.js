@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const plantsRouter = require('./routes/plants');
 const { sessionSecret } = require('./config');
-const {restoreUser} = require('./auth.js');
+const {loginUser, restoreUser, logoutUser, requireAuth} = require('./auth.js');
 
 
 const app = express();

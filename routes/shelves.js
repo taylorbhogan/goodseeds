@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../db/models');
 const { asyncHandler } = require('./utils');
 
-router.get('/', asyncHandler(async(req, res, next) => {
-    const shelves = await db.Shelf.findAll();
-    res.render('plants', { plants })
+router.get('/:id', asyncHandler(async(req, res, next) => {
+    const shelf = await db.Shelf.findByPk(req.params.id);
+    res.render('shelf', { shelf })
 }))
 
 // router.get('/:id', asyncHandler(async(req, res, next) => {
