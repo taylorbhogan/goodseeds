@@ -1,0 +1,31 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    table Plants
+        thead
+            tr
+                th Common Name
+                th Scientific Name
+                th Image
+        tbody
+            each plant in plants
+                tr
+                    td= plant.name
+                    td= plant.scientificName
+                    td
+                        a(href=plant.imgUrl) #{plant.imgUrl}
+
+
+
+
+//- each val in list_genres
+//-         tr
+//-           td
+//-             a(href=val.url+'/update') #{val.name}
+//-           td #{val.date_created}
+//-           td #{val.date_created}
+//-           td No
+//-       else
+//-         li There are no candidates.
