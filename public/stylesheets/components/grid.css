@@ -7,10 +7,8 @@
 }
 
 .plant-card{
+  background: #dadada;
   border: 1px solid black;
-  /* flex-grow: 1; */
-  /* overflow-x: scroll; */
-  /* flex-basis: auto; */
   width: 450px;
   display: flex;
   justify-content: center;
