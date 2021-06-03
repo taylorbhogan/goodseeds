@@ -1,21 +1,55 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/models');
-const { asyncHandler } = require('./utils');
+const { asyncHandler, csrfProtection } = require('./utils');
 
 router.get('/', asyncHandler(async(req, res, next) => {
     const plants = await db.Plant.findAll();
     res.render('plants', { plants })
 }))
 
-router.get('/:id', asyncHandler(async(req, res, next) => {
+router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const plant = await db.Plant.findByPk(req.params.id);
     const reviews = await db.Review.findAll({
         where: {
             plantId: req.params.id
         }
     })
-    res.render('plants-id', { plant, reviews } )
+    const userId = req.session.auth.userId
+    const user = await db.User.findByPk(userId);
+    const usersShelves = await db.Shelf.findAll({
+        where: {
+          userId: userId
+        }
+      });
+    res.render('plants-id', { plant, reviews, userId, usersShelves, user, csrfToken: req.csrfToken()   } )
+}));
+
+router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+    const plant = await db.Plant.findByPk(req.params.id);
+    const reviews = await db.Review.findAll({
+        where: {
+            plantId: req.params.id
+        }
+    })
+    const userId = req.session.auth.userId
+    const user = await db.User.findByPk(userId);
+    const usersShelves = await db.Shelf.findAll({
+        where: {
+          userId: userId
+        }
+      });
+
+    const {selectedshelf} = req.body;
+
+    const newPlantToShelfConnection = db.PlantToShelf.build({
+        plantId: req.params.id,
+        shelfId: selectedshelf
+    })
+
+    await newPlantToShelfConnection.save();
+
+    res.redirect(`../shelves/${selectedshelf}`)
 }));
 
 router.get('/:id/reviews', asyncHandler(async(req, res) => {

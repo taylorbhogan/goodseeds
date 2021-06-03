@@ -15,7 +15,7 @@ block content
           form(action=`/plants/${plant.id}/reviews`, method="post")
               h1 Add a Review
               div
-                  label My Rating
+                  label(for='rating') My Rating
                   select(name='rating')
                       option --select one--
                       option 1

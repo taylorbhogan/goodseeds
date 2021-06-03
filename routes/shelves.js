@@ -6,7 +6,7 @@ const {
     asyncHandler,
   } = require('./utils');
 
-router.get('/:id', asyncHandler(async(req, res, next) => {
+router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
     console.log(shelf)
     const plantsToShelves = await db.PlantToShelf.findAll({
@@ -18,7 +18,7 @@ router.get('/:id', asyncHandler(async(req, res, next) => {
       }
     })
 
-    res.render('shelf', { plantsToShelves, shelf })
+    res.render('shelf', { plantsToShelves, shelf, csrfToken: req.csrfToken()  })
 }))
 
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {

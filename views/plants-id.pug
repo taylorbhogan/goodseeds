@@ -10,11 +10,19 @@ block content
             div
                 a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
             div
-                p(class="plant-scientific-name")= plant.scientificName
-        button(type='submit' class="button__add-to-shelf") Add To Shelf
+                p(class="plant-scientific-name")= plant.scientificNam
         div Cumulative Rating
         div Tags
-        a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
+    form(action=`/plants/${plant.id}`, method='post')
+        div Add this plant to shelf
+        input(type='hidden' name='_csrf' value=csrfToken)
+        label(for='selectedshelf') My Shelves
+        select(name='selectedshelf')
+            option --select one--
+            each shelf in usersShelves
+                option(value=`${shelf.id}`)= `${shelf.name}`
+        button(type='submit' class="button__add-to-shelf") Add To Shelf
+    a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
     container.review-container
         h1 Reviews
             each review in reviews
