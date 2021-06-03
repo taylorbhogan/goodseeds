@@ -12,7 +12,6 @@ block content
                 tr
                     td
                         a(href=`../../shelves/${shelf.id}`) #{shelf.name}
-    div TEST
     form(action='/shelves' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         input(type='hidden' id='userId' name='userId' value=`${user.id}`)

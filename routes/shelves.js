@@ -8,7 +8,14 @@ const {
 
 router.get('/:id', asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
-    res.render('shelf', { shelf })
+    console.log(shelf)
+    const plantsToShelves = await db.PlantToShelf.findAll({
+      where: {
+        shelfId: shelf.id
+      }
+    })
+
+    res.render('shelf', { plantsToShelves, shelf })
 }))
 
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -40,5 +47,7 @@ router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
 //     const plant = await db.Plant.findByPk(req.params.id);
 //     res.render('plants-id', { plant } )
 // }));
+
+
 
 module.exports = router

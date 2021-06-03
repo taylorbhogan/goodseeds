@@ -5,3 +5,12 @@ include utils.pug
 block content
     title= shelf.name
     div #{shelf.name}
+    container.plant-container
+        each reference in plantsToShelves
+            div.plant-card
+                div.plant-image
+                    img(src=reference.plant.imgUrl, alt="Picture goes here")
+                div
+                    a(class="plant-name" href=`/plants/${plant.id}`)= reference.plant.name
+                div
+                    p(class="plant-scientific-name")= reference.plant.scientificName
