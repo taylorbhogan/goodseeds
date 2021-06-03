@@ -175,7 +175,7 @@ router.post('/login', csrfProtection, loginValidators,
         userId: req.params.id
       }
     });
-    res.render('users-id-shelves', {user, shelves})
+    res.render('users-id-shelves', {user, shelves})}))
 
 router.get('/account', asyncHandler(async(req, res, next) => {
 
