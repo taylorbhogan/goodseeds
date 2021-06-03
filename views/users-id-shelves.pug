@@ -3,5 +3,18 @@ extends layout.pug
 include utils.pug
 
 block content
-    div Display of all user's shelves
-    button(type='submit') Add a Shelf
+    table
+        thead
+            tr
+                th #{user.username}'s Shelves
+        tbody
+            each shelf in shelves
+                tr
+                    td
+                        a(href=`../../shelves/${shelf.id}`) #{shelf.name}
+    form(action='../shelves' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        input(type='hidden' name='userId' value=`${user.id}`)
+        label(for='name') Shelf Name
+        input(name='name' id='name' value=name)
+        button(type='submit') Add a Shelf
