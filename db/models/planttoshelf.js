@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       references: { model: 'Shelves'}}
   }, {});
   PlantToShelf.associate = function(models) {
-    // associations can be defined here
+    PlantToShelf.belongsTo(models.Plant, {foreignKey: 'plantId'})
   };
   return PlantToShelf;
 };

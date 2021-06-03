@@ -4,13 +4,13 @@ include utils.pug
 
 block content
     title= shelf.name
-    div #{shelf.name}
+    div.shelfName #{shelf.name}
     container.plant-container
         each reference in plantsToShelves
             div.plant-card
                 div.plant-image
-                    img(src=reference.plant.imgUrl, alt="Picture goes here")
+                    img(src=reference.Plant.imgUrl, alt="Picture goes here")
                 div
-                    a(class="plant-name" href=`/plants/${plant.id}`)= reference.plant.name
+                    a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
                 div
-                    p(class="plant-scientific-name")= reference.plant.scientificName
+                    p= reference.Plant.scientificName
