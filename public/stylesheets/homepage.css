@@ -7,5 +7,9 @@
 
 
 body{
-  background-color: rgb(248, 239, 207);
+  background-color: rgb(219, 180, 130);
+}
+
+span > a{
+  text-decoration: none;
 }

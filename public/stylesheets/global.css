@@ -4,7 +4,7 @@
 /* change to navbar__container */
 .main-nav{
   display: flex;
-  background-color: olivedrab;
+  background-color: rgb(133, 182, 35);
   justify-content: space-between;
   align-items: flex-end;
   height: 120px;
@@ -17,18 +17,24 @@
   align-items: flex-end;
 }
 /* navbar__left-nav */
-.left-nav{
-  display: flex;
-  justify-content: space-around;
-}
+
 /* navbar__logo */
+
 .main-logo{
   font-size: 30px;
   padding: 20px;
-  color: pink;
+  color: rgba(243, 255, 79, 0.897);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.left-nav{
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Times New Roman', Times, serif;
 }
 /* navbar__right-nav */
 .right-nav{
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
