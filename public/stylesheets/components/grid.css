@@ -1,12 +1,5 @@
 
 
-.plant-id-container{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
 .button__add-to-shelf{
   width: 200px;
 }
