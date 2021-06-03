@@ -13,4 +13,10 @@ router.get('/:id', asyncHandler(async(req, res, next) => {
     res.render('plants-id', { plant } )
 }));
 
+router.get('/:id/reviews', asyncHandler(async(req, res) => {
+    const plant = await db.Plant.findByPk(req.params.id);
+
+    res.render('plants-id-reviews', { plant })
+}))
+
 module.exports = router

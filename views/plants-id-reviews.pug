@@ -3,6 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
+  h1 Add a Review
     container.plant-id-container
         div.plant-card
             div.plant-image
@@ -11,7 +12,3 @@ block content
                 a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
             div
                 p(class="plant-scientific-name")= plant.scientificName
-        button(type='submit' class="button__add-to-shelf") Add To Shelf
-        div Cumulative Rating
-        div Tags
-        div Reviews
