@@ -1,0 +1,10 @@
+.plant-id__container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+.review-card {
+    border: 1px solid black;
+}
