@@ -10,7 +10,12 @@ router.get('/', asyncHandler(async(req, res, next) => {
 
 router.get('/:id', asyncHandler(async(req, res, next) => {
     const plant = await db.Plant.findByPk(req.params.id);
-    res.render('plants-id', { plant } )
+    const reviews = await db.Review.findAll({
+        where: {
+            plantId: req.params.id
+        }
+    })
+    res.render('plants-id', { plant, reviews } )
 }));
 
 router.get('/:id/reviews', asyncHandler(async(req, res) => {
@@ -21,23 +26,24 @@ router.get('/:id/reviews', asyncHandler(async(req, res) => {
 
 router.post('/:id/reviews', asyncHandler(async(req, res) => {
     const plantId = req.params.id
-    // const userId = await db.User.findOne({
-    //     where: {
-    //         userId: res.locals.user
-    //     }
-    // })
+    const userIdNum = parseInt(req.session.auth.userId, 10)
+    const user = await db.User.findByPk(userIdNum)
+    const userId = user.id
     // console.log("req.session.auth.userId", req.session.auth.userId);
-    const plant = await db.Plant.findByPk(req.params.id);
-    const { reviewText, rating} = req.body;
+    // const plant = await db.Plant.findByPk(req.params.id);
+    const { reviewText, rating } = req.body;
 
     const newReview = db.Review.build({
         reviewText,
         rating,
         plantId,
-        // userId
+        userId
     })
 
-    res.render('plants-id', { plant, newReview })
+    await newReview.save();
+
+    // res.render('plants-id', { plant, newReview })
+    res.redirect(`/plants/${plantId}`)
 }))
 
 
