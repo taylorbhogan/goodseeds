@@ -12,9 +12,9 @@ block content
                 tr
                     td
                         a(href=`../../shelves/${shelf.id}`) #{shelf.name}
-    form(action='../shelves' method='post')
+    form(action='/shelves' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        input(type='hidden' name='userId' value=`${user.id}`)
+        input(type='hidden' id='userId' name='userId' value=`${user.id}`)
         label(for='name') Shelf Name
-        input(name='name' id='name' value=name)
+        input(name='name' id='name')
         button(type='submit') Add a Shelf
