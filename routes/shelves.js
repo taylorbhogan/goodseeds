@@ -21,7 +21,24 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('shelf', { plantsToShelves, shelf, csrfToken: req.csrfToken()  })
 }))
 
+router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const shelf = await db.Shelf.findByPk(req.params.id);
+  console.log(shelf)
+  const plantsToShelves = await db.PlantToShelf.findAll({
+    where: {
+      shelfId: shelf.id
+    },
+    include: {
+      model: db.Plant
+    }
+
+  })
+
+
+}))
+
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
+
     const userId = req.session.auth.userId
     const user = await db.User.findByPk(userId);
 
@@ -40,16 +57,10 @@ router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
           userId: userId
         }
       });
-    //   res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken() });
-    // catch {
-    res.redirect(`users/${userId}/shelves`)
-    // }
 
+    res.redirect(`users/${userId}/shelves`)
   }));
-// router.get('/:id', asyncHandler(async(req, res, next) => {
-//     const plant = await db.Plant.findByPk(req.params.id);
-//     res.render('plants-id', { plant } )
-// }));
+
 
 
 
