@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'shelfId'
     }
 
-    Plant.belongsToMany(models.Shelf, columnMapping)
+    Plant.belongsToMany(models.Shelf, columnMapping),
+    Plant.hasMany(models.Review, {foreignKey: 'plantId'})
   };
   return Plant;
 };

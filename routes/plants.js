@@ -19,4 +19,27 @@ router.get('/:id/reviews', asyncHandler(async(req, res) => {
     res.render('plants-id-reviews', { plant })
 }))
 
+router.post('/:id/reviews', asyncHandler(async(req, res) => {
+    const plantId = req.params.id
+    // const userId = await db.User.findOne({
+    //     where: {
+    //         userId: res.locals.user
+    //     }
+    // })
+    // console.log("req.session.auth.userId", req.session.auth.userId);
+    const plant = await db.Plant.findByPk(req.params.id);
+    const { reviewText, rating} = req.body;
+
+    const newReview = db.Review.build({
+        reviewText,
+        rating,
+        plantId,
+        // userId
+    })
+
+    res.render('plants-id', { plant, newReview })
+}))
+
+
+
 module.exports = router

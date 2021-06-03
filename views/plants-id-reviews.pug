@@ -3,25 +3,30 @@ extends layout.pug
 include utils.pug
 
 block content
-  h1 Add a Review
-    container.plant-id__container
-        div.plant-card
-            div.plant-image
-                img(src=plant.imgUrl, alt="Picture goes here")
-            div
-                a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-            div
-                p(class="plant-scientific-name")= plant.scientificName
-        div.review-card
-            form(action="/plants/:id/reviews", method="post")
-                p My Rating
+  container.plant-id__container
+      div.plant-card
+          div.plant-image
+              img(src=plant.imgUrl, alt="Picture goes here")
+          div
+              a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+          div
+              p(class="plant-scientific-name")= plant.scientificName
+      div.review-card
+          form(action=`/plants/${plant.id}/reviews`, method="post")
+              h1 Add a Review
+              div
+                  label My Rating
+                  select(name='rating')
+                      option --select one--
+                      option 1
+                      option 2
+                      option 3
+                      option 4
+                      option 5
+              //- +field('What did you think?', reviewText, null, textarea)
+              div(class='form-group')
                 div
-                    label Rating
-                    select(name='rating')
-                        option 1
-                        option 2
-                        option 3
-                        option 4
-                        option 5
-                +field('What did you think?', reviewText, null, textarea)
-                button(type="submit") Add Review
+                  label(for=reviewText class="form-labels") What did you think? (optional)
+                div
+                  textarea(name=reviewText class='form-control' rows="10" cols="100")
+              button(type="submit") Add Review
