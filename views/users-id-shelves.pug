@@ -8,8 +8,9 @@ block content
             tr
                 th #{user.username}'s Shelves
         tbody
-            tr
-                td
-                    a(href=`../shelves/${user.id}`) #{user.username}'s Shelves
+            each shelf in shelves
+                tr
+                    td
+                        a(href=`../../shelves/${shelf.id}`) #{shelf.name}
 
     button(type='submit') Add a Shelf
