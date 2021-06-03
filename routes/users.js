@@ -168,42 +168,21 @@ router.post('/login', csrfProtection, loginValidators,
     });
   }));
 
-  router.get('/:id/shelves', asyncHandler(async(req, res, next) => {
+  router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
     const user = await db.User.findByPk(req.params.id);
     const shelves = await db.Shelf.findAll({
       where: {
         userId: req.params.id
       }
     });
-    res.render('users-id-shelves', {user, shelves})}))
+    res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken()})}))
 
 router.get('/account', asyncHandler(async(req, res, next) => {
 
   res.render('users-account')
 }))
 
-  router.post('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = await db.User.findByPk(req.params.id);
-    const shelves = await db.Shelf.findAll({
-      where: {
-        userId: req.params.id
-      }
-    });
-    const {userId, name} = req.body;
 
-    const shelf = db.Shelf.build({
-      userId,
-      name
-    })
-
-    try {
-      await shelf.save();
-      res.redirect(`/${user.id}/shelves`);
-    } catch {
-    res.render('users-id-shelves', {user, shelves, shelf, csrfToken: req.csrfToken()})
-    }
-
-  }));
 
   //perhaps delete shelf in /shelves/:id. dont know how I would get the shelf ID
 
