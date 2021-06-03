@@ -13,9 +13,24 @@ router.get('/:id', asyncHandler(async(req, res, next) => {
     const reviews = await db.Review.findAll({
         where: {
             plantId: req.params.id
-        }
+        },
+        include: db.User
     })
-    res.render('plants-id', { plant, reviews } )
+    let avgRating = 0;
+    if (reviews.length){
+        const ratingsArray = []
+
+        for (let i = 0 ; i < reviews.length; i++){
+            ratingsArray.push(reviews[i].rating)
+        }
+
+        const ratingSum = ratingsArray.reduce((accum, el) => {
+            return accum + el;
+        })
+        avgRating = ratingSum/ratingsArray.length
+    }
+
+    res.render('plants-id', { plant, reviews, avgRating } )
 }));
 
 router.get('/:id/reviews', asyncHandler(async(req, res) => {
