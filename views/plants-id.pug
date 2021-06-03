@@ -3,22 +3,26 @@ extends layout.pug
 include utils.pug
 
 block content
-    container.plant-id-container
-        div.plant-card
-            div.plant-image
-                img(src=plant.imgUrl, alt="Picture goes here")
-            div
-                a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-            div
-                p(class="plant-scientific-name")= plant.scientificName
-        button(type='submit' class="button__add-to-shelf") Add To Shelf
-        div Cumulative Rating
-        div Tags
-        a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
-    container.review-container
-        h1 Reviews
-            each review in reviews
-                div
-                    p= review.userId
-                    p= review.rating
-                    p= review.reviewText
+    div.page-container
+        container.plant-id-container
+            div.plant-container__left-div
+                div.plant-card
+                    div.plant-image
+                        img(src=plant.imgUrl, alt="Picture goes here")
+                    div
+                        a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+                    div
+                        p(class="plant-scientific-name")= plant.scientificName
+                button(type='submit' class="button__add-to-shelf") Add To Shelf
+                div= `Average rating: ${avgRating}/5`
+                div Tags
+                a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
+            div.plant-container__right-div
+        container.review-container
+            h1 Reviews
+                each review in reviews
+                    div.review-div
+                        p
+                            a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
+                            span  gave this plant #{review.rating} stars.
+                        p= review.reviewText
