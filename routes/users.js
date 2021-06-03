@@ -170,8 +170,8 @@ router.post('/login', csrfProtection, loginValidators,
 
   router.get('/:id/shelves', asyncHandler(async(req, res, next) => {
     const user = await db.User.findByPk(req.params.id);
-    // const userShelves = await db.Shelves.findAll({where: userId===user.id})
-    res.render('users-id-shelves', {user})
+    const shelves = await db.Shelf.findAll();
+    res.render('users-id-shelves', {user, shelves})
 
   }))
 
