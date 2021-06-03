@@ -1,0 +1,73 @@
+.account-window__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.account-window_profile-image-info-container{
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-window__profile-img-div{
+  height: 350px;
+  width: 350px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.account-window__details-container {
+  border: 2px solid black;
+  margin-left: 40px;
+  padding: 40px;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-window__detail-div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.account-window__detail-div:hover{
+  background-color: white;
+  cursor: pointer;
+
+}
+
+.account-window__details-header-div{
+  margin-bottom: 40px;
+}
+
+.account-window__details-key{
+  font-weight: bold;
+  font-size: 16px;
+  /* margin-top: 30px; */
+}
+
+.account-window__image-button{
+  color: black;
+}
+
+.account-window__delete-button{
+  margin-top: 20px;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 7px;
+}
+
+.account-window__delete-button:hover{
+  background-color: rgba(255, 0, 0, 0.349);
+}
+
+.account-window__details-value{
+  font-size: 20px;
+}

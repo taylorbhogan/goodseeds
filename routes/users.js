@@ -168,11 +168,16 @@ router.post('/login', csrfProtection, loginValidators,
     });
   }));
 
-  router.get('/:id/shelves', asyncHandler(async(req, res, next) => {
-    const user = await db.User.findByPk(req.params.id);
-    // const userShelves = await db.Shelves.findAll({where: userId===user.id})
-    res.render('users-id-shelves', {user})
+router.get('/:id/shelves', asyncHandler(async(req, res, next) => {
+  const user = await db.User.findByPk(req.params.id);
+  // const userShelves = await db.Shelves.findAll({where: userId===user.id})
+  res.render('users-id-shelves', {user})
+}))
 
-  }))
+router.get('/account', asyncHandler(async(req, res, next) => {
+
+  res.render('users-account')
+}))
 
 module.exports = router;
+
