@@ -12,6 +12,9 @@ router.get('/:id', asyncHandler(async(req, res, next) => {
     const plantsToShelves = await db.PlantToShelf.findAll({
       where: {
         shelfId: shelf.id
+      },
+      include: {
+        model: db.Plant
       }
     })
 
