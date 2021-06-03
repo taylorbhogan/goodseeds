@@ -16,9 +16,13 @@ html
       div
         nav.right-nav
           if locals.authenticated
-            span Welcome #{user.firstName}
+            span Welcome, #{user.firstName}
             form(action="/users/logout" method="post")
-              button(type="submit") Logout
+              button(type="submit") Log Out
+            div.navbar__account-oval
+              a(href="/users/account" class="navbar__account-link") Your Account 👤
+              div.navbar__account-dropdown
+                a Log out
           else
             span
               a(href="/users/login") Log in
