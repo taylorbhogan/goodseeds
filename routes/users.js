@@ -177,7 +177,10 @@ router.post('/login', csrfProtection, loginValidators,
     });
     res.render('users-id-shelves', {user, shelves})
 
-  }))
+router.get('/account', asyncHandler(async(req, res, next) => {
+
+  res.render('users-account')
+}))
 
   router.post('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
     const user = await db.User.findByPk(req.params.id);

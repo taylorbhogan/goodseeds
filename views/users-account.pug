@@ -1,0 +1,39 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  container.account-window__container
+    div.account-window_profile-image-info-container
+      div.account-window__profile-img-div
+        img(src=user.imgUrl, alt="profile image goes here")
+      button.account-window__image-button Change Profile Image
+    div.account-window__details-container
+      div.account-window__details-header-div
+        h1 Your Account
+      a
+        div.account-window__detail-div
+          div
+            p.account-window__details-key Username:
+            p(class="account-window__details-value")=user.username
+          div ✏️...
+      a
+        div.account-window__detail-div
+          div
+            p.account-window__details-key First name:
+            p(class="account-window__details-value")=user.firstName
+          div ✏️...
+
+      a
+        div.account-window__detail-div
+          div
+            p.account-window__details-key Last name:
+            p(class="account-window__details-value")=user.lastName
+          div ✏️...
+      a
+        div.account-window__detail-div
+          div
+            p.account-window__details-key Email:
+            p(class="account-window__details-value")=user.email
+          div ✏️...
+      button.account-window__delete-button Delete your account
