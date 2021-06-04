@@ -29,6 +29,20 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('shelf', { plantsToShelves, shelf, comments, csrfToken: req.csrfToken()  })
 }))
 
+/* IT'S BROKEN
+router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const shelf = await db.Shelf.findByPk(req.params.id);
+  console.log(shelf)
+  const plantsToShelves = await db.PlantToShelf.findAll({
+    where: {
+      shelfId: shelf.id
+    },
+    include: {
+      model: db.Plant
+    }
+
+  }) */
+
 router.get('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const referenceId = parseInt(req.params.id, 10);
   const reference = await db.PlantToShelf.findByPk(referenceId);
@@ -61,7 +75,6 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
 }));
 
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
-
     const userId = req.session.auth.userId
     const user = await db.User.findByPk(userId);
 
