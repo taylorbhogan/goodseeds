@@ -6,6 +6,11 @@ const {
     asyncHandler,
   } = require('./utils');
 
+router.delete('/:id', asyncHandler(async(req, res)=> {
+  // backend logic goes here
+  
+}))
+
 router.get('/:id', asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
     console.log(shelf)
