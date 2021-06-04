@@ -6,7 +6,7 @@ block content
     table
         thead
             tr
-                th #{user.username}'s Shelves
+                th #{tempUser.username}'s Shelves
         tbody
             each shelf in shelves
                 tr
@@ -14,7 +14,7 @@ block content
                         a(href=`../../shelves/${shelf.id}`) #{shelf.name}
     form(action='/shelves' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        input(type='hidden' id='userId' name='userId' value=`${user.id}`)
+        input(type='hidden' id='userId' name='userId' value=`${tempUser.id}`)
         label(for='name') Shelf Name
         input(name='name' id='name')
         button(type='submit') Add a Shelf

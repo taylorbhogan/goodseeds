@@ -6,6 +6,10 @@ const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const { loginUser, logoutUser } = require('../auth');
 
+const entryDestroyer = async (entryToDestroy) => {
+  await entryToDestroy.destroy()
+}
+
 /*
 GET /users page
 Displays all users along with links to their
@@ -37,6 +41,12 @@ router.get('/login', csrfProtection, (req, res, next)=>{
   });
 });
 
+router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
+  // const userToDelete = res.locals.user
+  // console.log("LOOK HERE GUYS", userToDelete);
+  res.render('users-account-delete', { csrfToken: req.csrfToken() })
+}))
+
 /*
 POST /users/logout page
 Logs out user from their account and redirects to /users/login page
@@ -45,6 +55,55 @@ router.post('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/users/login');
 });
+
+router.post('/account/delete', asyncHandler(async(req, res, next) => {
+  const userToDelete = res.locals.user
+  const shelves = await db.Shelf.findAll({
+    where: {
+      userId: userToDelete.id
+    }
+  })
+  // Delete all reviews
+  const reviews = await db.Review.findAll({
+    where: {
+      userId: userToDelete.id
+    }
+  })
+
+  reviews.forEach((review => {
+    entryDestroyer(review)
+  }));
+
+  // Delete all comments
+  const comments = await db.Comment.findAll({
+    where: {
+      userId: userToDelete.id
+    }
+  })
+
+  comments.forEach((comment => {
+    entryDestroyer(comment)
+  }));
+
+  // Delete all plant-to-shelf connections
+  for (let i = 0; i < shelves.length; i++) {
+    const shelf = shelves[i];
+
+    await db.PlantToShelf.destroy({
+      where: {
+        shelfId: shelf.id
+      }
+    })
+  }
+  // Delete all shelves
+  shelves.forEach((shelf => {
+    entryDestroyer(shelf)
+  }));
+
+  logoutUser(req,res)
+  await userToDelete.destroy()
+    res.redirect('/')
+  }))
 
 /*
 Array of validators to check against new account creation constraints
@@ -195,13 +254,14 @@ router.post('/login', csrfProtection, loginValidators,
 }));
 
 router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-  const user = await db.User.findByPk(req.params.id);
+  const tempUser = await db.User.findByPk(req.params.id);
   const shelves = await db.Shelf.findAll({
     where: {
       userId: req.params.id
     }
   });
-  res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken()})
+  console.log(res.locals.user.firstName);
+  res.render('users-id-shelves', {tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 
 router.get('/account', asyncHandler(async(req, res, next) => {
