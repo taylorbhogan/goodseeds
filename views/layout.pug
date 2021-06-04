@@ -17,9 +17,7 @@ html
       div
         nav.right-nav
           if locals.authenticated
-            span Welcome, #{user.firstName}
             span Welcome, #{locals.user.firstName}
-            span Welcome, #{user.username}
             form(action="/users/logout" method="post")
               button(type="submit") Log Out
             div.navbar__account-oval

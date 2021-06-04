@@ -3,7 +3,7 @@ include utils.pug
 block content
   h3 Delete Account?
   div
-    form(action=`/users/account` method='post')
+    form(action=`/users/account/delete` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
       button(type='submit') Delete Account
       a(href=`/` role='button') Cancel
