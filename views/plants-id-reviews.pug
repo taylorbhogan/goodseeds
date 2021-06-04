@@ -13,9 +13,10 @@ block content
               p(class="plant-scientific-name")= plant.scientificName
       div.review-card
           form(action=`/plants/${plant.id}/reviews`, method="post")
+              input(type='hidden' name='_csrf' value=csrfToken)
               h1 Add a Review
               div
-                  label My Rating
+                  label(for='rating') My Rating
                   select(name='rating')
                       option --select one--
                       option 1
@@ -23,7 +24,6 @@ block content
                       option 3
                       option 4
                       option 5
-              //- +field('What did you think?', reviewText, null, textarea)
               div(class='form-group')
                 div
                   label(for='reviewText' class="form-labels") What did you think? (optional)
