@@ -23,6 +23,19 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
           userId: userId
         }
       });
+    let avgRating = 0;
+    if (reviews.length){
+        const ratingsArray = []
+
+        for (let i = 0 ; i < reviews.length; i++){
+            ratingsArray.push(reviews[i].rating)
+        }
+
+        const ratingSum = ratingsArray.reduce((accum, el) => {
+            return accum + el;
+        })
+        avgRating = ratingSum/ratingsArray.length
+    }
     res.render('plants-id', { plant, reviews, userId, usersShelves, user, csrfToken: req.csrfToken()   } )
 }));
 
@@ -50,22 +63,10 @@ router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 
     await newPlantToShelfConnection.save();
 
-    // res.redirect(`../shelves/${selectedshelf}`)
-    let avgRating = 0;
-    if (reviews.length){
-        const ratingsArray = []
+    res.redirect(`../shelves/${selectedshelf}`)
 
-        for (let i = 0 ; i < reviews.length; i++){
-            ratingsArray.push(reviews[i].rating)
-        }
 
-        const ratingSum = ratingsArray.reduce((accum, el) => {
-            return accum + el;
-        })
-        avgRating = ratingSum/ratingsArray.length
-    }
-
-    res.render('plants-id', { plant, reviews, avgRating } )
+    // res.render('plants-id', { plant, reviews, avgRating, } )
 }));
 
 router.get('/:id/reviews', asyncHandler(async(req, res) => {
