@@ -98,10 +98,10 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   const userId = req.session.auth.userId
   console.log(userId)
   console.log(shelf.userId)
-  if(shelf.userId !== userId) {
-    console.log(`you do not own this shelf`)
-    return
-  }
+  // if(shelf.userId !== userId) {
+  //   console.log(`you do not own this shelf`)
+  //   return
+  // }
   await reference.destroy();
   res.redirect(`/shelves/${shelfIdcloneToReferenceLater}`)
 }));

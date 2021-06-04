@@ -33,7 +33,11 @@ block content
           each review in reviews
             div.review-div
               p
-                a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
-                span  gave this plant #{review.rating} stars.
+                if locals.authenticated
+                  a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
+                else
+                  a(href=`/users/login`) #{review.User.username}
+              span  gave this plant #{review.rating} stars.
               p= review.reviewText
-              a(href=`/plants/reviews/delete/${review.id}`) Delete this Review
+              if locals.authenticated
+                a(href=`/plants/reviews/delete/${review.id}`) Delete this Review
