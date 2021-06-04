@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const PlantToShelf = sequelize.define('PlantToShelf', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     plantId: {
       type: DataTypes.INTEGER,
       references: { model: 'Plants'}},

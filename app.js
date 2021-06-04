@@ -12,7 +12,7 @@ const plantsRouter = require('./routes/plants');
 const shelvesRouter = require('./routes/shelves')
 const { sessionSecret } = require('./config');
 const {loginUser, restoreUser, logoutUser, requireAuth} = require('./auth.js');
-
+//const cors = require('cors');
 
 const app = express();
 
@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//app.use(cors());
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
