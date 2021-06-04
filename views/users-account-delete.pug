@@ -1,0 +1,9 @@
+extends layout.pug
+include utils.pug
+block content
+  h3 Delete Account?
+  div
+    form(action=`/users/account` method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      button(type='submit') Delete Account
+      a(href=`/` role='button') Cancel

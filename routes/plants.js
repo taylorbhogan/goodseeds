@@ -24,6 +24,9 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         }
       });
     let avgRating = 0;
+    // let ratingOne = function(ratingNum) {
+    //     return
+    // }
     if (reviews.length){
         const ratingsArray = []
 

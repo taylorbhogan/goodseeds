@@ -38,6 +38,40 @@ router.get('/login', csrfProtection, (req, res, next)=>{
 });
 
 /*
+GET /users/account page
+Displays logged in user's account information
+*/
+router.get('/account', asyncHandler(async(req, res, next) => {
+  res.render('users-account')
+}))
+
+/*
+GET /users/:id/shelves page
+Displays list of all of the logged in user's shelves
+*/
+router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
+  console.log('RES.LOCALS ', res.locals.user.firstName)
+  const testUser = res.locals.user.firstName
+  const user = await db.User.findByPk(req.params.id);
+  const shelves = await db.Shelf.findAll({
+    where: {
+      userId: req.params.id
+    }
+  });
+  res.render('users-id-shelves', {user, testUser, shelves, csrfToken: req.csrfToken()})
+}))
+
+router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
+  res.render('users-account-delete', { csrfToken: req.csrfToken() })
+}))
+
+// INCOMPLETE, REVISIT AFTER FINSIHING USER AUTHENTICATION
+// router.post('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
+
+//   res.render('users-account-delete', { csrfToken: req.csrfToken() })
+// }))
+
+/*
 POST /users/logout page
 Logs out user from their account and redirects to /users/login page
 */
@@ -47,7 +81,7 @@ router.post('/logout', (req, res) => {
 });
 
 /*
-Array of validators to check against new account creation constraints
+Array of validators to check against new account creation/sign up constraints
 */
 const signupValidators = [
   check('firstName')
@@ -155,8 +189,11 @@ const loginValidators = [
     .withMessage('Please provide a value for Password'),
 ];
 
-router.post('/login', csrfProtection, loginValidators,
-  asyncHandler(async (req, res) => {
+/*
+POST /users/login page
+Signs in existing user then redirects to / page
+*/
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
     const {
       email,
       password,
@@ -166,16 +203,12 @@ router.post('/login', csrfProtection, loginValidators,
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-    // TODO Attempt to login the user.
     const user = await db.User.findOne({ where: { email } });
 
     if (user !== null) {
     const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
 
     if (passwordMatch) {
-      // If the password hashes match, then login the user
-      // and redirect them to the default route.
-      // TODO Login the user.
       loginUser(req,res,user);
 
       return res.redirect('/');
@@ -193,23 +226,6 @@ router.post('/login', csrfProtection, loginValidators,
     csrfToken: req.csrfToken(),
   });
 }));
-
-router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-  const user = await db.User.findByPk(req.params.id);
-  const shelves = await db.Shelf.findAll({
-    where: {
-      userId: req.params.id
-    }
-  });
-  res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken()})
-}))
-
-router.get('/account', asyncHandler(async(req, res, next) => {
-
-  res.render('users-account')
-}))
-
-
 
   //perhaps delete shelf in /shelves/:id. dont know how I would get the shelf ID
 

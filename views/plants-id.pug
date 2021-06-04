@@ -30,7 +30,7 @@ block content
         h1 Reviews
           each review in reviews
             div.review-div
-              p
-                a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
-                span  gave this plant #{review.rating} stars.
-              p= review.reviewText
+                p
+                  a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
+                  span  gave this plant #{review.rating} star(s).
+                p= review.reviewText
