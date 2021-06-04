@@ -8,6 +8,7 @@ router.delete('/:id', asyncHandler(async(req, res)=> {
 
 }))
 
+//displays shelf: with: comments, plants associated with this shelf
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
     const comments = await db.Comment.findAll({
@@ -43,6 +44,7 @@ router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 
   }) */
 
+// delete form to delete association of plants to shelf in the PlantstoShelves table in database
 router.get('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const referenceId = parseInt(req.params.id, 10);
   const reference = await db.PlantToShelf.findByPk(referenceId);
@@ -55,6 +57,7 @@ router.get('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, nex
   res.render('deleteplanttoshelf', {reference, csrfToken: req.csrfToken()})
 }))
 
+//when you click delete button on this form, you delete the association of plants to shelf in the PlantstoShelves table in database
 router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const referenceId = parseInt(req.params.id, 10);
   const reference = await db.PlantToShelf.findByPk(referenceId);
@@ -74,6 +77,44 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   res.redirect(`/shelves/${shelfIdcloneToReferenceLater}`)
 }));
 
+// delete form to delete shelf in the Shelves table in database
+router.get('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const shelfId = parseInt(req.params.id, 10);
+  const shelf = await db.Shelf.findByPk(shelfId);
+  const userId = req.session.auth.userId
+  // if(shelf.userId !== userId) {
+  //   console.log(`you do not own this shelf`)
+  //   return
+  // }
+  res.render('delete-shelf', {shelf, shelfId, csrfToken: req.csrfToken()})
+}))
+//once you click delete shelf on the seperate form
+router.post('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const shelfId = parseInt(req.params.id, 10);
+  const shelf = await db.Shelf.findByPk(shelfId);
+  const userId = req.session.auth.userId
+  const planttoshelf = await db.PlantToShelf.findAll({
+    where: {
+      shelfId: shelfId
+    }
+  })
+
+  // if(shelf.userId !== userId) {
+  //   console.log(`you do not own this shelf`)
+  //   return
+  // }
+
+  for(let i=0; i < planttoshelf.length; i++) {
+    let plants = planttoshelf[i]
+    await plants.destroy();
+  }
+
+  await shelf.destroy()
+
+  res.redirect(`/users/${userId}/shelves`)
+}))
+
+//building a shelf (derek helped, weird route, but it works (to be streamlined later))
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const userId = req.session.auth.userId
     const user = await db.User.findByPk(userId);
