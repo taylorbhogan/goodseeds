@@ -3,14 +3,32 @@ extends layout.pug
 include utils.pug
 
 block content
-    title= shelf.name
-    div.shelfName #{shelf.name}
-    container.plant-container
-        each reference in plantsToShelves
-            div.plant-card
-                div.plant-image
-                    img(src=reference.Plant.imgUrl, alt="Picture goes here")
-                div
-                    a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
-                div
-                    p= reference.Plant.scientificName
+    div.shelf-container
+        title= shelf.name
+        div.shelfName #{shelf.name}
+        container.plant-container
+            each reference in plantsToShelves
+                div.plant-card
+                    div.plant-image
+                        img(src=reference.Plant.imgUrl, alt="Picture goes here")
+                    div
+                        a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
+                    div
+                        p= reference.Plant.scientificName
+    div.comment-container
+        h1 Comments
+        div.comment-new-container
+            form(action=`/shelves/${shelf.id}` method="post")
+                input(type='hidden' name='_csrf' value=csrfToken)
+                div.comment-input-div
+                    label(for='commentText') Add a Comment:
+                    textarea(name='commentText' class='comment-text-area')
+                button(type='submit') Add Comment
+        div.comment-list-container
+            each comment in comments
+                div.comment-div
+                    p
+                        span= `On ${comment.createdAt} `
+                        a(href=`/users/${comment.User.id}/shelves`) #{comment.User.username}
+                        span  wrote:
+                    p= comment.commentText
