@@ -36,3 +36,4 @@ block content
                 a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
                 span  gave this plant #{review.rating} stars.
               p= review.reviewText
+              a(href=`/plants/reviews/delete/${review.id}`) Delete this Review

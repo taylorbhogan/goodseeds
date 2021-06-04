@@ -32,6 +32,33 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('shelf', { plantsToShelves, shelf, comments, csrfToken: req.csrfToken()  })
 }))
 
+//This is the AJAX call for comments
+router.post('/:id', asyncHandler(async(req,res,next) => {
+  const comment = req.body.comment;
+  const userId = req.session.auth.userId
+
+
+  const newComment = db.Comment.build({
+    commentText: comment,
+    userId: userId,
+    shelfId: req.params.id,
+    likeCount: 0,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+  await newComment.save();
+  const listOfComments = db.Comment.findAll({
+    where: {shelfId: req.params.id}
+  })
+
+ res.json(newComment)
+
+
+  // for(let i = 0; i < listOfComments.length; i++){
+
+  // }
+
+}))
 /* IT'S BROKEN
 router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const shelf = await db.Shelf.findByPk(req.params.id);
@@ -101,10 +128,18 @@ router.post('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, ne
     }
   })
 
+  const comments = await db.Comment.findAll({
+    where: {shelfId: shelfId}
+  })
   // if(shelf.userId !== userId) {
   //   console.log(`you do not own this shelf`)
   //   return
   // }
+
+  for(let i=0; i < comments.length; i++) {
+    let comment = comments[i]
+    await comment.destroy();
+  }
 
   for(let i=0; i < planttoshelf.length; i++) {
     let plants = planttoshelf[i]
