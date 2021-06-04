@@ -21,12 +21,13 @@ block content
     div.comment-container
         h1 Comments
         div.comment-new-container
-            form(action=`/shelves/${shelf.id}` method="post")
+            form(class="comment-form")
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div.comment-input-div
                     label(for='commentText') Add a Comment:
-                    textarea(name='commentText' class='comment-text-area')
-                button(type='submit') Add Comment
+                    input(required name="user-comment" id="user-comment" class="user-comment" placeholder=" Add a comment... ")
+                input(type='submit' value='Add Comment' id='addCommentButton')
+                //- button(type='submit' id="addCommentButton") Add Comment
         div.comment-list-container
             each comment in comments
                 div.comment-div
