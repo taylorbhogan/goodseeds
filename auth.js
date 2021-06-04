@@ -12,7 +12,7 @@ const logoutUser = (req, res) => {
 
 const requireAuth = (req, res, next) => {
   if (!res.locals.authenticated) {
-    return res.redirect('/user/login');
+    return res.redirect('/users/login');
   }
   return next();
 };
@@ -26,6 +26,7 @@ const restoreUser = async (req, res, next) => {
       if (user) {
         res.locals.authenticated = true;
         res.locals.user = user;
+        console.log('res.locals.user ', res.locals.user.firstName)
         next();
       }
     } catch (err) {

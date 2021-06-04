@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
+const { requireAuth } = require('../auth');
 
-router.delete('/:id', asyncHandler(async(req, res)=> {
+router.use(requireAuth)
+
+router.delete('/:id', requireAuth, asyncHandler(async(req, res)=> {
   // backend logic goes here
-
 }))
 
 //displays shelf: with: comments, plants associated with this shelf

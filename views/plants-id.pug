@@ -1,7 +1,5 @@
 extends layout.pug
-
 include utils.pug
-
 block content
   div.page-container
       container.plant-id-container
@@ -13,18 +11,22 @@ block content
                       a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
                   div
                       p(class="plant-scientific-name")= plant.scientificName
-      form(action=`/plants/${plant.id}`, method='post')
-        div Add this plant to shelf
-        input(type='hidden' name='_csrf' value=csrfToken)
-        label(for='selectedshelf') My Shelves
-        select(name='selectedshelf')
-          option --select one--
-          each shelf in usersShelves
-            option(value=`${shelf.id}`)= `${shelf.name}`
-        button(type='submit' class="button__add-to-shelf") Add To Shelf
+      if locals.authenticated
+        form(action=`/plants/${plant.id}`, method='post')
+          div Add this plant to shelf
+          input(type='hidden' name='_csrf' value=csrfToken)
+          label(for='selectedshelf') My Shelves
+          select(name='selectedshelf')
+            option --select one--
+            each shelf in usersShelves
+              option(value=`${shelf.id}`)= `${shelf.name}`
+          button(type='submit' class="button__add-to-shelf") Add To Shelf
       div= `Average rating: ${avgRating}/5`
       div Tags
-      a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
+      if locals.authenticated
+        a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
+      else
+        a(href=`/users/login` class="button__add-review") Add a Review
       div.plant-container__right-div
       container.review-container
         h1 Reviews
