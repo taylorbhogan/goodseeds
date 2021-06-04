@@ -23,6 +23,7 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
           userId: userId
         }
       });
+
     let avgRating = 0;
     if (reviews.length){
         const ratingsArray = []
@@ -34,7 +35,9 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         const ratingSum = ratingsArray.reduce((accum, el) => {
             return accum + el;
         })
-        avgRating = ratingSum/ratingsArray.length
+        let rating = ratingSum/ratingsArray.length;
+        avgRating = rating.toFixed(2);
+
     }
     res.render('plants-id', { plant, reviews, userId, usersShelves, user, avgRating, csrfToken: req.csrfToken()   } )
 }));
@@ -91,6 +94,32 @@ router.post('/:id/reviews', csrfProtection, asyncHandler(async(req, res) => {
     res.redirect(`/plants/${plantId}`)
 }))
 
+//display the form that deletes the selected reviuew
+router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const reviewId = parseInt(req.params.id, 10);
+  const review = await db.Review.findByPk(reviewId);
+  const userId = req.session.auth.userId
+  // if(shelf.userId !== userId) {
+  //   console.log(`you do not own this shelf`)
+  //   return
+  // }
+  res.render('deletereview', {review, reviewId, csrfToken: req.csrfToken()})
+}))
 
+//When you click the button, it deletes the review from the review table, and redirects you to the plant page
+router.post('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+  const reviewId = parseInt(req.params.id, 10);
+  const review = await db.Review.findByPk(reviewId);
+  const userId = req.session.auth.userId
+
+  // if(shelf.userId !== userId) {
+  //   console.log(`you do not own this shelf`)
+  //   return
+  // }
+
+  await review.destroy()
+
+  res.redirect(`/plants/${review.plantId}`)
+}))
 
 module.exports = router
