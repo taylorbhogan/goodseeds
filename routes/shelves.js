@@ -26,7 +26,7 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
       }
     })
 
-    res.render('shelf', { plantsToShelves, shelf, csrfToken: req.csrfToken()  })
+    res.render('shelf', { plantsToShelves, shelf, comments, csrfToken: req.csrfToken()  })
 }))
 
 router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -41,12 +41,9 @@ router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     }
 
   })
-
-
 }))
 
 router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
-
     const userId = req.session.auth.userId
     const user = await db.User.findByPk(userId);
 
