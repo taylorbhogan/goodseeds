@@ -69,19 +69,17 @@ router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     // res.render('plants-id', { plant, reviews, avgRating, } )
 }));
 
-router.get('/:id/reviews', asyncHandler(async(req, res) => {
+router.get('/:id/reviews', csrfProtection, asyncHandler(async(req, res) => {
     const plant = await db.Plant.findByPk(req.params.id);
 
-    res.render('plants-id-reviews', { plant })
+    res.render('plants-id-reviews', { plant, csrfToken: req.csrfToken() })
 }))
 
-router.post('/:id/reviews', asyncHandler(async(req, res) => {
+router.post('/:id/reviews', csrfProtection, asyncHandler(async(req, res) => {
     const plantId = req.params.id
-    const userIdNum = parseInt(req.session.auth.userId, 10)
-    const user = await db.User.findByPk(userIdNum)
+    const user = await db.User.findByPk(req.session.auth.userId)
     const userId = user.id
-    // console.log("req.session.auth.userId", req.session.auth.userId);
-    // const plant = await db.Plant.findByPk(req.params.id);
+
     const { reviewText, rating } = req.body;
 
     const newReview = db.Review.build({
@@ -93,7 +91,6 @@ router.post('/:id/reviews', asyncHandler(async(req, res) => {
 
     await newReview.save();
 
-    // res.render('plants-id', { plant, newReview })
     res.redirect(`/plants/${plantId}`)
 }))
 

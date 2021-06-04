@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'plantId'
     }
     Shelf.belongsTo(models.User, {foreignKey: 'userId'}),
+    Shelf.hasMany(models.Comment, {foreignKey: 'shelfId'}),
     Shelf.belongsToMany(models.Plant, columnMapping)
   };
   return Shelf;
