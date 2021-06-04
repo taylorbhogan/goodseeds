@@ -64,9 +64,6 @@ router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     await newPlantToShelfConnection.save();
 
     res.redirect(`../shelves/${selectedshelf}`)
-
-
-    // res.render('plants-id', { plant, reviews, avgRating, } )
 }));
 
 router.get('/:id/reviews', csrfProtection, asyncHandler(async(req, res) => {
