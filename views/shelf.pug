@@ -13,4 +13,9 @@ block content
                 div
                     a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
                 div
+                    span(id="plantIdSpan" value=`${reference.Plant.id}`)
+                div
                     p= reference.Plant.scientificName
+                div(value=`${reference.Plant.id}`)
+                  form 
+                    button(type="submit" id="shelfDelButton") Remove This Plant From Shelf
