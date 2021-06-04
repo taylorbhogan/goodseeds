@@ -7,14 +7,17 @@ block content
         title= shelf.name
         div.shelfName #{shelf.name}
         container.plant-container
-            each reference in plantsToShelves
-                div.plant-card
-                    div.plant-image
-                        img(src=reference.Plant.imgUrl, alt="Picture goes here")
-                    div
-                        a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
-                    div
-                        p= reference.Plant.scientificName
+          each reference in plantsToShelves
+            div.plant-card
+              div.plant-image
+                img(src=reference.Plant.imgUrl, alt="Picture goes here")
+              div
+                a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
+              div
+                p= reference.Plant.scientificName
+              div(name=`${reference.plantId}` value=`${reference.Plant.id}`)
+                button(id=`${reference.id}` type='submit' class='deletePlantOnShelf') Ajax Remove This Plant on This Shelf
+                a(href=`/shelves/planttoshelf/${reference.id}` role='button') Delete (bookexample)
     div.comment-container
         h1 Comments
         div.comment-new-container
