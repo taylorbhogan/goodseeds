@@ -6,11 +6,19 @@ const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const { loginUser, logoutUser } = require('../auth');
 
+/*
+GET /users page
+Displays all users along with links to their
+*/
 router.get('/', asyncHandler(async(req, res, next) => {
   const users = await db.User.findAll()
   res.render('users', { users });
 }));
 
+/*
+GET /users/signup page
+Displays form for new users to create an account
+*/
 router.get('/signup', csrfProtection, (req, res, next) =>{
   const user = db.User.build();
   res.render('users-signup', {
@@ -19,11 +27,28 @@ router.get('/signup', csrfProtection, (req, res, next) =>{
   });
 });
 
+/*
+GET /users/login page
+Displays form for existing users to login
+*/
+router.get('/login', csrfProtection, (req, res, next)=>{
+  res.render('users-login', {
+    csrfToken: req.csrfToken()
+  });
+});
+
+/*
+POST /users/logout page
+Logs out user from their account and redirects to /users/login page
+*/
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/users/login');
 });
 
+/*
+Array of validators to check against new account creation constraints
+*/
 const signupValidators = [
   check('firstName')
     .exists({checkFalsy: true})
@@ -80,6 +105,10 @@ const signupValidators = [
     })
 ]
 
+/*
+POST /users/signup page
+Creates new account for new users then redirects to / page
+*/
 router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req, res, next) =>{
   const {
     firstName,
@@ -114,12 +143,9 @@ router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req,
   }
 }));
 
-router.get('/login', csrfProtection, (req, res, next)=>{
-  res.render('users-login', {
-    csrfToken: req.csrfToken()
-  });
-});
-
+/*
+Array of validators to check against log in constraints
+*/
 const loginValidators = [
   check('email')
     .exists({ checkFalsy: true })
@@ -136,46 +162,47 @@ router.post('/login', csrfProtection, loginValidators,
       password,
     } = req.body;
 
-    let errors = [];
-    const validatorErrors = validationResult(req);
+  let errors = [];
+  const validatorErrors = validationResult(req);
 
-    if (validatorErrors.isEmpty()) {
-      // TODO Attempt to login the user.
-      const user = await db.User.findOne({ where: { email } });
+  if (validatorErrors.isEmpty()) {
+    // TODO Attempt to login the user.
+    const user = await db.User.findOne({ where: { email } });
 
-      if (user !== null) {
-      const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
+    if (user !== null) {
+    const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
 
-      if (passwordMatch) {
-        // If the password hashes match, then login the user
-        // and redirect them to the default route.
-        // TODO Login the user.
-        loginUser(req,res,user);
+    if (passwordMatch) {
+      // If the password hashes match, then login the user
+      // and redirect them to the default route.
+      // TODO Login the user.
+      loginUser(req,res,user);
 
-        return res.redirect('/');
-      }
+      return res.redirect('/');
     }
-    errors.push('Login failed for the provided email address and password');
-    } else {
-      errors = validatorErrors.array().map((error) => error.msg);
+  }
+  errors.push('Login failed for the provided email address and password');
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
+  }
+
+  res.render('users-login', {
+    title: 'Login',
+    email,
+    errors,
+    csrfToken: req.csrfToken(),
+  });
+}));
+
+router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
+  const user = await db.User.findByPk(req.params.id);
+  const shelves = await db.Shelf.findAll({
+    where: {
+      userId: req.params.id
     }
-
-    res.render('users-login', {
-      title: 'Login',
-      email,
-      errors,
-      csrfToken: req.csrfToken(),
-    });
-  }));
-
-  router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-    const user = await db.User.findByPk(req.params.id);
-    const shelves = await db.Shelf.findAll({
-      where: {
-        userId: req.params.id
-      }
-    });
-    res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken()})}))
+  });
+  res.render('users-id-shelves', {user, shelves, csrfToken: req.csrfToken()})
+}))
 
 router.get('/account', asyncHandler(async(req, res, next) => {
 
