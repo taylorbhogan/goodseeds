@@ -3,6 +3,11 @@ const router = express.Router();
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
+router.delete('/:id', asyncHandler(async(req, res)=> {
+  // backend logic goes here
+
+}))
+
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
     const comments = await db.Comment.findAll({
