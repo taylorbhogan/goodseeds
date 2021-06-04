@@ -4,7 +4,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 const entryDestroyer = async (entryToDestroy) => {
   await entryToDestroy.destroy()
@@ -14,7 +14,7 @@ const entryDestroyer = async (entryToDestroy) => {
 GET /users page
 Displays all users along with links to their
 */
-router.get('/', asyncHandler(async(req, res, next) => {
+router.get('/', requireAuth, asyncHandler(async(req, res, next) => {
   const users = await db.User.findAll()
   res.render('users', { users });
 }));
@@ -41,6 +41,18 @@ router.get('/login', csrfProtection, (req, res, next)=>{
   });
 });
 
+/*
+GET /users/demo page
+Logs in demo user
+*/
+router.get('/demo', asyncHandler(async(req, res, next)=>{
+  const demoUser = await db.User.findByPk(1);
+
+  loginUser(req, res, demoUser)
+
+  res.redirect('/')
+}));
+
 router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
   // const userToDelete = res.locals.user
   // console.log("LOOK HERE GUYS", userToDelete);
@@ -61,14 +73,14 @@ Displays list of all of the logged in user's shelves
 */
 router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
   console.log('RES.LOCALS ', res.locals.user.firstName)
-  const testUser = res.locals.user.firstName
+  const tempUser = res.locals.user
   const user = await db.User.findByPk(req.params.id);
   const shelves = await db.Shelf.findAll({
     where: {
       userId: req.params.id
     }
   });
-  res.render('users-id-shelves', {user, testUser, shelves, csrfToken: req.csrfToken()})
+  res.render('users-id-shelves', {user, tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 
 router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
