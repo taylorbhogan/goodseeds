@@ -36,7 +36,7 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         })
         avgRating = ratingSum/ratingsArray.length
     }
-    res.render('plants-id', { plant, reviews, userId, usersShelves, user, csrfToken: req.csrfToken()   } )
+    res.render('plants-id', { plant, reviews, userId, usersShelves, user, avgRating, csrfToken: req.csrfToken()   } )
 }));
 
 router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -64,9 +64,6 @@ router.post('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     await newPlantToShelfConnection.save();
 
     res.redirect(`../shelves/${selectedshelf}`)
-
-
-    // res.render('plants-id', { plant, reviews, avgRating, } )
 }));
 
 router.get('/:id/reviews', csrfProtection, asyncHandler(async(req, res) => {

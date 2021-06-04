@@ -26,7 +26,7 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
       }
     })
 
-    res.render('shelf', { plantsToShelves, shelf, csrfToken: req.csrfToken()  })
+    res.render('shelf', { plantsToShelves, shelf, comments, csrfToken: req.csrfToken()  })
 }))
 
 router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
