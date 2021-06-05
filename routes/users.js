@@ -307,7 +307,7 @@ router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) =>
       userId: req.params.id
     }
   });
-  console.log(res.locals.user.firstName);
+  // console.log(res.locals.user.firstName);
   res.render('users-id-shelves', {tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 

@@ -93,7 +93,7 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   const plant = await db.Plant.findByPk(reference.plantId);
   const shelf = await db.Shelf.findByPk(reference.shelfId);
   const shelfIdcloneToReferenceLater = reference.shelfId
-  console.log(reference)
+  // console.log(reference)
   //check permissions
   const userId = req.session.auth.userId
   console.log(userId)

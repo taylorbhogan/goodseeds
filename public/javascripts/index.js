@@ -1,6 +1,10 @@
 // const db = require('../../db/models');
 
 window.addEventListener("load", (event)=>{
+  const commentList = document.querySelector('#addCommentButton');
+  const commentForm = document.querySelector('.comment-form')
+
+
   // const spanTag = document.querySelector(event.value)
   const currentUrl = String(window.location.pathname)
   const findId = (currentUrl) => {
@@ -15,20 +19,21 @@ window.addEventListener("load", (event)=>{
   }
 
   const findUsername = (spanContent) => {
-    for(let i = spanContent.length-1; i > 0; i--){
-      let currentChar = spanContent[i]
-      let index;
-      if(currentChar === " "){
-        index = i;
-        return spanContent.slice(i+1)
-      }
-    }
+    // for(let i = spanContent.length-1; i > 0; i--){
+    //   let currentChar = spanContent[i]
+    //   let index;
+    //   if(currentChar === " "){
+    //     index = i;
+    //     return spanContent.slice(i+1)
+    //   }
+    // }
+    return "this is a slice"
   }
 
 
-  const rightNavSpan = document.querySelector('.spanTag')
-  const spanContent = rightNavSpan.textContent;
-  console.log(spanContent)
+  // const rightNavSpan = document.querySelector('.spanTag')
+  // const spanContent = rightNavSpan.textContent;
+  const spanContent = "this is the spanContent variable"
 
   //handles all the responses for our comments
   const handleResponse = async (res) => {
@@ -96,26 +101,32 @@ window.addEventListener("load", (event)=>{
     const formData = new FormData(commentForm);
     const comment = formData.get('user-comment')
 
-    const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({comment})
-    })
-    const data = await handleResponse(res);
-    commentForm.reset();
-    receiveComment(data);
+    try {
+      const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({comment})
+      })
+      const data = await handleResponse(res);
+      commentForm.reset();
+      receiveComment(data);
+      // console.log("DATA--TAYLOR",data);
+      }
+      catch (e) {
+        console.log("I AM THE ERROR TAYLOR", e);
+      }
   }
   // Delete Plant Button Click
   const list = document.querySelectorAll('.plant-card')
-  console.log(list);
-  for(let i = 0; i < list.length; i++) {
-	  list[i].addEventListener('click', deletePlantOnShelf);
-  }
+  // console.log(list);
+  // for(let i = 0; i < list.length; i++) {
+	//   list[i].addEventListener('click', deletePlantOnShelf);
+  // }
 
-  const commentList = document.querySelector('#addCommentButton');
-  const commentForm = document.querySelector('.comment-form')
+  // const commentList = document.querySelector('#addCommentButton');
+  // const commentForm = document.querySelector('.comment-form')
   commentList.addEventListener('click', addComment)
 
 
