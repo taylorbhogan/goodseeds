@@ -2,7 +2,7 @@ doctype html
 html
   head
       block head
-        title="GoodSeeds"
+        title="GoodSeeds 🌱"
         link(rel='stylesheet' href='/stylesheets/index.css')
         script(src="/javascripts/index.js" type="module" defer)
   body
@@ -19,18 +19,18 @@ html
           if locals.authenticated
 
             span.spanTag Welcome, #{user.username}
-
-            form(action="/users/logout" method="post")
-              button(type="submit") Log Out
+            //- commented out with the addition of the dropdown logout button
+            //- form(action="/users/logout" method="post")
+            //-   button(type="submit") Log Out
             div.navbar__account-oval
               a(href="/users/account" class="navbar__account-link") Your Account 👤
                 ul.navbar__account-dropdown
                   li
                     form(action="/users/logout" method="post")
-                      div
-                        button(type="submit") Log Out
+                      div.logout-button-div
+                        button(type="submit" class="logout-button") Log Out
           else
-            span
+            span.login-button-span
               a(href="/users/demo") Sign In As Demo User
               a(href="/users/login") Log in
               a(href="/users/signup") Sign Up

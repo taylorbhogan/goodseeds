@@ -37,6 +37,10 @@
   color: var(--main-color-green);
 }
 
+#plant001{
+  background-image: url(../../images/plants/plant-img001.jpeg);
+}
+
 .plant-image{
   height: 300px;
   width: 300px;
