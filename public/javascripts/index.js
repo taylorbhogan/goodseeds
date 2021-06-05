@@ -27,13 +27,17 @@ window.addEventListener("load", (event)=>{
     //     return spanContent.slice(i+1)
     //   }
     // }
-    return "this is a slice"
+    return "you"
   }
 
-
+// m
   // const rightNavSpan = document.querySelector('.spanTag')
   // const spanContent = rightNavSpan.textContent;
-  const spanContent = "this is the spanContent variable"
+  // const spanContent = "this is the spanContent variable"
+
+
+  // const rightNavSpan = document.querySelector('.welcome-message-drop')
+  // const spanContent = rightNavSpan.textContent;
 
   //handles all the responses for our comments
   const handleResponse = async (res) => {
