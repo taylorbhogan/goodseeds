@@ -1,6 +1,3 @@
-/* div > h1 {
-  background-color: chartreuse;
-} */
 :root{
   --main-color-green: #3bb14d;
 }
@@ -17,10 +14,14 @@ body{
   background-color: #f7f7f7;
 }
 
-.clickable-username:hover{
-  color: var(--main-color-green);
+.clickable-username{
   font-weight: 550;
 }
+.clickable-username:hover{
+  color: var(--main-color-green);
+}
+
+
 
 /* change to navbar__container */
 .main-nav{
@@ -87,10 +88,17 @@ body{
 }
 /* navbar__left-nav a */
 .left-nav a {
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   font-size: 40px;
   color: rgba(255, 255, 255, 1);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.left-nav a:hover {
+  background-color: rgba(0, 0, 0, .1);
 }
 
 .right-nav > .spanTag{
