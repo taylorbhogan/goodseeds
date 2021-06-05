@@ -39,7 +39,7 @@ block content
           div.review-div
             span
               if locals.authenticated
-                a(href=`/users/${review.User.id}/shelves`) #{review.User.username}
+                a(href=`/users/${review.User.id}/shelves` class="clickable-username") #{review.User.username}
               else
                 a(href=`/users/login`) #{review.User.username}
             span  gave this plant #{review.rating} stars.

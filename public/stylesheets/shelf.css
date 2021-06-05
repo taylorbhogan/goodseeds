@@ -15,7 +15,20 @@
     flex-direction: column;
 }
 
-.comment-list-container {
+.add-plants-link{
+    border: 3px solid rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 17px;
+    margin: 0px 10px;
+    font-weight: 600;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.add-plants-link:hover{
+    background-color: white;
+    border: 6px solid rgb(255, 255, 255);
 }
 
 .comment-div {

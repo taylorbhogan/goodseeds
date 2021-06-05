@@ -12,17 +12,23 @@ html
           a(href="/" class="main-logo") GoodSeeds
         nav.left-nav
           span
-            a(href="/users") Users
+            a(href="/users") Users and shelves
             a(href="/plants") Plants
             //- a(href=`/users/${user.id}/shelves`) My Shelves
       div
         nav.right-nav
           if locals.authenticated
+            div.welcome-message-div
+              div.welcome-message-inner-div
+                a(href=`/users/${user.id}/shelves` class="welcome-message")
+                  div.welcome-message-drop Hi, #{user.username}.
+              div.welcome-message-inner-div
+                a(href=`/users/${user.id}/shelves` class="welcome-message")
+                  div Let's get planting.
 
-            span.spanTag Welcome, #{user.username}
-            //- commented out with the addition of the dropdown logout button
-            //- form(action="/users/logout" method="post")
-            //-   button(type="submit") Log Out
+              //- span.welcome-message Hi, #{user.username}. Let's get planting.
+            //- span.spanTag Welcome, #{user.username}
+            //- a(href="hello")
             div.navbar__account-oval
               a(href="/users/account" class="navbar__account-link") Your Account 👤
                 ul.navbar__account-dropdown

@@ -7,15 +7,18 @@ block content
         table
             thead
                 tr
-                    th #{user.username}'s Shelves
+                    th #{userToDisplay.username}'s Shelves
+                    th
             tbody
                 each shelf in shelves
                     tr
                         td
                             a(href=`../../shelves/${shelf.id}` class="shelf-link") #{shelf.name}
+                        td
+                            a(href="../../plants" class="add-plants-link") Add plants to shelf
         form(action='/shelves' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' id='userId' name='userId' value=`${tempUser.id}`)
+            input(type='hidden' id='userId' name='userId' value=`${loggedInUser.id}`)
             label(for='name') Shelf Name
             input(name='name' id='name')
             button(type='submit') Add a Shelf

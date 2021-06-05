@@ -17,6 +17,11 @@ body{
   background-color: #f7f7f7;
 }
 
+.clickable-username:hover{
+  color: var(--main-color-green);
+  font-weight: 550;
+}
+
 /* change to navbar__container */
 .main-nav{
   position: sticky;
@@ -53,6 +58,28 @@ body{
   justify-content: space-around;
   align-items: flex-end;
 }
+
+.welcome-message{
+  text-decoration: none;
+}
+
+.welcome-message-div{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+  margin-right: 30px;
+}
+
+.welcome-message-inner-div{
+  height: 36px;
+}
+
+.welcome-message-drop{
+  position: relative;
+  top: 15px;
+}
+
 /* navbar__right-nav a */
 .right-nav a {
   padding: 5px 10px 7px 10px;

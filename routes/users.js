@@ -73,15 +73,16 @@ GET /users/:id/shelves page
 Displays list of all of the logged in user's shelves
 */
 router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-  console.log('RES.LOCALS ', res.locals.user.firstName)
-  const tempUser = res.locals.user
-  const user = await db.User.findByPk(req.params.id);
+  // console.log('RES.LOCALS ', res.locals.user.firstName)
+  const loggedInUser = res.locals.user
+  // console.log("--TBH--loggedInUser--TBH--",loggedInUser);
+  const userToDisplay = await db.User.findByPk(req.params.id);
   const shelves = await db.Shelf.findAll({
     where: {
       userId: req.params.id
     }
   });
-  res.render('users-id-shelves', {user, tempUser, shelves, csrfToken: req.csrfToken()})
+  res.render('users-id-shelves', {userToDisplay, loggedInUser, shelves, csrfToken: req.csrfToken()})
 }))
 
 router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
