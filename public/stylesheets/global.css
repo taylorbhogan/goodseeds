@@ -1,19 +1,33 @@
 /* div > h1 {
   background-color: chartreuse;
 } */
+:root{
+  --main-color-green: #3bb14d;
+}
+
+
+body{
+  /* background-color: rgb(219, 180, 130); */
+  background-color: #f7f7f7;
+}
+
 /* change to navbar__container */
 .main-nav{
+  position: sticky;
+  top: 0px;
+  z-index: 1;
   display: flex;
-  background-color: rgb(133, 182, 35);
+  background-color: var(--main-color-green);
   justify-content: space-between;
   align-items: flex-end;
-  height: 120px;
-  padding: 20px;
+  height: 200px;
+  padding: 20px 100px 20px 100px;
 }
 /* navbar__left-menu */
 .logo-div{
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   align-items: flex-end;
 }
 /* navbar__left-nav */
@@ -21,7 +35,7 @@
 /* navbar__logo */
 
 .main-logo{
-  font-size: 30px;
+  font-size: 70px;
   padding: 20px;
   color: rgba(243, 255, 79, 0.897);
   font-family: 'Times New Roman', Times, serif;
@@ -30,7 +44,7 @@
 .left-nav{
   display: flex;
   justify-content: space-around;
-  font-family: 'Times New Roman', Times, serif;
+  align-items: flex-end;
 }
 /* navbar__right-nav */
 .right-nav{
@@ -47,6 +61,11 @@
 /* navbar__left-nav a */
 .left-nav a {
   padding: 10px;
+  font-size: 40px;
+    /* font-family: 'Times New Roman', Times, serif; */
+}
+
+.right-nav > .spanTag{
   font-size: 20px;
 }
 
@@ -59,7 +78,7 @@
   border: 1px solid black;
   border-radius: 2em;
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 .navbar__account-oval:hover{
@@ -68,15 +87,24 @@
 }
 
 .navbar__account-dropdown{
-  display: none;
+  visibility: hidden;
   position: absolute;
+  display: none;
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-.navbar__account-dropdown a{
+.navbar__account-link:hover > ul,
+.navbar__account-dropdown:hover {
+  visibility: visible;
+  display: block;
+}
+
+
+
+.navbar__account-dropdown li{
   display: block;
 }
 

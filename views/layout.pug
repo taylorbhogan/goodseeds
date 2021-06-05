@@ -24,8 +24,11 @@ html
               button(type="submit") Log Out
             div.navbar__account-oval
               a(href="/users/account" class="navbar__account-link") Your Account 👤
-              div.navbar__account-dropdown
-                a Log out
+                ul.navbar__account-dropdown
+                  li
+                    form(action="/users/logout" method="post")
+                      div
+                        button(type="submit") Log Out
           else
             span
               a(href="/users/demo") Sign In As Demo User
