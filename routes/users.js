@@ -16,7 +16,8 @@ Displays all users along with links to their
 */
 router.get('/', requireAuth, asyncHandler(async(req, res, next) => {
   const users = await db.User.findAll()
-  res.render('users', { users });
+  const shelves = await db.Shelf.findAll({include: db.User})
+  res.render('users', { users, shelves });
 }));
 
 /*

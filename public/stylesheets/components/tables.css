@@ -1,6 +1,9 @@
 table {
   border-collapse: collapse;
   margin-top: 20px;
+  /* border-radius: 10px; */
+  /* border-radius:6px;
+  -moz-border-radius:6px; */
 }
 
 th {
@@ -9,11 +12,15 @@ th {
   color: #EEEEEE;
 }
 
+td {
+  height: 80px;
+  width: 300px;
+}
+
 td, th {
-  border: 1px solid black;
   padding: 0.5rem
 }
 
 tr > td{
-  background: #dadada;
+  background: #EEE;
 }

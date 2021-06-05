@@ -9,6 +9,12 @@
 body{
   /* background-color: rgb(219, 180, 130); */
   background-color: #f7f7f7;
+  /* if you change the above, please change the below */
+}
+
+.background-reset{
+  /* if you change the below, please change the above */
+  background-color: #f7f7f7;
 }
 
 /* change to navbar__container */

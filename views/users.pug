@@ -3,14 +3,18 @@ extends layout.pug
 include utils.pug
 
 block content
-    table Users
-        thead
-            tr
-                th Username
-                th Shelves
-        tbody
-            each user in users
+    container(class="flex-container__center-x background-reset")
+        table
+            thead
                 tr
-                    td= user.username
-                    td
-                        a(href=`./users/${user.id}/shelves`) #{user.username}'s Shelves
+                    th 
+                    th
+            tbody
+                each shelf in shelves
+                    tr
+                        td.flex-container__center-center
+                            //- div= shelf.User.username
+                            a(href=`./users/${user.id}/shelves` class="user-link") #{shelf.User.username}
+                        td
+                            div.flex-container__center-x
+                                a(href=`./users/${user.id}/shelves` class="shelf-link") #{shelf.name}
