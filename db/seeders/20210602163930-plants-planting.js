@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
     return queryInterface.bulkInsert('Plants', [
-      { name: 'Aloe Vera', scientificName: 'Aloe vera', imgUrl: '../../public/images/plants/plant-img001' },
+      { name: 'Aloe Vera', scientificName: 'Aloe vera', imgUrl: 'aloe_vera' },
       { name: 'Jade Plant', scientificName: 'Crassula ovata', imgUrl: '../../public/images/plants/plant-img002' },
       { name: 'Spider Plant', scientificName: 'Chlorophytum comosum', imgUrl: '../../public/images/plants/plant-img003' },
       { name: 'Desert Rose', scientificName: 'Adenium obesum', imgUrl: '../../public/images/plants/plant-img004' },

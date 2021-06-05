@@ -11,7 +11,7 @@ block content
           each reference in plantsToShelves
             div.plant-card
               div.plant-image
-                img(src=reference.Plant.imgUrl, alt="Picture goes here")
+                    img(src=`/images/plants/${reference.Plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-img")
               div
                 a(href=`/plants/${reference.Plant.id}`)= reference.Plant.name
               div

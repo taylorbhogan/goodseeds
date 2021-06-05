@@ -6,7 +6,7 @@ block content
   container.plant-id__container
       div.plant-card
           div.plant-image
-              img(src=plant.imgUrl, alt="Picture goes here")
+                    img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-img")
           div
               a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
           div
