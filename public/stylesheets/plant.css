@@ -3,27 +3,51 @@
   flex-direction: column;
 }
 
+.plant-top-container{
+  display: flex;
+  justify-content: center;
+}
+
 .plant-id-container{
   display: flex;
 }
 
-.plant-container__left-div{
+/* .plant-container__left-div{
 
-}
+} */
 
 .plant-container__right-div{
   border: 1px solid black;
-  width: 800px;
+  margin: 100px 0 0 40px;
+  padding: 20px;
+  width: 500px;
+  height: 300px;
 }
 
-.review-container {
+.review-outer-container{
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  align-items: center;
 }
 
+/* .review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+} */
+
 .review-div{
+  max-width: 1000px;
+  min-width: 800px;
   border: 1px solid black;
   margin: 20px;
   padding: 20px;
+}
+
+.review-header-container{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
 }

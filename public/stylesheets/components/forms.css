@@ -22,6 +22,7 @@
 
 .button-primary:hover{
   background-color: var(--main-color-green);
+  cursor: pointer;
 }
 
 .form-group{
