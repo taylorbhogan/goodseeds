@@ -17,10 +17,11 @@
   width: auto;
   flex-grow: 1;
   border-radius: 7px;
+  margin-top: 10px;
 }
 
 .button-primary:hover{
-  background-color: olivedrab;
+  background-color: var(--main-color-green);
 }
 
 .form-group{
@@ -47,4 +48,7 @@
   background-color: #ebe9e9;
   width: 100%;
   border-radius: 5px;
+  height: 40px;
+  font-size: 20px;
+  margin-top: 4px;
 }

@@ -29,11 +29,11 @@
   position: relative;
 }
 
-.plant-card:hover{
+.plant-card--hover:hover{
   transform: translateY(-7px);
 }
 /* When you hover on a card, the plant name changes to the main color set in global.css*/
-.plant-card:hover .main-link{
+.plant-card--hover:hover .main-link{
   color: var(--main-color-green);
 }
 

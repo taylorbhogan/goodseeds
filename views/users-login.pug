@@ -8,8 +8,8 @@ block content
     form(action='/users/login' method='post' class='form')
       div.form-inputs
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Email Address', 'email', null)
-        +field('Password', 'password', null, 'password')
+        +field('Email Address:', 'email', null)
+        +field('Password:', 'password', null, 'password')
       div.form-links
         button(type='submit' class='button-primary') Login
       div.form-links

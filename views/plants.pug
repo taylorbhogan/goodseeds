@@ -6,7 +6,7 @@ block content
     h1
     container.plant-container
         each plant in plants
-            div.plant-card
+            div(class="plant-card plant-card--hover")
                 div.plant-image
                     img(src=plant.imgUrl, alt="Picture goes here")
                 div

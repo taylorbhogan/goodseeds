@@ -8,12 +8,12 @@ block content
     form(action='/users/signup' method='post' class='form')
       div.form-inputs
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('First Name', 'firstName', user.firstName)
-        +field('Last Name', 'lastName', user.lastName)
-        +field('Username', 'username', user.username)
-        +field('Email Address', 'email', user.email)
-        +field('Password', 'password', user.password, 'password')
-        +field('Confirm Password', 'confirmPassword', '', 'password')
+        +field('First Name:', 'firstName', user.firstName)
+        +field('Last Name:', 'lastName', user.lastName)
+        +field('Username:', 'username', user.username)
+        +field('Email Address:', 'email', user.email)
+        +field('Password:', 'password', user.password, 'password')
+        +field('Confirm Password:', 'confirmPassword', '', 'password')
       div.form-links
         button(type='submit' class='button-primary') Sign Up
       div.form-links

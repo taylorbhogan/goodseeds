@@ -7,6 +7,10 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  container.splash-container
-    h1 Welcome to GoodSeeds
-    p This is a virtual home for your houseplant collection!
+  div.test4321
+    container.splash-container
+      div.splash-box
+        h1(class="splash-text-all splash-text-header") Welcome to GoodSeeds
+        p(class="splash-text-all splash-text-content") A virtual home for your houseplant collection.
+        if !locals.authenticated
+          a(href="/users/signup" class="splash-text-all splash-link") Join today to start collecting

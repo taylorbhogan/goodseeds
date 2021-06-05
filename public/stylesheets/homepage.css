@@ -4,6 +4,48 @@
   align-items: center;
 }
 
+.splash-box{
+  margin-top: 120px;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-text-all{
+  color: white;
+}
+.splash-text-header{
+  font-size: 50px;
+  padding: 30px
+}
+.splash-text-content{
+  font-size: 40px;
+  padding: 30px
+}
+.splash-link{
+  font-size: 20px;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, .3);
+  margin-bottom: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.splash-link:hover{
+  background-color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+  transform: scale(1.01, 1.01)
+}
+
+.test4321{
+  background-image: url(../images/plants/IMG_6646.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 1100px;
+}
+
 span > a{
   text-decoration: none;
 }
