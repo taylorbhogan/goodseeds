@@ -21,6 +21,24 @@ body{
   color: var(--main-color-green);
 }
 
+@media screen and (min-width: 1490px) {
+  #main-logo {
+    font-size: 70px;
+  }
+}
+@media screen and (max-width: 1490px) {
+  #main-logo {
+    font-size: 50px;
+  }
+  .welcome-message-div{
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 800px) {
+  #main-logo {
+    font-size: 15px;
+  }
+}
 
 
 /* change to navbar__container */
@@ -46,8 +64,7 @@ body{
 
 /* navbar__logo */
 
-.main-logo{
-  font-size: 70px;
+#main-logo{
   padding: 20px;
   color: rgba(243, 255, 79, 0.897);
   font-family: 'Times New Roman', Times, serif;
