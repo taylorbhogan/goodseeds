@@ -19,15 +19,14 @@ window.addEventListener("load", (event)=>{
   }
 
   const findUsername = (spanContent) => {
-    // for(let i = spanContent.length-1; i > 0; i--){
-    //   let currentChar = spanContent[i]
-    //   let index;
-    //   if(currentChar === " "){
-    //     index = i;
-    //     return spanContent.slice(i+1)
-    //   }
-    // }
-    return "you"
+      for(let i = 0; i < spanContent.length; i++){
+        let currentChar = spanContent[i]
+        let index;
+        if(currentChar === " "){
+          index = i;
+          return spanContent.slice(i+1)
+        }
+      }
   }
 
 // m
@@ -36,8 +35,8 @@ window.addEventListener("load", (event)=>{
   // const spanContent = "this is the spanContent variable"
 
 
-  // const rightNavSpan = document.querySelector('.welcome-message-drop')
-  // const spanContent = rightNavSpan.textContent;
+  const rightNavSpan = document.querySelector('#dom-username-source')
+  const spanContent = rightNavSpan.textContent;
 
   //handles all the responses for our comments
   const handleResponse = async (res) => {
@@ -83,19 +82,31 @@ window.addEventListener("load", (event)=>{
     newCommentContainer.className = 'comment-div';
     const newPTag = document.createElement('p');
     newCommentContainer.appendChild(newPTag);
-    const newSpanTag = document.createElement('span');
-    newSpanTag.innerHTML = `On ${today.toUTCString()}-0400 (Eastern Daylight Time) `
-    newPTag.appendChild(newSpanTag);
     const newATag = document.createElement('a');
     newATag.setAttribute('href', `/users/${data.userId}/shelves`)
     newATag.innerHTML = username;
     newPTag.appendChild(newATag);
-    const secondSpanTag = document.createElement('span');
-    secondSpanTag.innerHTML = ' wrote: '
-    newPTag.appendChild(secondSpanTag);
+    const newSpanTag = document.createElement('span');
+    newSpanTag.innerHTML = ' wrote:'
+    newPTag.appendChild(newSpanTag);
     const lastPTag = document.createElement('p');
     lastPTag.innerHTML = data.commentText;
-    newCommentContainer.appendChild(lastPTag);
+    newPTag.appendChild(lastPTag);
+    const newDivTag = document.createElement('div');
+    newDivTag.innerHTML = `Written on ${today.toUTCString()}`;
+    newPTag.appendChild(newDivTag);
+    // newSpanTag.innerHTML = `On ${today.toUTCString()}-0400 (Eastern Daylight Time) `
+    // newPTag.appendChild(newSpanTag);
+    // const newATag = document.createElement('a');
+    // newATag.setAttribute('href', `/users/${data.userId}/shelves`)
+    // newATag.innerHTML = username;
+    // newPTag.appendChild(newATag);
+    // const secondSpanTag = document.createElement('span');
+    // secondSpanTag.innerHTML = ' wrote: '
+    // newPTag.appendChild(secondSpanTag);
+    // const lastPTag = document.createElement('p');
+    // lastPTag.innerHTML = data.commentText;
+    // newCommentContainer.appendChild(lastPTag);
   }
 
 
@@ -104,26 +115,35 @@ window.addEventListener("load", (event)=>{
     event.preventDefault();
     const formData = new FormData(commentForm);
     const comment = formData.get('user-comment')
-
-    try {
-      const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({comment})
-      })
-      const data = await handleResponse(res);
-      commentForm.reset();
-      receiveComment(data);
-      // console.log("DATA--TAYLOR",data);
-      }
-      catch (e) {
-        console.log("I AM THE ERROR TAYLOR", e);
-      }
+    const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({comment})
+    })
+    const data = await handleResponse(res);
+    commentForm.reset();
+    receiveComment(data);
+    // try {
+    //   const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({comment})
+    //   })
+    //   const data = await handleResponse(res);
+    //   commentForm.reset();
+    //   receiveComment(data);
+    //   // console.log("DATA--TAYLOR",data);
+    //   }
+    //   catch (e) {
+    //     console.log("I AM THE ERROR TAYLOR", e);
+    //   }
   }
   // Delete Plant Button Click
-  const list = document.querySelectorAll('.plant-card')
+  // const list = document.querySelectorAll('.plant-card')
   // console.log(list);
   // for(let i = 0; i < list.length; i++) {
 	//   list[i].addEventListener('click', deletePlantOnShelf);
