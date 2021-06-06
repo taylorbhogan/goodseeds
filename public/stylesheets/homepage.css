@@ -7,6 +7,7 @@
 .splash-box{
   margin-top: 110px;
   border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 25px;
   background-color: rgba(0, 0, 0, .4);
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
 
 .splash-text-all{
   color: white;
+  border-radius: 25px;
 }
 .splash-text-header{
   font-size: 50px;

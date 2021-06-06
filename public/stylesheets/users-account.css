@@ -58,9 +58,9 @@
 }
 
 .account-window__delete-button{
+  text-align: center;
   margin-top: 20px;
   font-size: 14px;
-  padding: 10px 100px 10px 10px;
   border-radius: 7px;
 }
 

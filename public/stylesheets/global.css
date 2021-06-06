@@ -21,6 +21,21 @@ body{
   color: var(--main-color-green);
 }
 
+.clickable-link{
+  padding: 10px;
+  text-decoration: none;
+  font-weight: 550;
+  /* border: 1px solid red; */
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 15px;
+}
+
+.clickable-link:hover{
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  /* transform: translateY(-2px); */
+}
+
 .delete-container {
   display: flex;
   flex-direction: column;
@@ -46,6 +61,11 @@ body{
   }
 }
 
+.welcome-message-div hover {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, .1);
+}
+
 
 /* change to navbar__container */
 .main-nav{
@@ -55,7 +75,7 @@ body{
   display: flex;
   background-color: var(--main-color-green);
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   height: 150px;
   padding: 20px 100px 20px 100px;
 }
@@ -64,7 +84,7 @@ body{
   display: flex;
   /* justify-content: flex-start; */
   /* flex-direction: row; */
-  align-items: flex-end;
+  align-items: center;
 }
 /* navbar__left-nav */
 
@@ -72,7 +92,7 @@ body{
 
 #main-logo{
   padding: 20px;
-  color: rgba(243, 255, 79, 0.897);
+  color: gold;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -80,8 +100,9 @@ body{
 .right-nav{
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
 }
+
 
 .welcome-message{
   text-decoration: none;
@@ -90,15 +111,16 @@ body{
 .welcome-message-div{
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
-  align-items: flex-end;
+  /* justify-content: center; */
+  align-items: center;
   margin-right: 30px;
-}
-
-.welcome-message-inner-div{
-  height: 36px;
   color: white
 }
+
+/* .welcome-message-inner-div{
+  height: 36px;
+  color: white
+} */
 
 .welcome-message-drop{
   position: relative;
@@ -162,6 +184,7 @@ body{
 
 .navbar__account-oval:hover{
   background-color: white;
+  color: black;
   display: block;
 }
 
@@ -171,7 +194,7 @@ body{
   display: none;
   background-color: white;
   border-radius: 1em;
-  min-width: 228px;
+  min-width: 220px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: -1;
   padding-top: 40px;
@@ -192,6 +215,7 @@ body{
   background-color: rgba(0, 0, 0, .8);
   color: white;
   font-size: 15px;
+  text-align: center;
 }
 .test{
   margin: 0px 10px;
@@ -231,4 +255,8 @@ body{
   margin-right: 50px;
   margin-left: 50px;
   margin-top: 40px;
+}
+
+option {
+  text-align: center;
 }

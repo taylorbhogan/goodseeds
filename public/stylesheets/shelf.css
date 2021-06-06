@@ -70,7 +70,8 @@
     width: auto;
 }
 
-#add-shelf-button{
-margin-top: 5px;
-margin-left: 60px;
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

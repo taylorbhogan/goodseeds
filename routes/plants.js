@@ -47,7 +47,7 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
             return accum + el;
         })
         let rating = ratingSum/ratingsArray.length;
-        avgRating = rating.toFixed(2);
+        avgRating = rating.toFixed(1);
 
     }
     res.render('plants-id', { plant, reviews, usersShelves, user, avgRating, csrfToken: req.csrfToken() } )

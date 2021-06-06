@@ -1,9 +1,10 @@
 extends layout.pug
 include utils.pug
 block content
-  h3 Delete Account?
-  div
-    form(action=`/users/account/delete` method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
-      button(type='submit') Delete Account
-      a(href=`/` role='button' class='clickable-link') Cancel
+  div.delete-container
+    h1 Are You Sure You Want To Delete Your Account?
+    div
+      form(action=`/users/account/delete` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        button(type='submit' class='clickable-link') Delete Account
+        a(href=`/users/account` role='button' class='clickable-link') Cancel
