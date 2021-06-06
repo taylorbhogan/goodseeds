@@ -54,10 +54,6 @@ router.post('/:id', asyncHandler(async(req,res,next) => {
  res.json(newComment)
 
 
-  // for(let i = 0; i < listOfComments.length; i++){
-
-  // }
-
 }))
 /* IT'S BROKEN
 router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -77,12 +73,13 @@ router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 router.get('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const referenceId = parseInt(req.params.id, 10);
   const reference = await db.PlantToShelf.findByPk(referenceId);
-  const shelf = await db.Plant.findByPk(reference.shelfId);
+  const shelf = await db.Shelf.findByPk(reference.shelfId);
   const userId = req.session.auth.userId
-  // if(shelf.userId !== userId) {
-  //   console.log(`you do not own this shelf`)
-  //   return
-  // }
+
+  if(shelf.userId.toString() !== userId.toString()) {
+    res.redirect('/')
+  }
+
   res.render('deleteplanttoshelf', {reference, csrfToken: req.csrfToken()})
 }))
 
@@ -98,10 +95,7 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   const userId = req.session.auth.userId
   console.log(userId)
   console.log(shelf.userId)
-  // if(shelf.userId !== userId) {
-  //   console.log(`you do not own this shelf`)
-  //   return
-  // }
+
   await reference.destroy();
   res.redirect(`/shelves/${shelfIdcloneToReferenceLater}`)
 }));
@@ -111,10 +105,11 @@ router.get('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, nex
   const shelfId = parseInt(req.params.id, 10);
   const shelf = await db.Shelf.findByPk(shelfId);
   const userId = req.session.auth.userId
-  // if(shelf.userId !== userId) {
-  //   console.log(`you do not own this shelf`)
-  //   return
-  // }
+
+  if(shelf.userId.toString() !== userId.toString()) {
+    res.redirect('/')
+  }
+
   res.render('delete-shelf', {shelf, shelfId, csrfToken: req.csrfToken()})
 }))
 //once you click delete shelf on the seperate form
@@ -131,10 +126,7 @@ router.post('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   const comments = await db.Comment.findAll({
     where: {shelfId: shelfId}
   })
-  // if(shelf.userId !== userId) {
-  //   console.log(`you do not own this shelf`)
-  //   return
-  // }
+
 
   for(let i=0; i < comments.length; i++) {
     let comment = comments[i]
