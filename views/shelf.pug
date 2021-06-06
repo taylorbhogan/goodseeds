@@ -24,10 +24,8 @@ block content
             form(class="comment-form")
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div.comment-input-div
-                    label(for='commentText') Add a Comment:
-                    input(required name="user-comment" id="user-comment" class="user-comment" placeholder=" Add a comment... ")
-                input(type='submit' value='Add Comment' id='addCommentButton')
-                //- button(type='submit' id="addCommentButton") Add Comment
+                    textarea(required name="user-comment" id="user-comment" class="user-comment" placeholder=" Add a comment... ")
+                    button(type='submit' value='Add Comment' id='button__add-comment') Add Comment
         div.comment-list-container
             each comment in comments
                 div.comment-div

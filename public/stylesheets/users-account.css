@@ -71,3 +71,8 @@
 .account-window__details-value{
   font-size: 20px;
 }
+
+#profile-pic-placeholder {
+  width: 348px;
+  height: 348px;
+}
