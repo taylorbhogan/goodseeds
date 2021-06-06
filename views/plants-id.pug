@@ -7,34 +7,33 @@ block content
           div#plant001
           div.plant-container__left-div
               div.plant-card
-                  div.plant-image
-                    img(src=`/images/plants/${user.imgUrl}.jpeg`, alt="Picture goes here", class="plant-img")
-                  div
-                      a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-                  div
-                      p(class="plant-scientific-name")= plant.scientificName
+                img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                div
+                    a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+                div
+                    p(class="plant-scientific-name")= plant.scientificName
       container.plant-container__right-div
         if locals.authenticated
           form(action=`/plants/${plant.id}`, method='post')
-            div Add this plant to shelf
+            h1 Add This Plant To A Shelf
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='selectedshelf') My Shelves
-            select(name='selectedshelf')
-              //- option --select one--
-              each shelf in usersShelves
-                option(value=`${shelf.id}`)= `${shelf.name}`
-            button(type='submit' class="button__add-to-shelf") Add To Shelf
-        div= `Average rating: ${avgRating}/5`
-        div Tags
-        if locals.authenticated
-          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
-        else
-          a(href=`/users/login` class="button__add-review") Add a Review
-        //- div.plant-container__right-div
+            div
+              select(name='selectedshelf')
+                option -- select one --
+                each shelf in usersShelves
+                  option(value=`${shelf.id}`)= `${shelf.name}`
+            div
+              button(type='submit' class="button__add-to-shelf") Add To Shelf
     container.review-outer-container
       div.review-container
         div.review-header-container
           h1 Reviews
+        div= `Average rating: ${avgRating}/5`
+        if locals.authenticated
+          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
+        else
+          a(href=`/users/login` class="button__add-review") Add a Review
         each review in reviews
           div.review-div
             span

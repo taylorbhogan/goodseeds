@@ -22,14 +22,11 @@ html
             div.welcome-message-div
               div.welcome-message-inner-div
                 a(href=`/users/${user.id}/shelves` class="navbar__account-link")
-                  div.welcome-message-drop Hi, #{user.username}.
+                  div.welcome-message-drop Hi, #{user.username}!
               div.welcome-message-inner-div
                 a(href=`/users/${user.id}/shelves` class="navbar__account-link")
                   div Let's get planting.
 
-              //- span.welcome-message Hi, #{user.username}. Let's get planting.
-            //- span.spanTag Welcome, #{user.username}
-            //- a(href="hello")
             div.navbar__account-oval
               a(href="/users/account" class="navbar__account-link") Your Account 👤
                 ul.navbar__account-dropdown
@@ -39,8 +36,8 @@ html
                         button(type="submit" class="logout-button") Log Out
           else
             span.login-button-span
-              a(href="/users/demo") Sign In As Demo User
-              a(href="/users/login") Log in
+              a(href="/users/demo") Sign In As A Demo User
+              a(href="/users/login") Log In
               a(href="/users/signup") Sign Up
     div.main-body
       block content

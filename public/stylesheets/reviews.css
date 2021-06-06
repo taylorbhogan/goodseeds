@@ -7,5 +7,6 @@
 
 .review-card {
     border: 1px solid black;
-    padding: 20px
+    padding: 20px;
+    border-radius: 25px;
 }

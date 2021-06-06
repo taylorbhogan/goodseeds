@@ -38,12 +38,15 @@
 }
 
 .comment-div {
-    padding: 5px;
-    border-radius: 15px;
     font-size: 17px;
-    margin: 0px 10px;
     font-weight: 600;
     color: black;
+    max-width: 1200px;
+    min-width: 800px;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin: 20px;
+    padding: 20px;
 }
 
 .comment-input-div {

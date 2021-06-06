@@ -56,19 +56,20 @@ router.get('/demo', asyncHandler(async(req, res, next)=>{
 
 /*
 GET /users/account page
+Displays logged in user's account information
+*/
+router.get('/account', asyncHandler(async(req, res, next) => {
+  res.render('users-account')
+}))
+
+/*
+GET /users/account page
 Displays form asking to confirm account deletion
 */
 router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
   res.render('users-account-delete', { csrfToken: req.csrfToken() })
 }))
 
-/*
-GET /users/account page
-Displays logged in user's account information
-*/
-router.get('/account', asyncHandler(async(req, res, next) => {
-  res.render('users-account')
-}))
 
 /*
 GET /users/:id/shelves page

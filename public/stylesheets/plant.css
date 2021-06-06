@@ -18,10 +18,11 @@
 
 .plant-container__right-div{
   border: 1px solid black;
+  border-radius: 25px;
   margin: 100px 0 0 40px;
   padding: 20px;
-  width: 500px;
-  height: 300px;
+  width: 600px;
+  height: 150px;
 }
 
 .plant-img {
@@ -47,6 +48,7 @@
   max-width: 1000px;
   min-width: 800px;
   border: 1px solid black;
+  border-radius: 25px;
   margin: 20px;
   padding: 20px;
 }

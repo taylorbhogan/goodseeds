@@ -5,28 +5,28 @@ include utils.pug
 block content
   container.plant-id__container
       div.plant-card
-          div.plant-image
-                    img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-img")
-          div
-              a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-          div
-              p(class="plant-scientific-name")= plant.scientificName
+            img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+            div
+                a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+            div
+                p(class="plant-scientific-name")= plant.scientificName
       div.review-card
           form(action=`/plants/${plant.id}/reviews`, method="post")
               input(type='hidden' name='_csrf' value=csrfToken)
               h1 Add a Review
+              p
               div
                   label(for='rating') My Rating
-                  select(name='rating')
-                      option --select one--
-                      option 1
-                      option 2
-                      option 3
-                      option 4
-                      option 5
+                  div
+                    select(name='rating')
+                        option -- select one --
+                        option 1
+                        option 2
+                        option 3
+                        option 4
+                        option 5
               div(class='form-group')
-                div
-                  label(for='reviewText' class="form-labels") What did you think? (optional)
+                label(for='reviewText' class="form-labels") What did you think? (optional)
                 div
                   textarea(name='reviewText' class='form-control' rows="10" cols="100")
               button(type="submit") Add Review

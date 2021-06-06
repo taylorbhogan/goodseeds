@@ -2,7 +2,6 @@
   --main-color-green: #3bb14d;
 }
 
-
 body{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: #f7f7f7;
@@ -91,6 +90,7 @@ body{
 
 .welcome-message-inner-div{
   height: 36px;
+  color: white
 }
 
 .welcome-message-drop{
@@ -202,6 +202,7 @@ body{
 .navbar__account-dropdown:hover {
   visibility: visible;
   display: block;
+  color: white;
 }
 
 .navbar__account-dropdown li{
