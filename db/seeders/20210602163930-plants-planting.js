@@ -108,7 +108,7 @@ module.exports = {
       { name: 'Blue Ginger', scientificName: 'Dichorisandra thyrsiflora', imgUrl: 'blue-ginger' },
       { name: 'Crinkle Leaf Plant', scientificName: 'Adromischus cristatus', imgUrl: 'crinkle-leaf' },
       { name: 'Lipstick Plant', scientificName: 'Aeschynanthus radicans', imgUrl: 'lipstick-plant' },
-      { name: 'Peacock Plant', scientificName: 'Goeppertia makoyana', imgUrl: 'peacock plant' },
+      { name: 'Peacock Plant', scientificName: 'Goeppertia makoyana', imgUrl: 'peacock-plant' },
       { name: 'String of Turtles', scientificName: 'Peperomia rotundifolia', imgUrl: 'string-of-turtles' },
       { name: 'Rhipsalis', scientificName: 'Rhipsalis pilocarpa', imgUrl: 'rhipsalis' },
       { name: 'Swedish Ivy', scientificName: 'Plectranthus verticillatus', imgUrl: 'swedish-ivy' },

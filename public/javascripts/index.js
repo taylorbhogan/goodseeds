@@ -78,7 +78,7 @@ window.addEventListener("load", (event)=>{
     lastPTag.innerHTML = data.commentText;
     newPTag.appendChild(lastPTag);
     const newDivTag = document.createElement('div');
-    newDivTag.innerHTML = `Written on ${today.toUTCString()}`;
+    newDivTag.innerHTML = `Written just a moment ago`;
     newPTag.appendChild(newDivTag);
   }
 

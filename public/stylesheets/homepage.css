@@ -15,7 +15,7 @@
 }
 
 .splash-text-all{
-  color: gold;
+  color: white;
   border-radius: 25px;
 }
 .splash-text-header{
@@ -27,6 +27,7 @@
   padding: 30px
 }
 .splash-link{
+  color: gold;
   font-size: 20px;
   border: 1px solid white;
   background-color: rgba(0, 0, 0, .3);
