@@ -30,3 +30,25 @@ td:hover .user-link{
   font-weight: 500;
   text-decoration: underline;
 }
+
+.clickable-link{
+  background-color:seagreen;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  /* border: 1px solid red; */
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
+}
+
+td:hover .clickable-link{
+  /* background-color: rgb(255, 255, 255); */
+  /* transform: translateY(-2px); */
+  /* border: 6px solid rgb(255, 255, 255); */
+  box-shadow: 0 5px 0.5em 1px #999;
+}
+
+#user-link{
+  background-color:goldenrod;
+}
+

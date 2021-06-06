@@ -14,7 +14,7 @@ block content
                     tr
                         td.flex-container__center-center
                             //- div= shelf.User.username
-                            a(href=`./users/${shelf.User.id}/shelves` class="clickable-link") #{shelf.User.username}
+                            a(href=`./users/${shelf.User.id}/shelves` class="clickable-link" id="user-link") #{shelf.User.username}
                         td
                             div.flex-container__center-x
                                 a(href=`./shelves/${shelf.id}` class="clickable-link") #{shelf.name}
