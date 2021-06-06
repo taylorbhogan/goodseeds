@@ -33,7 +33,7 @@ block content
             each comment in comments
                 div.comment-div
                     p
-                        a(href=`/users/${comment.User.id}/shelves`) #{comment.User.username}
+                        a(href=`/users/${comment.User.id}/shelves` class='clickable-username') #{comment.User.username}
                         span  wrote:
                         p= comment.commentText
                         div= `Written on ${comment.createdAt} `
