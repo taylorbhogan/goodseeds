@@ -4,31 +4,31 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Shelves', [
         {
-          userId: 1,
+          userId: 2,
           name: "John Doe's First Shelf"
         },
         {
-          userId: 1,
+          userId: 2,
           name: "My Someday Soon Shelf"
         },
         {
-          userId: 1,
+          userId: 2,
           name: "Plants I've Murdered"
         },
         {
-          userId: 2,
+          userId: 3,
           name: "Jane Doe's First Shelf"
         },
         {
-          userId: 2,
+          userId: 3,
           name: "Sunroom Rennovation"
         },
         {
-          userId: 2,
+          userId: 3,
           name: "Living Room Inspiration"
         },
         {
-          userId: 2,
+          userId: 3,
           name: "Plants for the Patio"
         },
       ], {});

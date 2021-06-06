@@ -54,9 +54,11 @@ router.get('/demo', asyncHandler(async(req, res, next)=>{
   res.redirect('/')
 }));
 
+/*
+GET /users/account page
+Displays form asking to confirm account deletion
+*/
 router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
-  // const userToDelete = res.locals.user
-  // console.log("LOOK HERE GUYS", userToDelete);
   res.render('users-account-delete', { csrfToken: req.csrfToken() })
 }))
 
@@ -84,16 +86,6 @@ router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) =>
   });
   res.render('users-id-shelves', {userToDisplay, loggedInUser, shelves, csrfToken: req.csrfToken()})
 }))
-
-router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
-  res.render('users-account-delete', { csrfToken: req.csrfToken() })
-}))
-
-// INCOMPLETE, REVISIT AFTER FINSIHING USER AUTHENTICATION
-// router.post('/account/delete', csrfProtection, asyncHandler(async(req, res, next) => {
-
-//   res.render('users-account-delete', { csrfToken: req.csrfToken() })
-// }))
 
 /*
 POST /users/logout page
