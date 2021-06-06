@@ -9,13 +9,17 @@ block content
                 th #{userToDisplay.username}'s Shelves
                 th Want to Add Plants To A Shelf?
             tbody
-                each shelf in shelves
-                    tr
-                        td.flex-container__center-center
-                            a(href=`../../shelves/${shelf.id}` class="clickable-link") #{shelf.name}
-                        td
-                            div.flex-container__center-x
-                                a(href="../../plants" class="add-plants-link") Browse Plants
+                if shelves
+                    each shelf in shelves
+                        tr
+                            td.flex-container__center-center
+                                a(href=`../../shelves/${shelf.id}` class="clickable-link") #{shelf.name}
+                            td
+                                div.flex-container__center-x
+                                    a(href="../../plants" class="add-plants-link") Browse Plants
+                else
+                    tr No Shelves!
+        p
         form(action='/shelves' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' id='userId' name='userId' value=`${loggedInUser.id}`)
@@ -26,4 +30,4 @@ block content
                     input(name='name' id='name' placeholder='Shelf Name')
                 div
                     p
-                    button(type='submit') Add Shelf
+                    button(type='submit') Create Shelf
