@@ -1,11 +1,11 @@
 extends layout.pug
 include utils.pug
 block content
-  h1 Are You Sure You Want To Delete This Shelf?
-  div(value=shelfId)
-    form(action=`/shelves/delete-shelf/${shelfId}` method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
-      div
-        button(type='submit' class='button') Delete shelf
-      div
-        a(href=`/shelves/${shelfId}` role='button') Cancel
+  div.delete-container
+    h1 Are You Sure You Want To Delete This Shelf?
+    div(value=shelfId)
+      form(action=`/shelves/delete-shelf/${shelfId}` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          button(type='submit' class='clickable-link') Delete Shelf
+          a(href=`/shelves/${shelfId}` class='clickable-link') Cancel

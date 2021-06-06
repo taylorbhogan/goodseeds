@@ -6,4 +6,4 @@ block content
     form(action=`/plants/reviews/delete/${review.id}` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
       button(type='submit') Delete review
-      a(href=`/plants/${review.plantId}` role='button') Cancel
+      a(href=`/plants/${review.plantId}` role='button' class='clickable-link') Cancel

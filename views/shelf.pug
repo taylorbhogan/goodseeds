@@ -6,7 +6,7 @@ block content
     div.shelf-container
         title= shelf.name
         div.shelfName #{shelf.name}
-            a(href=`/shelves/delete-shelf/${shelf.id}` role='button') Delete Shelf
+            a(href=`/shelves/delete-shelf/${shelf.id}` role='button' class='clickable-link') Delete Shelf
         container.plant-container
           each reference in plantsToShelves
             div.plant-card

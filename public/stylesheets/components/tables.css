@@ -1,21 +1,28 @@
 table {
   border-collapse: collapse;
   margin-top: 20px;
-  /* border-radius: 10px; */
+  border-radius: 25px;
   /* border-radius:6px;
   -moz-border-radius:6px; */
 }
 
-th {
-  background-color: blueviolet;
+thead {
+  background-color: var(--main-color-green);
+  color: white;
   height: 60px;
-  color: #EEEEEE;
+  font-size: 25px;
+}
+
+th {
+  background-color: var(--main-color-green);
+  color: white;
+  height: 60px;
   font-size: 25px;
 }
 
 td {
   height: 80px;
-  width: 300px;
+  width: 400px;
 }
 
 td, th {

@@ -3,22 +3,24 @@ extends layout.pug
 include utils.pug
 
 block content
-    container
+    div.container__add-to-shelf
         table
             thead
-                tr
-                    th #{userToDisplay.username}'s Shelves
-                    th
+                th #{userToDisplay.username}'s Shelves
+                th Want to Add Plants To A Shelf?
             tbody
                 each shelf in shelves
                     tr
+                        td.flex-container__center-center
+                            a(href=`../../shelves/${shelf.id}` class="clickable-link") #{shelf.name}
                         td
-                            a(href=`../../shelves/${shelf.id}` class="shelf-link") #{shelf.name}
-                        td
-                            a(href="../../plants" class="add-plants-link") Add plants to shelf
+                            div.flex-container__center-x
+                                a(href="../../plants" class="add-plants-link") Add Plants
         form(action='/shelves' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' id='userId' name='userId' value=`${loggedInUser.id}`)
-            label(for='name') Shelf Name
-            input(name='name' id='name')
-            button(type='submit') Add a Shelf
+            label(for='name') Add a Shelf
+            div
+                input(name='name' id='name' value='Shelf Name')
+            div
+                button(type='submit') Add

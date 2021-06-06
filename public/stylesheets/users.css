@@ -16,6 +16,12 @@
   align-items: center;
 }
 
+.container__add-to-shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-link{
   text-decoration: none;
 }
@@ -25,8 +31,7 @@ td:hover .user-link{
   text-decoration: underline;
 }
 
-.shelf-link{
-  margin-left: 30px;
+.clickable-link{
   padding: 10px;
   text-decoration: none;
   font-weight: 800;
@@ -35,7 +40,7 @@ td:hover .user-link{
   border-radius: 15px;
 }
 
-td:hover .shelf-link{
+td:hover .clickable-link{
   background-color: rgb(255, 255, 255);
   /* transform: translateY(-2px); */
   border: 6px solid rgb(255, 255, 255);
