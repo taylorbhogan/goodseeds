@@ -1,9 +1,15 @@
 extends layout.pug
 include utils.pug
 block content
-  h3 Are you sure you want to delete this review?
-  div
+  h3(class="delete-review-page-text") Are you sure you want to delete this review?
+  div(class='delete-review-page-form')
     form(action=`/plants/reviews/delete/${review.id}` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
+      p
+      p
+      p
       button(type='submit') Delete review
+      p
+      p
+      p
       a(href=`/plants/${review.plantId}` role='button' class='clickable-link') Cancel

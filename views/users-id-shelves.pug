@@ -21,6 +21,6 @@ block content
             input(type='hidden' id='userId' name='userId' value=`${loggedInUser.id}`)
             label(for='name') Add a Shelf
             div
-                input(name='name' id='name' value='Shelf Name')
+                input(name='name' id='name' placeholder='Shelf Name' required)
             div
-                button(type='submit') Add
+                button(type='submit') Add New Shelf

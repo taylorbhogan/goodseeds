@@ -22,7 +22,11 @@
   margin: 100px 0 0 40px;
   padding: 20px;
   width: 600px;
-  height: 150px;
+  height: 200px;
+}
+
+.plant-form{
+  padding:20px
 }
 
 .plant-img {
@@ -56,6 +60,25 @@
 .review-header-container{
   display: flex;
   flex-direction: row;
-  /* justify-content: flex-start; */
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-title {
+  font-size: 30px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-review-button{
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.average-rating-display{
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
 }

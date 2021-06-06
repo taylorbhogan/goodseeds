@@ -7,12 +7,14 @@ block content
     container.plant-container
         each plant in plants
             div(class="plant-card plant-card--hover")
-                img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
-                div
-                    a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-                div
-                    p(class="plant-scientific-name")= plant.scientificName
-
+                a(href=`/plants/${plant.id}`)
+                    img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                    div
+                        a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+                    div
+                        p
+                        a(class="plant-scientific-name" href=`/plants/${plant.id}`)= plant.scientificName
+                        p
 
 
 

@@ -231,3 +231,20 @@ body{
   margin-left: 50px;
   margin-top: 40px;
 }
+
+/*
+delete shelf form
+*/
+.delete-review-page-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.delete-review-page-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

@@ -14,8 +14,11 @@ block content
                     p(class="plant-scientific-name")= plant.scientificName
       container.plant-container__right-div
         if locals.authenticated
-          form(action=`/plants/${plant.id}`, method='post')
+          form(action=`/plants/${plant.id}`, method='post' class="plant-form")
             h1 Add This Plant To A Shelf
+            p
+            p
+            p
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='selectedshelf') My Shelves
             div
@@ -23,17 +26,21 @@ block content
                 option -- select one --
                 each shelf in usersShelves
                   option(value=`${shelf.id}`)= `${shelf.name}`
-            div
-              button(type='submit' class="button__add-to-shelf") Add To Shelf
+            p
+            p
+            p
+              button(type='submit' class="button__add-to-shelf" id='addtoshelf') Add To Shelf
+
     container.review-outer-container
       div.review-container
         div.review-header-container
-          h1 Reviews
-        div= `Average rating: ${avgRating}/5`
-        if locals.authenticated
-          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
-        else
-          a(href=`/users/login` class="button__add-review") Add a Review
+          p(class='review-title') Reviews
+        div(class="average-rating-display")= `Average rating: ${avgRating}/5`
+        div(class="add-review-button")
+          if locals.authenticated
+            a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
+          else
+            a(href=`/users/login` class="button__add-review") Add a Review (Login First!)
         each review in reviews
           div.review-div
             span
