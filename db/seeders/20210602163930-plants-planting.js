@@ -54,7 +54,7 @@ module.exports = {
       { name: 'Spineless Yucca', scientificName: 'Yucca gigantea', imgUrl: 'spineless-yucca' },
       { name: 'Lavender Scallops', scientificName: 'Kalanchoe fedtschenkoi', imgUrl: 'lavender-scallops' },
       { name: 'Weeping Fig', scientificName: 'Ficus benjamina', imgUrl: 'weeping-fig' },
-      { name: 'Hardy Begonia', scientificName: 'Begonia grandis', imgUrl: '../../public/images/plants/plant-img051' },
+      { name: 'Hardy Begonia', scientificName: 'Begonia grandis', imgUrl: 'hardy-begonia' },
       { name: 'Jewel Orchid', scientificName: 'Ludisia discolor', imgUrl: '../../public/images/plants/plant-img052' },
       { name: 'Oyster Plant', scientificName: 'Tradescantia spathacea', imgUrl: '../../public/images/plants/plant-img053' },
       { name: 'Bat Flower', scientificName: 'Tacca chantrieri', imgUrl: '../../public/images/plants/plant-img054' },

@@ -36,11 +36,13 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     // let ratingOne = function(ratingNum) {
     //     return
     // }
+    // const array = [];
     if (reviews.length){
         const ratingsArray = []
 
         for (let i = 0 ; i < reviews.length; i++){
             ratingsArray.push(reviews[i].rating)
+            // array.push(reviews[i].rating)
         }
 
         const ratingSum = ratingsArray.reduce((accum, el) => {
@@ -48,8 +50,15 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         })
         let rating = ratingSum/ratingsArray.length;
         avgRating = rating.toFixed(1);
-
     }
+
+    // const whetherRatingIsOne = function(rating) {
+    //     if(rating === 1) {
+    //        return true
+    //      } else {
+    //         return false
+    //      }
+    // }
     res.render('plants-id', { plant, reviews, usersShelves, user, avgRating, csrfToken: req.csrfToken() } )
 }));
 

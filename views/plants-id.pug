@@ -21,8 +21,8 @@ block content
               div.center-form
                 h2 My Shelves
                 div
-                  select(name='selectedshelf')
-                    option -- select one --
+                  select(name='selectedshelf' required)
+                    option(value='') -- select one --
                     each shelf in usersShelves
                       option(value=`${shelf.id}`)= `${shelf.name}`
                 div
@@ -47,7 +47,7 @@ block content
                 a(href=`/users/${review.User.id}/shelves` class="clickable-username") #{review.User.username}
               else
                 a(href=`/users/login` class="clickable-username") #{review.User.username}
-            span  gave this plant #{review.rating} stars.
+            span  gave this plant #{review.rating} star(s).
             p= review.reviewText
             div= `Reviewed on ${review.createdAt} `
               if locals.authenticated
