@@ -32,17 +32,19 @@
 }
 
 .add-plants-link{
+    background-color: white;
+
     padding: 10px;
     text-decoration: none;
     font-weight: 800;
     /* border: 1px solid red; */
-    border: 3px solid rgb(255, 255, 255);
+    border: 3px solid rgb(0, 0, 0);
     border-radius: 15px;
 }
 
 .add-plants-link:hover{
-    background-color: white;
-    border: 6px solid rgb(255, 255, 255);
+    background-color: chartreuse;
+    border: 3px solid rgb(0, 0, 0);
 }
 
 .comment-div {
@@ -66,4 +68,9 @@
 
 .comment-text-area {
     width: auto;
+}
+
+#add-shelf-button{
+margin-top: 5px;
+margin-left: 60px;
 }

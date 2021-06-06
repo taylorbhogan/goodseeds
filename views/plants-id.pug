@@ -31,7 +31,7 @@ block content
           h1 Reviews
         div= `Average rating: ${avgRating}/5`
         if locals.authenticated
-          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
+          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add a Review
         else
           a(href=`/users/login` class="button__add-review") Add a Review
         each review in reviews

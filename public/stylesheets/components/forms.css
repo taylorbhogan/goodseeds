@@ -39,6 +39,7 @@
 
 .form-inputs{
   margin-bottom: 30px;
+  width: 300px;
 }
 
 .form-labels{
@@ -48,8 +49,8 @@
 .form-control {
   background-color: #ebe9e9;
   border-radius: 5px;
-  width: 800px;
-  height: 150px;
+  width: 425px;
+  height: 50px;
   font-size: 20px;
   margin-top: 4px;
 }
