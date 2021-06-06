@@ -13,27 +13,33 @@ block content
                 div
                     p(class="plant-scientific-name")= plant.scientificName
       container.plant-container__right-div
-        if locals.authenticated
-          form(action=`/plants/${plant.id}`, method='post')
-            h1 Add This Plant To A Shelf
-            input(type='hidden' name='_csrf' value=csrfToken)
-            label(for='selectedshelf') My Shelves
-            div
-              select(name='selectedshelf')
-                option -- select one --
-                each shelf in usersShelves
-                  option(value=`${shelf.id}`)= `${shelf.name}`
-            div
-              button(type='submit' class="button__add-to-shelf") Add To Shelf
+        div.center-form
+          if locals.authenticated
+            form(action=`/plants/${plant.id}`, method='post')
+              h1 Add This Plant To A Shelf
+              input(type='hidden' name='_csrf' value=csrfToken)
+              div.center-form
+                h2 My Shelves
+                div
+                  select(name='selectedshelf')
+                    option -- select one --
+                    each shelf in usersShelves
+                      option(value=`${shelf.id}`)= `${shelf.name}`
+                div
+                  p
+                  button(type='submit' class="button__add-to-shelf") Add To Shelf
+          else
+            h1 Want To Add To Your Shelf?
+            a(href='/users/login' class='clickable-link') Log In
     container.review-outer-container
       div.review-container
         div.review-header-container
           h1 Reviews
         div= `Average rating: ${avgRating}/5`
         if locals.authenticated
-          a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
+          a(href=`/plants/${plant.id}/reviews` class="clickable-link") Add A Review
         else
-          a(href=`/users/login` class="button__add-review") Add a Review
+          a(href=`/users/login` class="clickable-link") Want to add a review? Log In
         each review in reviews
           div.review-div
             span
@@ -44,5 +50,6 @@ block content
             span  gave this plant #{review.rating} stars.
             p= review.reviewText
             div= `Reviewed on ${review.createdAt} `
-            if locals.authenticated
-              a(href=`/plants/reviews/delete/${review.id}` class='button__delete') Delete this Review
+              if locals.authenticated
+                span
+                  a(href=`/plants/reviews/delete/${review.id}` class='clickable-link') Delete Review

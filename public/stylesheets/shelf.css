@@ -67,3 +67,9 @@
 .comment-text-area {
     width: auto;
 }
+
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

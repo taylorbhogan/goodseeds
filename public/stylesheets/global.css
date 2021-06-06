@@ -55,7 +55,7 @@ body{
   display: flex;
   background-color: var(--main-color-green);
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   height: 150px;
   padding: 20px 100px 20px 100px;
 }
@@ -64,7 +64,7 @@ body{
   display: flex;
   /* justify-content: flex-start; */
   /* flex-direction: row; */
-  align-items: flex-end;
+  align-items: center;
 }
 /* navbar__left-nav */
 
@@ -80,7 +80,7 @@ body{
 .right-nav{
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .welcome-message{
@@ -90,15 +90,16 @@ body{
 .welcome-message-div{
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
-  align-items: flex-end;
+  /* justify-content: center; */
+  align-items: center;
   margin-right: 30px;
-}
-
-.welcome-message-inner-div{
-  height: 36px;
   color: white
 }
+
+/* .welcome-message-inner-div{
+  height: 36px;
+  color: white
+} */
 
 .welcome-message-drop{
   position: relative;
@@ -153,6 +154,7 @@ body{
 
 .navbar__account-oval{
   border: 2px solid white;
+  color: white;
   border-radius: 2em;
   position: relative;
   display: block;
@@ -161,6 +163,7 @@ body{
 
 .navbar__account-oval:hover{
   background-color: white;
+  color: black;
   display: block;
 }
 
@@ -170,7 +173,7 @@ body{
   display: none;
   background-color: white;
   border-radius: 1em;
-  min-width: 228px;
+  min-width: 220px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: -1;
   padding-top: 40px;
@@ -191,6 +194,7 @@ body{
   background-color: rgba(0, 0, 0, .8);
   color: white;
   font-size: 15px;
+  text-align: center;
 }
 .test{
   margin: 0px 10px;
@@ -230,4 +234,8 @@ body{
   margin-right: 50px;
   margin-left: 50px;
   margin-top: 40px;
+}
+
+option {
+  text-align: center;
 }

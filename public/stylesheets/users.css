@@ -34,14 +34,14 @@ td:hover .user-link{
 .clickable-link{
   padding: 10px;
   text-decoration: none;
-  font-weight: 800;
+  font-weight: bold;
   /* border: 1px solid red; */
   border: 3px solid rgb(255, 255, 255);
   border-radius: 15px;
 }
 
-td:hover .clickable-link{
+.clickable-link:hover{
+  cursor: pointer;
   background-color: rgb(255, 255, 255);
   /* transform: translateY(-2px); */
-  border: 6px solid rgb(255, 255, 255);
 }
