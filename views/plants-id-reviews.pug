@@ -15,15 +15,15 @@ block content
               input(type='hidden' name='_csrf' value=csrfToken)
               h1 Add a Review
               div
-                  h2(class='center-form') My Rating
+                  h2(class='center-form') Star Rating
                   div
                     select(name='rating' required)
                         option(value='') -- select one --
-                        option 1
-                        option 2
-                        option 3
-                        option 4
-                        option 5
+                        option(value=1) ⭐
+                        option(value=2) ⭐⭐
+                        option(value=3) ⭐⭐⭐
+                        option(value=4) ⭐⭐⭐⭐
+                        option(value=5) ⭐⭐⭐⭐⭐
               div(class='form-group')
                 label(for='reviewText' class="center-form")
                 div

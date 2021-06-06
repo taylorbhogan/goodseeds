@@ -33,33 +33,44 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
       }
 
     let avgRating = 0;
-    // let ratingOne = function(ratingNum) {
-    //     return
-    // }
-    // const array = [];
+    let starRating = '☆☆☆☆☆'
+
     if (reviews.length){
         const ratingsArray = []
 
         for (let i = 0 ; i < reviews.length; i++){
             ratingsArray.push(reviews[i].rating)
-            // array.push(reviews[i].rating)
+            if (reviews[i].rating === 1) {
+                reviews[i].rating = '⭐'
+            } else if (reviews[i].rating === 2) {
+                reviews[i].rating = '⭐⭐'
+            } else if (reviews[i].rating === 3) {
+                reviews[i].rating = '⭐⭐⭐'
+            } else if (reviews[i].rating === 4) {
+                reviews[i].rating = '⭐⭐⭐⭐'
+            } else if (reviews[i].rating === 5) {
+                reviews[i].rating = '⭐⭐⭐⭐⭐'
+            }
         }
 
         const ratingSum = ratingsArray.reduce((accum, el) => {
             return accum + el;
         })
         let rating = ratingSum/ratingsArray.length;
-        avgRating = rating.toFixed(1);
+        if (rating <= 1.4) {
+            starRating = '⭐☆☆☆☆'
+        } else if (rating <= 2.4) {
+            starRating = '⭐⭐☆☆☆'
+        } else if (rating <= 3.4) {
+            starRating = '⭐⭐⭐☆☆'
+        } else if (rating <= 4.4) {
+            starRating = '⭐⭐⭐⭐☆'
+        } else {
+            starRating = '⭐⭐⭐⭐⭐'
+        }
     }
 
-    // const whetherRatingIsOne = function(rating) {
-    //     if(rating === 1) {
-    //        return true
-    //      } else {
-    //         return false
-    //      }
-    // }
-    res.render('plants-id', { plant, reviews, usersShelves, user, avgRating, csrfToken: req.csrfToken() } )
+    res.render('plants-id', { plant, reviews, usersShelves, user, starRating, csrfToken: req.csrfToken() } )
 }));
 
 router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {

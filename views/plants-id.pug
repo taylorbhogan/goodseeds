@@ -35,7 +35,8 @@ block content
       div.review-container
         div.review-header-container
           h1 Reviews
-        div= `Average rating: ${avgRating}/5`
+        div= `Average rating: ${starRating}`
+        div= `${reviews.length} review(s)`
         if locals.authenticated
           a(href=`/plants/${plant.id}/reviews` class="clickable-link") Add a Review
         else
@@ -47,7 +48,8 @@ block content
                 a(href=`/users/${review.User.id}/shelves` class="clickable-username") #{review.User.username}
               else
                 a(href=`/users/login` class="clickable-username") #{review.User.username}
-            span  gave this plant #{review.rating} star(s).
+              span  gave this plant #{review.rating}
+
             p= review.reviewText
             div= `Reviewed on ${review.createdAt} `
               if locals.authenticated
