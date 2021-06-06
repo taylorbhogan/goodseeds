@@ -277,7 +277,8 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     if (passwordMatch) {
       loginUser(req,res,user);
 
-      return res.redirect('/');
+      //  res.redirect('/');
+      return res.redirect('/users/account');
     }
   }
   errors.push('Login failed for the provided email address and password');
@@ -300,7 +301,7 @@ router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) =>
       userId: req.params.id
     }
   });
-  // console.log(res.locals.user.firstName);
+
   res.render('users-id-shelves', {tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 
