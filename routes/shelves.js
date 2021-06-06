@@ -46,8 +46,10 @@ router.post('/:id', asyncHandler(async(req,res,next) => {
     createdAt: new Date(),
     updatedAt: new Date()
   })
+
   await newComment.save();
-  const listOfComments = db.Comment.findAll({
+
+  const listOfComments = await db.Comment.findAll({
     where: {shelfId: req.params.id}
   })
 

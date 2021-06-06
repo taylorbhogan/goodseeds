@@ -23,11 +23,10 @@ block content
         h1 Comments
         div.comment-new-container
             form(class="comment-form")
-                input(type='hidden' name='_csrf' value=csrfToken)
-                div.comment-input-div
-                    textarea(required name="user-comment" class="form-control" )
-                    p
-                    button(type='submit' value='Add Comment' id='button__add-comment') Add Comment
+              input(type='hidden' name='_csrf' value=csrfToken)
+              label(for="user-comment") Comment:
+              input(required name="user-comment" id="user-comment" class="user-comment" placeholder=" Add a comment... ")
+              input(type='submit' value='submit' id='addCommentButton')
         div.comment-list-container
             each comment in comments
                 div.comment-div

@@ -38,9 +38,9 @@ block content
         div(class="average-rating-display")= `Average rating: ${avgRating}/5`
         div(class="add-review-button")
           if locals.authenticated
-            a(href=`/plants/${plant.id}/reviews` class="button__add-review") Add A Review
+            a(href=`/plants/${plant.id}/reviews` role='button' class="clickable-link-add-review") Add A Review
           else
-            a(href=`/users/login` class="button__add-review") Add a Review (Login First!)
+            a(href=`/users/login` class="button__add-review" class='clickable-link') Add a Review (Login First!)
         each review in reviews
           div.review-div
             span

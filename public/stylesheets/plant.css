@@ -39,6 +39,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  border: 3px solid green;
+  border-radius: 25px;
+
 }
 
 /* .review-container {
@@ -66,9 +70,10 @@
 
 .review-title {
   font-size: 30px;
-  padding: 10px;
+  padding: 5px;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid black;
 }
 
 .add-review-button{
@@ -78,7 +83,16 @@
 }
 
 .average-rating-display{
-  padding: 10px;
+  padding: 5px;
   align-items: center;
   justify-content: center;
+}
+
+.clickable-link-add-review{
+  padding: 5px;
+  text-decoration: none;
+  font-weight: 800;
+  /* border: 1px solid red; */
+  border: 3px solid lightgreen;
+  border-radius: 15px;
 }

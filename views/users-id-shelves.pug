@@ -16,11 +16,13 @@ block content
                         td
                             div.flex-container__center-x
                                 a(href="../../plants" class="add-plants-link") Add Plants
-        form(action='/shelves' method='post')
+        p
+        p
+        form(action='/shelves' method='post' class='user-id-shelf-form-1')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' id='userId' name='userId' value=`${loggedInUser.id}`)
             label(for='name') Add a Shelf
-            div
+            div(class='user-id-shelf-form')
                 input(name='name' id='name' placeholder='Shelf Name' required)
-            div
+            div(class='user-id-shelf-form')
                 button(type='submit') Add New Shelf

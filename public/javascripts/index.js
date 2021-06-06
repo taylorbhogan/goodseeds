@@ -19,20 +19,20 @@ window.addEventListener("load", (event)=>{
   }
 
   const findUsername = (spanContent) => {
-    // for(let i = spanContent.length-1; i > 0; i--){
-    //   let currentChar = spanContent[i]
-    //   let index;
-    //   if(currentChar === " "){
-    //     index = i;
-    //     return spanContent.slice(i+1)
-    //   }
-    // }
-    return "you"
+    for(let i = 0; i < spanContent.length; i++){
+      let currentChar = spanContent[i]
+      let index;
+      if(currentChar === " "){
+        index = i;
+        return spanContent.slice(i+1)
+      }
+    }
+
   }
 
-// m
-  // const rightNavSpan = document.querySelector('.spanTag')
-  // const spanContent = rightNavSpan.textContent;
+
+  const rightNavSpan = document.querySelector('.welcome-message-drop')
+  const spanContent = rightNavSpan.textContent;
   // const spanContent = "this is the spanContent variable"
 
 
@@ -100,30 +100,41 @@ window.addEventListener("load", (event)=>{
 
 
 
-  const addComment = async(event) => {
+  const addComment = async (event) => {
     event.preventDefault();
     const formData = new FormData(commentForm);
-    const comment = formData.get('user-comment')
+    const comment = formData.get('user-comment');
 
-    try {
-      const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({comment})
-      })
-      const data = await handleResponse(res);
-      commentForm.reset();
-      receiveComment(data);
-      // console.log("DATA--TAYLOR",data);
-      }
-      catch (e) {
-        console.log("I AM THE ERROR TAYLOR", e);
-      }
+    const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({comment})
+    })
+
+    const data = await handleResponse(res);
+    commentForm.reset();
+    receiveComment(data);
+    // try {
+    //   const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({comment})
+    //   })
+    //   const data = await handleResponse(res);
+    //   commentForm.reset();
+    //   receiveComment(data);
+    //   // console.log("DATA--TAYLOR",data);
+    //   }
+    //   catch (e) {
+    //     console.log("I AM THE ERROR TAYLOR", e);
+    //   }
   }
   // Delete Plant Button Click
-  const list = document.querySelectorAll('.plant-card')
+  // const list = document.querySelectorAll('.plant-card')
   // console.log(list);
   // for(let i = 0; i < list.length; i++) {
 	//   list[i].addEventListener('click', deletePlantOnShelf);

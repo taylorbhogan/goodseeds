@@ -248,3 +248,14 @@ delete shelf form
   align-items: center;
 
 }
+
+/* user-id-form */
+.user-id-shelf-form{
+  padding:20px
+}
+
+.user-id-shelf-form-1{
+  text-align: center;
+  border: 3px solid green;
+  padding: 50px
+}
