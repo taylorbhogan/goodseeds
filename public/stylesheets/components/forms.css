@@ -47,9 +47,9 @@
 
 .form-control {
   background-color: #ebe9e9;
-  width: 100%;
   border-radius: 5px;
-  height: 40px;
+  width: 800px;
+  height: 150px;
   font-size: 20px;
   margin-top: 4px;
 }
