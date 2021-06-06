@@ -119,10 +119,16 @@ router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, n
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
   const userId = req.session.auth.userId
-  // if(shelf.userId !== userId) {
-  //   console.log(`you do not own this shelf`)
-  //   return
-  // }
+
+  console.log(review.userId);
+  console.log('-----------------')
+  console.log(userId)
+
+  if(review.userId.toString() !== userId.toString()) {
+    // window.alert('You do not own this review.')
+    res.redirect('/')
+  }
+
   res.render('deletereview', {review, reviewId, csrfToken: req.csrfToken()})
 }))
 
