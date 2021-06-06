@@ -42,10 +42,15 @@
 }
 
 .plant-image{
-  height: 300px;
-  width: 300px;
+  height: 302px;
+  width: 302px;
   border: 1px solid black;
   margin: 50px 30px 30px 30px;
+}
+
+.plant-img {
+  width: 300px;
+  height: 300px;
 }
 
 .plant-name{
