@@ -23,17 +23,21 @@
   align-items: center;
   flex-direction: column;
   overflow-wrap: normal;
-  margin: 0px 60px 100px 60px;
+  margin: 0px 30px 100px 30px;
   box-shadow: -.4rem 0 2rem #999;
   border-radius: 20px;
   position: relative;
+}
+
+#plant-showcase{
+  margin-bottom: 20px;
 }
 
 .plant-card--hover:hover{
   transform: translateY(-7px);
 }
 /* When you hover on a card, the plant name changes to the main color set in global.css*/
-.plant-card--hover:hover .main-link{
+.plant-card--hover:hover .plant-name{
   color: var(--main-color-green);
 }
 

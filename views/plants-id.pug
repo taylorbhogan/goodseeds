@@ -6,7 +6,7 @@ block content
       container.plant-id-container
           div#plant001
           div.plant-container__left-div
-              div.plant-card
+              div(class="plant-card" id="plant-showcase")
                 img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
                 div
                     a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
@@ -16,18 +16,18 @@ block content
         div.center-form
           if locals.authenticated
             form(action=`/plants/${plant.id}`, method='post')
-              h1 Add This Plant To A Shelf
+              h1.little-padding Add This Plant To A Shelf
               input(type='hidden' name='_csrf' value=csrfToken)
               div.center-form
-                h2 My Shelves
+                h2.little-padding My Shelves
                 div
                   select(name='selectedshelf' required)
-                    option(value='') -- select one --
+                    option(value='' class="little-padding") -- select one --
                     each shelf in usersShelves
                       option(value=`${shelf.id}`)= `${shelf.name}`
                 div
                   p
-                  button(type='submit' class="button__add-to-shelf") Add To Shelf
+                  button(type='submit' class="button__add-to-shelf clickable-link gill-sans") Add To Shelf
           else
             h1 Want To Add To Your Shelf?
             a(href='/users/login' class='clickable-link') Log In
@@ -35,8 +35,8 @@ block content
       div.review-container
         div.review-header-container
           h1 Reviews
-        div= `Average rating: ${starRating}`
-        div= `${reviews.length} review(s)`
+        div(class="little-padding")= `Average rating: ${starRating}`
+        div(class="little-padding")= `${reviews.length} review(s)`
         if locals.authenticated
           a(href=`/plants/${plant.id}/reviews` class="clickable-link") Add a Review
         else

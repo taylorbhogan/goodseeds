@@ -5,7 +5,7 @@ include utils.pug
 block content
     div.shelf-container
         title= shelf.name
-        div.shelfName #{shelf.name}
+        div(class="shelfName") #{shelf.name}
             a(href=`/shelves/delete-shelf/${shelf.id}` role='button' class='clickable-link') Delete Shelf
         container.plant-container
           each reference in plantsToShelves
@@ -26,9 +26,9 @@ block content
             form(class="comment-form")
                 input(type='hidden' name='_csrf' value=csrfToken)
                 div.comment-input-div
-                    input(required name="user-comment" class="form-control " rows="5" cols="80" placeholder='Write a comment')
+                    input(required name="user-comment" class="form-control" rows="5" cols="80" placeholder='Write a comment')
                     p
-                    input(type='submit' value='Add Comment' id='addCommentButton')
+                    input(type='submit' value='Add Comment' id='addCommentButton' class="clickable-link gill-sans")
         div.comment-list-container
             each comment in comments
                 div.comment-div

@@ -42,24 +42,45 @@ body{
   align-items: center;
 }
 
-@media screen and (min-width: 1490px) {
-  #main-logo {
-    font-size: 70px;
-  }
+#main-logo {
+  font-size: 70px;
 }
-@media screen and (max-width: 1490px) {
+.left-nav a {
+  font-size: 35px;
+}
+.logo-div{
+  flex-direction: row;
+}
+
+
+@media screen and (max-width: 1600px) {
   #main-logo {
     font-size: 50px;
   }
+  .left-nav a {
+    font-size: 15px;
+  }
+  .logo-div{
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  /* #main-logo {
+    font-size: 30px;
+  } */
   .welcome-message-div{
     visibility: hidden;
   }
-}
-@media screen and (max-width: 800px) {
-  #main-logo {
-    font-size: 15px;
+  .logo-div{
+    flex-direction: row;
+  }
+  .column-menu{
+    display: flex;
+    flex-direction: column;
   }
 }
+
 
 .welcome-message-div hover {
   visibility: hidden;
@@ -76,14 +97,13 @@ body{
   background-color: var(--main-color-green);
   justify-content: space-between;
   align-items: center;
-  height: 150px;
+  height: 125px;
   padding: 20px 100px 20px 100px;
 }
 /* navbar__left-menu */
 .logo-div{
   display: flex;
-  /* justify-content: flex-start; */
-  /* flex-direction: row; */
+  justify-content: flex-start;
   align-items: center;
 }
 /* navbar__left-nav */
@@ -135,7 +155,6 @@ body{
 /* navbar__left-nav a */
 .left-nav a {
   padding: 5px 10px 5px 10px;
-  font-size: 40px;
   color: rgba(255, 255, 255, 1);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border: 3px solid rgba(0, 0, 0, .1);
