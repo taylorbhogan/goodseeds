@@ -14,6 +14,9 @@ block content
         +field('Email Address:', 'email', user.email)
         +field('Password:', 'password', user.password, 'password')
         +field('Confirm Password:', 'confirmPassword', '', 'password')
+        //- +field('Profile Image:', 'imgUrl', '', 'imgUrl')
+        label(for='imgUrl' class='form-labels') Profile Image
+        input(type='file' id='imgUrl' name='imgUrl' value='imgUrl' class='form-control')
       div.form-links
         button(type='submit' class='button-primary') Sign Up
       div.form-links
