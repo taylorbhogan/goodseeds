@@ -219,9 +219,12 @@ Creates new account for new users then redirects to / page
 router.post(
   '/signup',
   singleMulterUpload('image'),
-  csrfProtection,
+  // csrfProtection,
   signupValidators,
   asyncHandler(async(req, res, next) =>{
+  console.log('------------I am a log--------------');
+  // console.log('------------req--------------', req);
+  console.log('------------req.file--------------', req.file);
   const {
     firstName,
     lastName,
@@ -231,6 +234,8 @@ router.post(
   } = req.body;
 
   const imgUrl = await singlePublicFileUpload(req.file)
+
+  console.log('imgUrl-------------------',imgUrl);
 
   const user = db.User.build({
     firstName,
