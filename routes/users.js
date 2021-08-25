@@ -305,6 +305,19 @@ router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) =>
   res.render('users-id-shelves', {tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 
+// router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
+//   // console.log('RES.LOCALS ', res.locals.user.firstName)
+//   const loggedInUser = res.locals.user
+//   // console.log("--TBH--loggedInUser--TBH--",loggedInUser);
+//   const userToDisplay = await db.User.findByPk(req.params.id);
+//   const shelves = await db.Shelf.findAll({
+//     where: {
+//       userId: req.params.id
+//     }
+//   });
+//   res.render('users-id-shelves', {userToDisplay, loggedInUser, shelves, csrfToken: req.csrfToken()})
+// }))
+
 router.get('/account', asyncHandler(async(req, res, next) => {
 
   res.render('users-account')

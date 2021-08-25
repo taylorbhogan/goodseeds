@@ -106,7 +106,7 @@ router.get('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, nex
   const shelf = await db.Shelf.findByPk(shelfId);
   const userId = req.session.auth.userId
 
-  if(shelf.userId.toString() !== userId.toString()) {
+  if(shelf == null || shelf.userId.toString() !== userId.toString()) {
     res.redirect('/')
   }
 
