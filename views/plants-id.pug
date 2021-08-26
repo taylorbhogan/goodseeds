@@ -54,5 +54,5 @@ block content
             div= `Reviewed on ${review.createdAt} `
               if locals.authenticated
                 span
-                  a.edit(href=`/plants/reviews/edit/${review.id}` class='clickable-link') ✏️
+                  a.edit(href=`/${plant.id}/plants/reviews/edit/${review.id}` class='clickable-link') ✏️
                   a.edit(href=`/plants/reviews/delete/${review.id}` class='clickable-link') 🗑️

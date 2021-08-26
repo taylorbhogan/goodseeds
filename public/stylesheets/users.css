@@ -33,6 +33,7 @@ td:hover .user-link{
 
 .clickable-link{
   background-color:seagreen;
+  color: white;
   padding: 10px;
   text-decoration: none;
   font-weight: 800;
@@ -46,9 +47,9 @@ td:hover .clickable-link{
   /* transform: translateY(-2px); */
   /* border: 6px solid rgb(255, 255, 255); */
   box-shadow: 0 5px 0.5em 1px #999;
+  color: black;
 }
 
 #user-link{
   background-color:goldenrod;
 }
-

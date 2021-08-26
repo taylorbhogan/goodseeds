@@ -125,10 +125,31 @@ router.post('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req,
     res.redirect(`/plants/${plantId}`)
 }))
 
-router.get('/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+router.get('/:plantId/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const plant = await db.Plant.findByPk(req.params.plantId);
     const review = await db.Review.findByPk(req.params.reviewId);
 
-    res.render('plants-id-edit', { review, csrfToken: req.csrfToken() })
+    res.render('plants-id-edit', { plant, review, csrfToken: req.csrfToken() })
+}))
+
+router.put('/:plantId/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const plantId = req.params.plantId
+    const review = await db.Review.findByPk(req.params.reviewId)
+    const user = await db.User.findByPk(req.session.auth.userId)
+    const userId = user.id
+
+    const { reviewText, rating } = req.body;
+
+    const editReview = review.update({
+        reviewText,
+        rating,
+        plantId,
+        userId
+    })
+
+    await editReview.save();
+
+    res.redirect(`/plants/${plantId}`)
 }))
 
 //display the form that deletes the selected review
@@ -148,7 +169,6 @@ router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, n
 router.post('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
-  const userId = req.session.auth.userId
 
   await review.destroy()
 

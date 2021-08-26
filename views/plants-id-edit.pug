@@ -5,13 +5,13 @@ include utils.pug
 block content
   container.plant-id__container
       div.plant-card
-            img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
-            div
-                a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-            div
-                p(class="plant-scientific-name")= plant.scientificName
+            //- img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+            //- div
+            //-     a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+            //- div
+            //-     p(class="plant-scientific-name")= plant.scientificName
       div.review-card
-          form(action=`/plants/${plant.id}/reviews`, method="post" class='center-form')
+          form(action=`/plants/reviews/edit/${review.id}`, method="put" class='center-form')
               input(type='hidden' name='_csrf' value=csrfToken)
               h1 Edit Review
               div
@@ -27,5 +27,5 @@ block content
               div(class='form-group')
                 label(for='reviewText' class="center-form")
                 div
-                  textarea(name='reviewText' rows="10" cols="85" placeholder='What did you think? (optional)')
-              button(type="submit") Add Review
+                  textarea(name='reviewText' rows="10" cols="85")= review.reviewText
+              button(type="submit") Submit Changes
