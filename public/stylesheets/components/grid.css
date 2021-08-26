@@ -1,8 +1,7 @@
 .plant-container{
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  margin: 50px 100px 50px 100px;
+  justify-content: center;
   width: 100%;
 }
 

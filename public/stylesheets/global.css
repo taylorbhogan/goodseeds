@@ -272,9 +272,7 @@ body{
 }
 
 .main-body {
-  margin-right: 50px;
-  margin-left: 50px;
-  margin-top: 40px;
+  margin: 40px 50px 0px 50px;
 }
 
 option {
