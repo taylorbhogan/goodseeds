@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  height: calc(100vh - 350px) !important;
+  overflow-y: scroll;
 }
 
 .main-link::before {
@@ -23,7 +25,7 @@
   align-items: center;
   flex-direction: column;
   overflow-wrap: normal;
-  margin: 0px 30px 100px 30px;
+  margin: 50px 30px 50px 30px;
   box-shadow: -.4rem 0 2rem #999;
   border-radius: 20px;
   position: relative;

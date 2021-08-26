@@ -7,6 +7,9 @@ const { Op } = require('sequelize');
 
 router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const plants = await db.Plant.findAll();
+
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
     res.render('plants', { plants, csrfToken: req.csrfToken() })
 }))
 
@@ -22,7 +25,9 @@ router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
         }
     })
 
-    res.render(`plants-search`, { plants, query, csrfToken: req.csrfToken() })
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
+    res.render(`plants`, { plants, query, csrfToken: req.csrfToken() })
 }))
 
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
