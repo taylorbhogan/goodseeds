@@ -125,15 +125,17 @@ router.post('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req,
     res.redirect(`/plants/${plantId}`)
 }))
 
-//display the form that deletes the selected reviuew
+router.get('/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const review = await db.Review.findByPk(req.params.reviewId);
+
+    res.render('plants-id-edit', { review, csrfToken: req.csrfToken() })
+}))
+
+//display the form that deletes the selected review
 router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
   const userId = req.session.auth.userId
-
-  console.log(review.userId);
-  console.log('-----------------')
-  console.log(userId)
 
   if(review.userId.toString() !== userId.toString()) {
     res.redirect('/')

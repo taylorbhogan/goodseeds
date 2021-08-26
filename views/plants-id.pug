@@ -54,4 +54,5 @@ block content
             div= `Reviewed on ${review.createdAt} `
               if locals.authenticated
                 span
-                  a(href=`/plants/reviews/delete/${review.id}` class='clickable-link') Delete Review
+                  a.edit(href=`/plants/reviews/edit/${review.id}` class='clickable-link') ✏️
+                  a.edit(href=`/plants/reviews/delete/${review.id}` class='clickable-link') 🗑️
