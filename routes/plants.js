@@ -130,7 +130,7 @@ router.get('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(
     res.render('plants-id-edit', { plant, review, starRating, csrfToken: req.csrfToken() })
 }))
 
-router.put('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+router.post('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const review = await db.Review.findByPk(req.params.id)
     const plantId = review.plantId
 

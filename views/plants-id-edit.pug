@@ -11,7 +11,7 @@ block content
             div
                 p(class="plant-scientific-name")= plant.scientificName
       div.review-card
-          form(action=`/plants/reviews/edit/${review.id}` method="put" class='center-form')
+          form(action=`/plants/reviews/edit/${review.id}` method="post" class='center-form')
               input(type='hidden' name='_csrf' value=csrfToken)
               h1 Edit Review
               div
