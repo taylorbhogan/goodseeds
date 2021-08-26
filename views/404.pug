@@ -1,0 +1,9 @@
+extends layout.pug
+include utils.pug
+block content
+  div.delete-container
+    h1.plant-name Error
+    p.plant-name This action is not allowed or this page does not exist
+    img(src='https://i.ibb.co/8xsMT35/sad-potato.png' class='plant-image')
+    div
+        a(href=`/` role='button' class='clickable-link') Home Page

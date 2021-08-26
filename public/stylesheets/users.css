@@ -9,7 +9,10 @@
 
   justify-content: flex-end;
 } */
-
+.th-head{
+  display: flex;
+  flex-wrap: wrap;
+}
 .flex-container__center-center{
   display: flex;
   justify-content: center;
@@ -34,6 +37,7 @@ td:hover .user-link{
 .clickable-link{
   background-color:seagreen;
   padding: 10px;
+  color: white;
   text-decoration: none;
   font-weight: 800;
   /* border: 1px solid red; */
