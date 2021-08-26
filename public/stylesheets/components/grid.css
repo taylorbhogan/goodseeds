@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 350px) !important;
+  height: calc(100vh - 300px) !important;
   overflow-y: scroll;
 }
 
