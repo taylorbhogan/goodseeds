@@ -7,13 +7,16 @@ block content
         form(action=`/plants/search` method="post" class='center-form')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(class="search-bar" name='query' placeholder="Search by common or scientific name" value=query)
-            button(type="submit" class="clickable-link") Search 🔎
+            button(type="submit" class="clickable-link") Search
     container.plant-container
-        each plant in plants
-            a(href=`/plants/${plant.id}`)
-                div(class="plant-card plant-card--hover")
-                    img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
-                    div
-                        a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-                    div
-                        p(class="plant-scientific-name")= plant.scientificName
+        if (plants.length === 0)
+            div No results!
+        else
+            each plant in plants
+                a(href=`/plants/${plant.id}`)
+                    div(class="plant-card plant-card--hover")
+                        img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                        div
+                            a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+                        div
+                            p(class="plant-scientific-name")= plant.scientificName
