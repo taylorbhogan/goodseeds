@@ -3,10 +3,31 @@ const router = express.Router();
 const db = require('../db/models');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { requireAuth } = require('../auth');
+const { Op } = require('sequelize');
 
-router.get('/', asyncHandler(async(req, res, next) => {
+router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const plants = await db.Plant.findAll();
-    res.render('plants', { plants })
+
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
+    res.render('plants', { plants, csrfToken: req.csrfToken() })
+}))
+
+router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
+    const { query } = req.body
+
+    const plants = await db.Plant.findAll({
+        where: {
+            [Op.or]: [
+                { name: { [Op.iLike]: '%' + query + '%'} },
+                { scientificName: { [Op.iLike]: '%' + query + '%'} }
+            ]
+        }
+    })
+
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
+    res.render(`plants`, { plants, query, csrfToken: req.csrfToken() })
 }))
 
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
