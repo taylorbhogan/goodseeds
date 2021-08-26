@@ -5,6 +5,10 @@
 body{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  /* align-items: flex-end; */
   /* if you change the above, please change the below */
 }
 
@@ -280,3 +284,103 @@ body{
 option {
   text-align: center;
 }
+
+.footergood {
+  margin-top: -75px;
+  height: 75px;
+  background-color: var(--main-color-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+
+}
+
+.footera{
+  padding: 5px 10px 5px 10px;
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 10px;
+    border: 5px solid yellow;
+    text-decoration: none;
+    font-size: 2vh;
+}
+
+/* about us page */
+.title_container {
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  margin: 10px;
+}
+
+.about_us_outer {
+  /* display: flex;
+  justify-content: space-around; */
+  border: 1px solid black;
+  padding: 120px 0px;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(84, 226, 108)
+}
+
+.aboutustitle{
+  font-size: 6vh;
+}
+
+.dev_name{
+  font-size: 4vh;
+  font-weight: bold;
+  margin-bottom: 1.5vh;
+}
+
+.about-us-link{
+  font-size: 2vh;
+  margin-left: 1vh;
+}
+.each_person {
+  /* border: 0.5px solid grey;
+  border-radius: 10px; */
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  right: 50px;
+  margin-left: 300px;
+}
+
+.person_pic {
+  /* height: 75px;
+  width: 75px; */
+  max-width: 25%;
+  margin: 10px;
+  border-radius: 50%;
+  border: 3px solid #716f75;
+  text-decoration: none;
+}
+
+.person_desc {
+  margin-left: 100px;
+  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 50;
+  line-height: 40px;
+  -webkit-letter-spacing: -0.32px;
+  -moz-letter-spacing: -0.32px;
+  -ms-letter-spacing: -0.32px;
+  letter-spacing: -0.32px;
+  -webkit-text-decoration: unset;
+  text-decoration: unset;
+}
+
+.github_icon_container {
+  display: flex;
+  }
+
+  .github_icon {
+    font-size: 35px;
+    color: black;
+  }
