@@ -1,0 +1,30 @@
+extends layout.pug
+include utils.pug
+block content
+  div.delete-container
+    div.title_container
+        h1.aboutustitle Meet the Team
+    div.about_us_outer
+        div.each_person
+            img(src="https://avatars.githubusercontent.com/u/69053706?v=4" class="person_pic")
+            div.person_desc
+                h3(class="dev_name") Joe Kim
+                a(href="https://github.com/joejunkim" class="about-us-link" target="_blank") Github
+        div.each_person
+            img(src="https://avatars.githubusercontent.com/u/79662776?v=4" class="person_pic")
+            div.person_desc
+                h3(class="dev_name") Justin Cho
+                a(href="https://justinycho-business.github.io/" class="about-us-link" target="_blank") Portfolio Website
+                div
+                    a(href="https://github.com/justinycho-business" class="about-us-link" target="_blank") Github
+
+        div.each_person
+            img(src="https://avatars.githubusercontent.com/u/79616733?v=4" class="person_pic")
+            div.person_desc
+                h3(class="dev_name") Taylor Hogan
+                a(href="https://github.com/taylorbhogan" class="about-us-link" target="_blank") Github
+        div.each_person
+            img(src="https://avatars.githubusercontent.com/u/79420357?v=4" class="person_pic")
+            div.person_desc
+                h3(class="dev_name") Kyle Tseng
+                a(href="https://github.com/KyleHere" class="about-us-link" target="_blank") Github
