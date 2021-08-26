@@ -133,16 +133,12 @@ router.get('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(
 router.patch('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const review = await db.Review.findByPk(req.params.id)
     const plantId = review.plantId
-    const user = await db.User.findByPk(req.session.auth.userId)
-    const userId = user.id
 
     const { reviewText, rating } = req.body;
 
     await review.update({
         reviewText,
         rating,
-        plantId,
-        userId
     })
 
     res.redirect(`/plants/${plantId}`)
