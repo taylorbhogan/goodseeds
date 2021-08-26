@@ -12,7 +12,7 @@ html
           a(href="/" class="main-logo")
             span#main-logo GoodSeeds
         nav.left-nav
-          span
+          span.column-menu
             a(href="/users") Users and Shelves
             a(href="/plants") Plants
             if locals.authenticated
@@ -29,7 +29,7 @@ html
               a(href=`/users/${user.id}/shelves` class="navbar__account-link") Let's get planting.
 
             div.navbar__account-oval
-              a(href="/users/account" class="navbar__account-link") Your Account 👤
+              a(href="/users/account" class="navbar__account-link navbar__account-link--large") Your Account 👤
                 ul.navbar__account-dropdown
                   li
                     form(action="/users/logout" method="post")

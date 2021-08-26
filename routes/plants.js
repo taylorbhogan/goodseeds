@@ -11,6 +11,9 @@ router.get('/', asyncHandler(async(req, res, next) => {
 
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const plant = await db.Plant.findByPk(req.params.id);
+    if(plant == null) {
+        res.redirect('/404')
+      }
     const reviews = await db.Review.findAll({
         where: {
             plantId: req.params.id
@@ -87,6 +90,10 @@ router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, ne
 
 router.get('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const plant = await db.Plant.findByPk(req.params.id);
+    if(plant == null) {
+        res.redirect('/404')
+      }
+
 
     res.render('plants-id-reviews', { plant, csrfToken: req.csrfToken() })
 }))
@@ -148,6 +155,9 @@ router.post('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async
 router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
+  if(review == null) {
+    res.redirect('/404')
+  }
   const userId = req.session.auth.userId
 
   if(review.userId.toString() !== userId.toString()) {
