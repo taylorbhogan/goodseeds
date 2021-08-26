@@ -1,8 +1,9 @@
 .plant-container{
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 40px 100px 0px 100px;
+  margin: 50px 100px 50px 100px;
+  width: 100%;
 }
 
 .main-link::before {
