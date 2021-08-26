@@ -32,7 +32,6 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         }
       }
 
-    let avgRating = 0;
     let starRating = '☆☆☆☆☆'
 
     if (reviews.length){
@@ -74,20 +73,6 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 }));
 
 router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
-    const plant = await db.Plant.findByPk(req.params.id);
-    const reviews = await db.Review.findAll({
-        where: {
-            plantId: req.params.id
-        }
-    })
-    const userId = req.session.auth.userId
-    const user = await db.User.findByPk(userId);
-    const usersShelves = await db.Shelf.findAll({
-        where: {
-          userId: userId
-        }
-      });
-
     const {selectedshelf} = req.body;
 
     const newPlantToShelfConnection = db.PlantToShelf.build({
@@ -125,29 +110,40 @@ router.post('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req,
     res.redirect(`/plants/${plantId}`)
 }))
 
-router.get('/:plantId/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
-    const plant = await db.Plant.findByPk(req.params.plantId);
-    const review = await db.Review.findByPk(req.params.reviewId);
+router.get('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const review = await db.Review.findByPk(req.params.id);
+    const plant = await db.Plant.findByPk(review.plantId);
 
-    res.render('plants-id-edit', { plant, review, csrfToken: req.csrfToken() })
+    let starRating;
+    if (review.rating === 1) {
+        starRating = '⭐'
+    } else if (review.rating === 2) {
+        starRating = '⭐⭐'
+    } else if (review.rating === 3) {
+        starRating = '⭐⭐⭐'
+    } else if (review.rating === 4) {
+        starRating = '⭐⭐⭐⭐'
+    } else {
+        starRating = '⭐⭐⭐⭐⭐'
+    }
+
+    res.render('plants-id-edit', { plant, review, starRating, csrfToken: req.csrfToken() })
 }))
 
-router.put('/:plantId/reviews/edit/:reviewId', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
-    const plantId = req.params.plantId
-    const review = await db.Review.findByPk(req.params.reviewId)
+router.patch('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const review = await db.Review.findByPk(req.params.id)
+    const plantId = review.plantId
     const user = await db.User.findByPk(req.session.auth.userId)
     const userId = user.id
 
     const { reviewText, rating } = req.body;
 
-    const editReview = review.update({
+    await review.update({
         reviewText,
         rating,
         plantId,
         userId
     })
-
-    await editReview.save();
 
     res.redirect(`/plants/${plantId}`)
 }))

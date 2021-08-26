@@ -5,20 +5,20 @@ include utils.pug
 block content
   container.plant-id__container
       div.plant-card
-            //- img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
-            //- div
-            //-     a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
-            //- div
-            //-     p(class="plant-scientific-name")= plant.scientificName
+            img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+            div
+                a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+            div
+                p(class="plant-scientific-name")= plant.scientificName
       div.review-card
-          form(action=`/plants/reviews/edit/${review.id}`, method="put" class='center-form')
+          form(action=`/plants/reviews/edit/${review.id}` method="patch" class='center-form')
               input(type='hidden' name='_csrf' value=csrfToken)
               h1 Edit Review
               div
-                  h2(class='center-form') Star Rating
+                  h2(class='center-form') Current Rating
                   div
                     select(name='rating' required)
-                        option(value='') -- select one --
+                        option(value=review.rating)= starRating
                         option(value=1) ⭐
                         option(value=2) ⭐⭐
                         option(value=3) ⭐⭐⭐
