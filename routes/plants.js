@@ -16,8 +16,8 @@ router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
     const plants = await db.Plant.findAll({
         where: {
             [Op.or]: [
-                { name: { [Op.like]: '%' + query + '%'} },
-                { scientificName: { [Op.like]: '%' + query + '%'} }
+                { name: { [Op.iLike]: '%' + query + '%'} },
+                { scientificName: { [Op.iLike]: '%' + query + '%'} }
             ]
         }
     })

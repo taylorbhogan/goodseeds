@@ -6,8 +6,8 @@ block content
     div(class="search__container")
         form(action=`/plants/search` method="post" class='center-form')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(class="search-bar" name='query' placeholder="Search by common or scientific name")
-            button(type="submit") Search
+            input(class="search-bar" name='query' placeholder="Search by common or scientific name" value=query)
+            button(type="submit" class="clickable-link") Search
     container.plant-container
         each plant in plants
             a(href=`/plants/${plant.id}`)
