@@ -6,8 +6,8 @@ block content
     div.container__add-to-shelf
         table
             thead
-                th #{userToDisplay.username}'s Shelves
-                th Want to Add Plants To A Shelf?
+                th.th-head #{userToDisplay.username}'s Shelves
+                th Want to Add Plants To A Shelf? (restricted to shelf owner)
             tbody
                 if shelves
                     each shelf in shelves

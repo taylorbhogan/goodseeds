@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Good Seeds' });
 });
 
+router.get('/:id', function(req, res, next) {
+  res.render('404');
+});
+
 module.exports = router;
