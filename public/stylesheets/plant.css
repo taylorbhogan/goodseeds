@@ -89,3 +89,15 @@
   font-size: 17px;
   outline: none;
 }
+
+#new-plant-form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.left, .right{
+  width: 30%;
+}

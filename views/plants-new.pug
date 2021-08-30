@@ -1,0 +1,18 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    div(class='container')
+        form(action='/image' method='post' id='new-plant-form' enctype='multipart/form-data')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            div.left
+                div.form-group
+                    div.button-div
+                        input(type='file' accept='image/*' id='imgUrl' name='image' value='imgUrl')
+                        label(for='imgUrl') Upload Plant Image
+            div.right
+                h1 Add a plant
+                +field('Name', 'name', newPlant.name)
+                +field('Scientific Name', 'scientificName', newPlant.scientificName)
+            button(type='submit') Submit
