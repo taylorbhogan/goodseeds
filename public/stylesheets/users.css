@@ -9,7 +9,10 @@
 
   justify-content: flex-end;
 } */
-
+.th-head{
+  display: flex;
+  flex-wrap: wrap;
+}
 .flex-container__center-center{
   display: flex;
   justify-content: center;
@@ -33,7 +36,9 @@ td:hover .user-link{
 
 .clickable-link{
   background-color:seagreen;
+  color: white;
   padding: 10px;
+  color: white;
   text-decoration: none;
   font-weight: 800;
   /* border: 1px solid red; */
@@ -46,6 +51,7 @@ td:hover .clickable-link{
   /* transform: translateY(-2px); */
   /* border: 6px solid rgb(255, 255, 255); */
   box-shadow: 0 5px 0.5em 1px #999;
+  color: black;
 }
 
 #user-link{
@@ -55,3 +61,4 @@ td:hover .clickable-link{
 .users-margin-bottom{
   margin-bottom: 50px;
 }
+

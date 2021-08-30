@@ -28,7 +28,7 @@ block content
                 div.comment-input-div
                     input(required name="user-comment" class="form-control" rows="5" cols="80" placeholder='Write a comment')
                     p
-                    input(type='submit' value='Add Comment' id='addCommentButton' class="clickable-link gill-sans")
+                    button(type='submit' value='Add Comment' id='addCommentButton' class="clickable-link gill-sans") Add Comment
         div.comment-list-container
             each comment in comments
                 div.comment-div

@@ -3,14 +3,38 @@ const router = express.Router();
 const db = require('../db/models');
 const { asyncHandler, csrfProtection } = require('./utils');
 const { requireAuth } = require('../auth');
+const { Op } = require('sequelize');
 
-router.get('/', asyncHandler(async(req, res, next) => {
+router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const plants = await db.Plant.findAll();
-    res.render('plants', { plants })
+
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
+    res.render('plants', { plants, csrfToken: req.csrfToken() })
+}))
+
+router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
+    const { query } = req.body
+
+    const plants = await db.Plant.findAll({
+        where: {
+            [Op.or]: [
+                { name: { [Op.iLike]: '%' + query + '%'} },
+                { scientificName: { [Op.iLike]: '%' + query + '%'} }
+            ]
+        }
+    })
+
+    plants.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+
+    res.render(`plants`, { plants, query, csrfToken: req.csrfToken() })
 }))
 
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const plant = await db.Plant.findByPk(req.params.id);
+    if(plant == null) {
+        res.redirect('/404')
+      }
     const reviews = await db.Review.findAll({
         where: {
             plantId: req.params.id
@@ -32,7 +56,6 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         }
       }
 
-    let avgRating = 0;
     let starRating = '☆☆☆☆☆'
 
     if (reviews.length){
@@ -74,20 +97,6 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 }));
 
 router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
-    const plant = await db.Plant.findByPk(req.params.id);
-    const reviews = await db.Review.findAll({
-        where: {
-            plantId: req.params.id
-        }
-    })
-    const userId = req.session.auth.userId
-    const user = await db.User.findByPk(userId);
-    const usersShelves = await db.Shelf.findAll({
-        where: {
-          userId: userId
-        }
-      });
-
     const {selectedshelf} = req.body;
 
     const newPlantToShelfConnection = db.PlantToShelf.build({
@@ -102,6 +111,10 @@ router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, ne
 
 router.get('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
     const plant = await db.Plant.findByPk(req.params.id);
+    if(plant == null) {
+        res.redirect('/404')
+      }
+
 
     res.render('plants-id-reviews', { plant, csrfToken: req.csrfToken() })
 }))
@@ -125,15 +138,48 @@ router.post('/:id/reviews', csrfProtection, requireAuth, asyncHandler(async(req,
     res.redirect(`/plants/${plantId}`)
 }))
 
-//display the form that deletes the selected reviuew
+router.get('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const review = await db.Review.findByPk(req.params.id);
+    const plant = await db.Plant.findByPk(review.plantId);
+
+    let starRating;
+    if (review.rating === 1) {
+        starRating = '⭐'
+    } else if (review.rating === 2) {
+        starRating = '⭐⭐'
+    } else if (review.rating === 3) {
+        starRating = '⭐⭐⭐'
+    } else if (review.rating === 4) {
+        starRating = '⭐⭐⭐⭐'
+    } else {
+        starRating = '⭐⭐⭐⭐⭐'
+    }
+
+    res.render('plants-id-edit', { plant, review, starRating, csrfToken: req.csrfToken() })
+}))
+
+router.post('/reviews/edit/:id', csrfProtection, requireAuth, asyncHandler(async(req, res) => {
+    const review = await db.Review.findByPk(req.params.id)
+    const plantId = review.plantId
+
+    const { reviewText, rating } = req.body;
+
+    await review.update({
+        reviewText,
+        rating,
+    })
+
+    res.redirect(`/plants/${plantId}`)
+}))
+
+//display the form that deletes the selected review
 router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
+  if(review == null) {
+    res.redirect('/404')
+  }
   const userId = req.session.auth.userId
-
-  console.log(review.userId);
-  console.log('-----------------')
-  console.log(userId)
 
   if(review.userId.toString() !== userId.toString()) {
     res.redirect('/')
@@ -146,7 +192,6 @@ router.get('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, n
 router.post('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
   const reviewId = parseInt(req.params.id, 10);
   const review = await db.Review.findByPk(reviewId);
-  const userId = req.session.auth.userId
 
   await review.destroy()
 
