@@ -7,9 +7,9 @@ block content
     div.account-window_profile-image-info-container
       div.account-window__profile-img-div
         if user.imgUrl
-          img(src=user.imgUrl alt="profile image goes here")
+          img(src=user.imgUrl alt="profile image goes here" class='account-window__profile-img')
         else
-          img(src='/images/profile/profile-pic.jpeg' alt="profile image goes here" id="profile-pic-placeholder")
+          img(src='/images/profile/profile-pic.jpeg' alt="profile image goes here" id="profile-pic-placeholder" class='account-window__profile-img')
       button.account-window__image-button Change Profile Image
     div.account-window__details-container
       div.account-window__details-header-div
