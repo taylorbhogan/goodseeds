@@ -1,9 +1,9 @@
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
   div(class='form-group')
-    div
-      label(for=fieldName class="form-labels")= labelText
-    div
-      input(type=fieldType id=fieldName name=fieldName value=fieldValue class='form-control')
+    //- div
+    label(for=fieldName class="form-labels")= labelText
+    //- div
+    input(type=fieldType id=fieldName name=fieldName value=fieldValue class='form-control')
 
 mixin validationErrorSummary(errors)
   if errors
@@ -12,3 +12,6 @@ mixin validationErrorSummary(errors)
       ul
         each error in errors
           li= error
+
+mixin footerHeight
+  div(id='footer-height')

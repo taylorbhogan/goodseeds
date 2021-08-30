@@ -9,7 +9,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const plantsRouter = require('./routes/plants');
-const shelvesRouter = require('./routes/shelves')
+const shelvesRouter = require('./routes/shelves');
 const { sessionSecret } = require('./config');
 const {loginUser, restoreUser, logoutUser, requireAuth} = require('./auth.js');
 //const cors = require('cors');
@@ -20,8 +20,8 @@ const app = express();
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -3,7 +3,8 @@
 window.addEventListener("load", (event)=>{
   const commentList = document.querySelector('#addCommentButton');
   const commentForm = document.querySelector('.comment-form')
-
+  // const signupButton = document.querySelector('#signup-button')
+  // const signupForm = document.querySelector('#signup-form')
 
   //method to find the ID of the current shelf
   const currentUrl = String(window.location.pathname)
@@ -103,5 +104,15 @@ window.addEventListener("load", (event)=>{
   //on the click of the button, adds the information in the text field, and posts it as a comment
   commentList.addEventListener('click', addComment)
 
+
+  // const signUp = async (e) => {
+  //   e.preventDefault()
+  //   console.log('---------------inside signUp--------');
+  //   const formData = new FormData(signupForm);
+  //   console.log('---------------formData------------');
+  //   console.log(formData);
+  // }
+
+  // signupButton.addEventListener('click', signUp)
 
 })

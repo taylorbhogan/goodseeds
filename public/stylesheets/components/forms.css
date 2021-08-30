@@ -1,6 +1,7 @@
 .form-container{
   display: flex;
   justify-content: center;
+  margin-bottom: var(--footerHeight);
 }
 
 .form {
@@ -8,7 +9,7 @@
   width: 500px;
   border: 2px solid black;
   border-radius: 7px;
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .button-primary{
@@ -27,8 +28,8 @@
 }
 
 .form-group{
-  padding: 10px;
-
+  padding: 10px 0;
+  width: 100%;
 }
 
 .form-links{
@@ -40,7 +41,7 @@
 
 .form-inputs{
   margin-bottom: 30px;
-  width: 300px;
+  width: 100%;
 }
 
 .form-labels{
@@ -56,7 +57,7 @@
 .form-control {
   background-color: #ebe9e9;
   border-radius: 5px;
-  width: 425px;
+  width: 100%;
   height: 50px;
   font-size: 20px;
   margin-top: 4px;
@@ -64,4 +65,48 @@
 
 textarea {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+[type='file']{
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  width: auto;
+  flex-grow: 1;
+  border-radius: 15px;
+  background-color: var(--green2);
+  cursor: pointer;
+  display: inline-block;
+  color: white;
+
+
+  transition: background-color 0.3s;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: var(--gold);
+    color: black;
+}
+
+  [type="file"]:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+
+.button-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

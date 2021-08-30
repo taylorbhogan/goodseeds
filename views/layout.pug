@@ -1,3 +1,5 @@
+include utils.pug
+
 doctype html
 html
   head
@@ -42,5 +44,6 @@ html
               a(href="/users/signup") Sign Up
     div.main-body
       block content
+    +footerHeight
     div.footergood
       a(class="footera" href="/Aboutus") About the developers

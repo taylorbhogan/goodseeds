@@ -5,6 +5,13 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const { loginUser, logoutUser, requireAuth } = require('../auth');
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+  multipleMulterUpload,
+  multiplePublicFileUpload,
+} = require('../awsS3');
+
 
 const entryDestroyer = async (entryToDestroy) => {
   await entryToDestroy.destroy()
@@ -209,7 +216,12 @@ const signupValidators = [
 POST /users/signup page
 Creates new account for new users then redirects to / page
 */
-router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req, res, next) =>{
+router.post(
+  '/signup',
+  singleMulterUpload('image'),
+  // csrfProtection,
+  signupValidators,
+  asyncHandler(async(req, res, next) =>{
   const {
     firstName,
     lastName,
@@ -218,11 +230,14 @@ router.post('/signup', csrfProtection, signupValidators, asyncHandler(async(req,
     password
   } = req.body;
 
+  const imgUrl = await singlePublicFileUpload(req.file)
+
   const user = db.User.build({
     firstName,
     lastName,
     username,
-    email
+    email,
+    imgUrl,
   })
 
   const signupErrors = validationResult(req)
