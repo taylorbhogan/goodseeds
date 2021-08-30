@@ -2,6 +2,7 @@
   --main-color-green: #3bb14d;
   --green2: seagreen;
   --gold: gold;
+  --footerHeight: 75px;
 }
 
 body{
@@ -287,7 +288,7 @@ option {
 
 .footergood {
   margin-top: -75px;
-  height: 75px;
+  height: var(--footerHeight);
   background-color: var(--main-color-green);
   display: flex;
   justify-content: center;
@@ -385,6 +386,6 @@ option {
     color: black;
   }
 
-#footer-space{
-  height: 200px;
+#footer-height{
+  height: var(--footerHeight);
 }
