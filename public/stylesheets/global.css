@@ -287,7 +287,7 @@ option {
 }
 
 .footergood {
-  margin-top: -75px;
+  /* margin-top: -75px; */
   height: var(--footerHeight);
   background-color: var(--main-color-green);
   display: flex;
@@ -301,12 +301,12 @@ option {
 
 .footera{
   padding: 5px 10px 5px 10px;
-    color: rgba(255, 255, 255, 1);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 10px;
-    border: 5px solid var(--gold);
-    text-decoration: none;
-    font-size: 2vh;
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-radius: 10px;
+  border: 5px solid var(--gold);
+  text-decoration: none;
+  font-size: 2vh;
 }
 
 /* about us page */

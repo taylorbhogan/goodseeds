@@ -3,8 +3,9 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 380px) !important;
+  /* height: calc(100vh - 380px) !important; */
   overflow-y: scroll;
+  margin-bottom: var(--footerHeight);
 }
 
 .main-link::before {
