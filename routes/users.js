@@ -8,8 +8,6 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 const {
   singleMulterUpload,
   singlePublicFileUpload,
-  multipleMulterUpload,
-  multiplePublicFileUpload,
 } = require('../awsS3');
 
 

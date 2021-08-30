@@ -13,6 +13,13 @@ router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('plants', { plants, csrfToken: req.csrfToken() })
 }))
 
+router.get('/new', csrfProtection, asyncHandler(async(req, res, next) => {
+    const newPlant = await db.Plant.build();
+
+
+    res.render('plants-new', { newPlant, csrfToken: req.csrfToken() })
+}))
+
 router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
     const { query } = req.body
 
