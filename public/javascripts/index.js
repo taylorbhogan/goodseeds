@@ -89,7 +89,7 @@ window.addEventListener("load", (event)=>{
     event.preventDefault();
     const formData = new FormData(commentForm);
     const comment = formData.get('user-comment')
-    const res = await fetch(`http://localhost:8080/shelves/${shelfId}`,{
+    const res = await fetch(`/shelves/${shelfId}`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

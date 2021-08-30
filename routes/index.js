@@ -23,10 +23,8 @@ router.post(
   '/image',
   singleMulterUpload('image'),
   asyncHandler(async (req, res) => {
-    console.log('inside /image route ______-------------_______');
     const imgUrl = await singlePublicFileUpload(req.file)
-    console.log('inside /image route ______-------------_______',imgUrl);
-    
+
     return res.json({
       imgUrl,
     });
