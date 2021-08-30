@@ -35,7 +35,7 @@ td:hover .user-link{
 }
 
 .clickable-link{
-  background-color:seagreen;
+  background-color:var(--green2);
   color: white;
   padding: 10px;
   color: white;
@@ -61,4 +61,3 @@ td:hover .clickable-link{
 .users-margin-bottom{
   margin-bottom: 50px;
 }
-
