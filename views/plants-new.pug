@@ -4,7 +4,7 @@ include utils.pug
 
 block content
     div(class='container' id='new-plant-container')
-        form(action='/image' method='post' enctype='multipart/form-data')
+        form(action='/image-plant' method='post' enctype='multipart/form-data')
             //- input(type='hidden' name='_csrf' value=csrfToken)
             div(class="plant-card")
                 if imgUrl
