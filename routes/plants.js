@@ -13,7 +13,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('plants', { plants, csrfToken: req.csrfToken() })
 }))
 
-router.get('/new', csrfProtection, asyncHandler(async(req, res, next) => {
+router.get('/new', requireAuth, csrfProtection, asyncHandler(async(req, res, next) => {
     const newPlant = await db.Plant.build();
 
     res.render('plants-new', { newPlant, csrfToken: req.csrfToken() })
@@ -41,7 +41,7 @@ asyncHandler(async(req, res, next) => {
     console.log('--------------plant------------------>',plant);
     console.log('--------------ID------------------>',plant.id);
 
-    res.redirect(`plants/${plant.id}`)
+    res.redirect(`/plants/${plant.id}`)
 
     // res.render('plants-id', { plant, reviews, usersShelves, user, starRating,
         // csrfToken: req.csrfToken()

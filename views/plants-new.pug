@@ -17,6 +17,7 @@ block content
                 button(type='submit' class='uploadImageButton') Upload Photo
         form(action='/plants/new' method='post' id='new-plant-form')
             input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' name='imgUrl' value=newPlant.imgUrl)
             h1 Add a plant
             +field('Name', 'name', newPlant.name)
             +field('Scientific Name', 'scientificName', newPlant.scientificName)

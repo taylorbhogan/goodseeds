@@ -16,7 +16,8 @@ block content
             each plant in plants
                 a(href=`/plants/${plant.id}`)
                     div(class="plant-card plant-card--hover")
-                        img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                        img(src=plant.imgUrl, alt="Picture goes here", class="plant-image")
+                        //- img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
                         div
                             a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
                         div
