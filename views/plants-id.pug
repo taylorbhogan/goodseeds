@@ -7,7 +7,8 @@ block content
           div#plant001
           div.plant-container__left-div
               div(class="plant-card" id="plant-showcase")
-                img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                img(src=plant.imgUrl, alt="Picture goes here", class="plant-image")
+                //- img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
                 div
                     a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
                 div
