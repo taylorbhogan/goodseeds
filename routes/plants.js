@@ -16,8 +16,36 @@ router.get('/', csrfProtection, asyncHandler(async(req, res, next) => {
 router.get('/new', csrfProtection, asyncHandler(async(req, res, next) => {
     const newPlant = await db.Plant.build();
 
-
     res.render('plants-new', { newPlant, csrfToken: req.csrfToken() })
+}))
+
+router.post('/new',
+// csrfProtection,
+asyncHandler(async(req, res, next) => {
+    const { name, scientificName, imgUrl } = req.body;
+
+    const plant = await db.Plant.create({
+        name,
+        scientificName,
+        imgUrl,
+    });
+
+    const userId = req.session.auth.userId
+    user = await db.User.findByPk(userId);
+
+
+    const reviews = [];
+    const usersShelves = [];
+    const starRating = '☆☆☆☆☆'
+
+    console.log('--------------plant------------------>',plant);
+    console.log('--------------ID------------------>',plant.id);
+
+    res.redirect(`plants/${plant.id}`)
+
+    // res.render('plants-id', { plant, reviews, usersShelves, user, starRating,
+        // csrfToken: req.csrfToken()
+    // } )
 }))
 
 router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {

@@ -90,12 +90,16 @@
   outline: none;
 }
 
-#new-plant-form{
+#new-plant-container{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  /* margin-top: 5%; */
+}
+
+#new-plant-form{
+  margin-left: 150px;
 }
 
 .left, .right{

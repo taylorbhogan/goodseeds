@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../db/models');
 const { asyncHandler } = require('./utils');
 const {
   singleMulterUpload,
@@ -25,9 +26,11 @@ router.post(
   asyncHandler(async (req, res) => {
     const imgUrl = await singlePublicFileUpload(req.file)
 
-    return res.json({
-      imgUrl,
-    });
+    const newPlant = await db.Plant.build();
+    newPlant.imgUrl = imgUrl;
+    console.log('---------------newPlant-------------->>>',newPlant);
+    res.render('plants-new', { newPlant })
+
   })
 );
 
