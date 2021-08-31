@@ -8,6 +8,8 @@ block content
         div(class="shelfName") #{shelf.name}
             a(href=`/shelves/delete-shelf/${shelf.id}` role='button' class='clickable-link') Delete Shelf
         container.plant-container
+          if plantsToShelves.length === 0
+            a(href=`/plants` role='button' class='clickable-link') Add a plant to this shelf
           each reference in plantsToShelves
             div(class="plant-card")
               img(src=reference.Plant.imgUrl, alt="Picture goes here", class="plant-image")
