@@ -40,3 +40,7 @@ block content
                         span  wrote:
                         p= comment.commentText
                         div= `Written on ${comment.createdAt} `
+                          //- if comment.User.id === user.id
+                          //-   span
+                          //-     a.edit(href=`/plants/reviews/edit/` class='clickable-link') ✏️
+                          //-     a.edit(href=`/plants/reviews/delete/` class='clickable-link') 🗑️

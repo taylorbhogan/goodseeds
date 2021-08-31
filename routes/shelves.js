@@ -31,10 +31,13 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
         model: db.Plant
       }
     })
+
+    const user = res.locals.user
+
     if(shelf == null ) {
       res.redirect('/404')
     }
-    res.render('shelf', { plantsToShelves, shelf, comments, csrfToken: req.csrfToken()  })
+    res.render('shelf', { plantsToShelves, shelf, comments, user, csrfToken: req.csrfToken()  })
 }))
 
 //This is the AJAX call for comments
