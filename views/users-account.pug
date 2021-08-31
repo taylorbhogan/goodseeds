@@ -10,30 +10,31 @@ block content
           img(src=user.imgUrl alt="profile image goes here" class='account-window__profile-img')
         else
           img(src='/images/profile/profile-pic.jpeg' alt="profile image goes here" id="profile-pic-placeholder" class='account-window__profile-img')
-      button.account-window__image-button Change Profile Image
+      a(href='./account/edit' class='edit-link') Change Profile Image
+      //- button.account-window__image-button Change Profile Image
     div.account-window__details-container
       div.account-window__details-header-div
         h1 Your Account
-      a
+      a(href='./account/edit' class='edit-link')
         div.account-window__detail-div
           div
             p.account-window__details-key Username:
             p(class="account-window__details-value")=user.username
           div ✏️...
-      a
+      a(href='./account/edit' class='edit-link')
         div.account-window__detail-div
           div
             p.account-window__details-key First name:
             p(class="account-window__details-value")=user.firstName
           div ✏️...
 
-      a
+      a(href='./account/edit' class='edit-link')
         div.account-window__detail-div
           div
             p.account-window__details-key Last name:
             p(class="account-window__details-value")=user.lastName
           div ✏️...
-      a
+      a(href='./account/edit' class='edit-link')
         div.account-window__detail-div
           div
             p.account-window__details-key Email:
