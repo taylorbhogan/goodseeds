@@ -75,6 +75,14 @@ router.get('/account/delete', csrfProtection, asyncHandler(async(req, res, next)
   res.render('users-account-delete', { csrfToken: req.csrfToken() })
 }))
 
+/*
+GET /users/account page
+Displays form asking to confirm account deletion
+*/
+router.get('/account/edit', csrfProtection, asyncHandler(async(req, res, next) => {
+  res.render('users-account-edit', { csrfToken: req.csrfToken() })
+}))
+
 
 /*
 GET /users/:id/shelves page
@@ -254,6 +262,43 @@ router.post(
       csrfToken: req.csrfToken()
     })
   }
+}));
+
+/*
+POST /users/edit page
+Edits user info then redirects to /users/account page
+*/
+router.post(
+  '/edit',
+  // singleMulterUpload('image'),
+  // csrfProtection,
+  // signupValidators,
+  asyncHandler(async(req, res, next) =>{
+
+  const user = await db.User.findByPk(res.locals.user.id)
+
+  const {
+    username,
+    firstName,
+    lastName,
+    email,
+  } = req.body;
+
+  // const imgUrl = await singlePublicFileUpload(req.file)
+
+  await user.update({
+    username,
+    firstName,
+    lastName,
+    email,
+    // imgUrl,
+  })
+
+  // const signupErrors = validationResult(req)
+
+    await user.save();
+    res.redirect('/users/account');
+
 }));
 
 /*

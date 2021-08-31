@@ -4,11 +4,11 @@ include utils.pug
 
 block content
     div(class='container' id='new-plant-container')
-        form(action='/image' method='post' enctype='multipart/form-data')
+        form(action='/image-plant' method='post' enctype='multipart/form-data')
             //- input(type='hidden' name='_csrf' value=csrfToken)
             div(class="plant-card")
-                if newPlant.imgUrl
-                    img(src=newPlant.imgUrl alt="plant image goes here" class='plant-image')
+                if imgUrl
+                    img(src=imgUrl alt="plant image goes here" class='plant-image')
                 else
                     img(src='/images/profile/plant-pic.png' alt="plant image goes here" id="profile-pic-placeholder" class='account-window__profile-img')
             div.button-div
@@ -17,8 +17,8 @@ block content
                 button(type='submit' class='uploadImageButton') Upload Photo
         form(action='/plants/new' method='post' id='new-plant-form')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='imgUrl' value=newPlant.imgUrl)
+            input(type='hidden' name='imgUrl' value=imgUrl)
             h1 Add a plant
-            +field('Name', 'name', newPlant.name)
-            +field('Scientific Name', 'scientificName', newPlant.scientificName)
+            +field('Name', 'name')
+            +field('Scientific Name', 'scientificName')
             button(type='submit' class='addPlantButton') Create Plant

@@ -84,3 +84,7 @@
   width: 348px;
   height: 348px;
 }
+
+.edit-link{
+  text-decoration: none;
+}

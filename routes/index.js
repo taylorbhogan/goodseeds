@@ -21,16 +21,25 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post(
-  '/image',
+  '/image-plant',
   singleMulterUpload('image'),
   asyncHandler(async (req, res) => {
     const imgUrl = await singlePublicFileUpload(req.file)
+    res.render('plants-new', { imgUrl })
+  })
+);
 
-    const newPlant = await db.Plant.build();
-    newPlant.imgUrl = imgUrl;
-    console.log('---------------newPlant-------------->>>',newPlant);
-    res.render('plants-new', { newPlant })
+router.post(
+  '/image-user',
+  singleMulterUpload('image'),
+  asyncHandler(async (req, res) => {
+    const user = await db.User.findByPk(res.locals.user.id)
+    const imgUrl = await singlePublicFileUpload(req.file)
 
+    user.imgUrl = imgUrl
+    await user.save()
+
+    res.render('users-account-edit', { user })
   })
 );
 
