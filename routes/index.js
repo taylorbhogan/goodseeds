@@ -26,10 +26,11 @@ router.post(
   asyncHandler(async (req, res) => {
     const imgUrl = await singlePublicFileUpload(req.file)
 
-    const newPlant = await db.Plant.build();
-    newPlant.imgUrl = imgUrl;
-    console.log('---------------newPlant-------------->>>',newPlant);
-    res.render('plants-new', { newPlant })
+    // const newPlant = await db.Plant.build();
+    // newPlant.imgUrl = imgUrl;
+    // console.log('---------------newPlant-------------->>>',newPlant);
+    // res.render('plants-new', { newPlant })
+    res.render('plants-new', { imgUrl })
 
   })
 );
