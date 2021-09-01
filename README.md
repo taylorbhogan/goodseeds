@@ -3,6 +3,7 @@
 GoodSeeds is a lightweight, fun-to-use application for tracking and sharing your houseplants. 
 
 Check out the live site here: [GoodSeeds](https://goodseeds-by-gnamma.herokuapp.com/)
+![goodseeds gif](/goodseeds_readme_gif.gif)
 
 # Technologies Used
 
