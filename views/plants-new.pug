@@ -13,12 +13,12 @@ block content
                     img(src='/images/profile/plant-pic.png' alt="plant image goes here" id="profile-pic-placeholder" class='account-window__profile-img')
             div.button-div
                 input(type='file' accept='image/*' id='imgUrl' name='image' value='imgUrl')
-                label(for='imgUrl') Select an Image
-                button(type='submit' class='uploadImageButton') Upload Photo
+                label(for='imgUrl') 1. Select an Image
+                button(type='submit' class='uploadImageButton clickable-link') 2. Upload and Save
         form(action='/plants/new' method='post' id='new-plant-form')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' name='imgUrl' value=imgUrl)
-            h1 Add a plant
+            h1 Add a Plant
             +field('Name', 'name')
             +field('Scientific Name', 'scientificName')
-            button(type='submit' class='addPlantButton') Create Plant
+            button(type='submit' class='addPlantButton clickable-link') Create Plant
