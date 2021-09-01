@@ -6,6 +6,6 @@ block content
     div
       form(action=`/plants/delete/${plant.id}` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
+        div.delete-buttons
           button(type='submit' class='clickable-link') Delete Plant
           a(href=`/plants/${plant.id}` class='clickable-link') Cancel

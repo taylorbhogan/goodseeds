@@ -9,7 +9,7 @@ block content
             input(class="search-bar" name='query' placeholder="Search by common or scientific name" value=query)
             button(type="submit" class="clickable-link") Search
         a(class="new-plant clickable-link" href=`/plants/new`) Add a plant
-    container.plant-container
+    container.main-plant-container
         if (plants.length === 0)
             div No results!
         else

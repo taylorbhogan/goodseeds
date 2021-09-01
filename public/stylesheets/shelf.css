@@ -75,3 +75,16 @@
     flex-direction: column;
     align-items: center;
 }
+
+.shelf-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+    width: 22%;
+}
+
+.shelf-buttons a{
+    width: 170px;
+    text-align: center;
+}

@@ -1,13 +1,21 @@
+
 .plant-container{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  /* height: calc(100vh - 380px) !important; */
-  overflow-y: scroll;
   margin-bottom: var(--footerHeight);
 }
 
+.main-plant-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - var(--footerHeight)) !important;
+  overflow-y: scroll;
+  margin-bottom: var(--footerHeight);
+}
 .main-link::before {
   content: " ";
   position: absolute;
@@ -72,6 +80,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 30px;
   font-size: 25px;
   font-weight: bold;
