@@ -107,8 +107,8 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   // console.log(reference)
   //check permissions
   const userId = req.session.auth.userId
-  console.log(userId)
-  console.log(shelf.userId)
+  // console.log(userId)
+  // console.log(shelf.userId)
 
   await reference.destroy();
   res.redirect(`/shelves/${shelfIdcloneToReferenceLater}`)

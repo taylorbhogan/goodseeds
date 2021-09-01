@@ -38,8 +38,8 @@ asyncHandler(async(req, res, next) => {
     const usersShelves = [];
     const starRating = '☆☆☆☆☆'
 
-    console.log('--------------plant------------------>',plant);
-    console.log('--------------ID------------------>',plant.id);
+    // console.log('--------------plant------------------>',plant);
+    // console.log('--------------ID------------------>',plant.id);
 
     res.redirect(`/plants/${plant.id}`)
 
