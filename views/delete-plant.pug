@@ -1,0 +1,11 @@
+extends layout.pug
+include utils.pug
+block content
+  div.delete-container
+    h1 Are You Sure You Want To Delete This Plant?
+    div
+      form(action=`/plants/delete/${plant.id}` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          button(type='submit' class='clickable-link') Delete Plant
+          a(href=`/plants/${plant.id}` class='clickable-link') Cancel

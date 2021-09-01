@@ -29,18 +29,22 @@ body{
 }
 
 .clickable-link{
+  border: none;
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
   padding: 10px;
   text-decoration: none;
-  font-weight: 550;
-  /* border: 1px solid red; */
-  border: 3px solid rgb(255, 255, 255);
+  color: white;
   border-radius: 15px;
+  background-color:var(--green2);
 }
 
 .clickable-link:hover{
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
   color: black;
+  background-color: var(--gold);
+
   /* transform: translateY(-2px); */
 }
 
@@ -364,7 +368,7 @@ option {
 
 .person_desc {
   margin-left: 100px;
-  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 50;

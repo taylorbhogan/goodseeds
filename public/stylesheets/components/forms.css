@@ -109,4 +109,9 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+}
+
+.uploadImageButton{
+  margin-top: 15px;
 }
