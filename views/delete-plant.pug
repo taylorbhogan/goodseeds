@@ -2,10 +2,10 @@ extends layout.pug
 include utils.pug
 block content
   div.delete-container
-    h1 Are You Sure You Want To Delete This Plant From Your Shelf?
+    h1 Are You Sure You Want To Delete This Plant?
     div
-      form(action=`/shelves/planttoshelf/${reference.id}` method='post')
+      form(action=`/plants/delete/${plant.id}` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div.delete-buttons
           button(type='submit' class='clickable-link') Delete Plant
-          a(href=`/shelves/${reference.shelfId}` role='button' class='clickable-link') Cancel
+          a(href=`/plants/${plant.id}` class='clickable-link') Cancel

@@ -34,17 +34,16 @@ td:hover .user-link{
   text-decoration: underline;
 }
 
-.clickable-link{
+/* .clickable-link{
   background-color:var(--green2);
   color: white;
   padding: 10px;
   color: white;
   text-decoration: none;
   font-weight: 800;
-  /* border: 1px solid red; */
   border: 3px solid rgb(0, 0, 0);
   border-radius: 15px;
-}
+} */
 
 td:hover .clickable-link{
   /* background-color: rgb(255, 255, 255); */

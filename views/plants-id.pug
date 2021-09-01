@@ -14,24 +14,28 @@ block content
                 div
                     p(class="plant-scientific-name")= plant.scientificName
       container.plant-container__right-div
-        div.center-form
-          if locals.authenticated
-            form(action=`/plants/${plant.id}`, method='post')
-              h1.little-padding Add This Plant To A Shelf
-              input(type='hidden' name='_csrf' value=csrfToken)
-              div.center-form
-                h2.little-padding My Shelves
-                div
-                  select(name='selectedshelf' required)
-                    option(value='' class="little-padding") -- select one --
-                    each shelf in usersShelves
-                      option(value=`${shelf.id}`)= `${shelf.name}`
-                div
-                  p
-                  button(type='submit' class="button__add-to-shelf clickable-link gill-sans") Add To Shelf
-          else
-            h1 Want To Add To Your Shelf?
-            a(href='/users/login' class='clickable-link') Log In
+        div.plant-container__shelf-div
+          div.center-form
+            if locals.authenticated
+              form(action=`/plants/${plant.id}`, method='post')
+                h1.little-padding Add This Plant To A Shelf
+                input(type='hidden' name='_csrf' value=csrfToken)
+                div.center-form
+                  h2.little-padding My Shelves
+                  div
+                    select(name='selectedshelf' required)
+                      option(value='' class="little-padding") -- select one --
+                      each shelf in usersShelves
+                        option(value=`${shelf.id}`)= `${shelf.name}`
+                  div
+                    p
+                    button(type='submit' class="button__add-to-shelf clickable-link gill-sans") Add To Shelf
+            else
+              h1 Want To Add To Your Shelf?
+              a(href='/users/login' class='clickable-link') Log In
+        if locals.authenticated
+          div.plant-container__delete-div
+            a(href=`/plants/delete/${plant.id}` role='button' class="clickable-link").plant-delete-button Delete this plant
     container.review-outer-container
       div.review-container
         div.review-header-container

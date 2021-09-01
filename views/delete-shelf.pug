@@ -6,6 +6,6 @@ block content
     div(value=shelfId)
       form(action=`/shelves/delete-shelf/${shelfId}` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
+        div.delete-buttons
           button(type='submit' class='clickable-link') Delete Shelf
           a(href=`/shelves/${shelfId}` class='clickable-link') Cancel

@@ -38,8 +38,8 @@ asyncHandler(async(req, res, next) => {
     const usersShelves = [];
     const starRating = '☆☆☆☆☆'
 
-    console.log('--------------plant------------------>',plant);
-    console.log('--------------ID------------------>',plant.id);
+    // console.log('--------------plant------------------>',plant);
+    // console.log('--------------ID------------------>',plant.id);
 
     res.redirect(`/plants/${plant.id}`)
 
@@ -231,6 +231,49 @@ router.post('/reviews/delete/:id', csrfProtection, asyncHandler(async(req, res, 
   await review.destroy()
 
   res.redirect(`/plants/${review.plantId}`)
+}))
+
+// Delete a plant - GET
+router.get('/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+    const plantId = parseInt(req.params.id, 10);
+    const plant = await db.Plant.findByPk(plantId)
+
+    const userId = req.session.auth.userId
+
+    if (plant == null){
+        res.redirect('/404')
+    }
+
+    res.render('delete-plant', { plant, csrfToken: req.csrfToken() })
+}))
+
+// Delete a plant - POST
+router.post('/delete/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+    const plantId = parseInt(req.params.id, 10)
+    const plant = await db.Plant.findByPk(plantId)
+    const plantToShelfReferences = await db.PlantToShelf.findAll({
+        where: {
+            plantId: plantId
+        }
+      })
+    const reviews = await db.Review.findAll({
+        where: {
+            plantId: plantId
+        }
+    })
+    for (let i = 0 ; i < plantToShelfReferences.length; i++){
+        const reference = plantToShelfReferences[i]
+        await reference.destroy()
+    }
+    for (let i = 0 ; i < reviews.length; i++){
+        const review = reviews[i]
+        await review.destroy()
+    }
+
+    await plant.destroy();
+
+    res.redirect('/plants')
+
 }))
 
 module.exports = router

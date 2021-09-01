@@ -13,8 +13,8 @@ block content
       form(action='/image-user' method='post' enctype='multipart/form-data')
         div.button-div
           input(type='file' accept='image/*' id='imgUrl' name='image' value='imgUrl')
-          label(for='imgUrl') Select an Image
-          button(type='submit' class='uploadImageButton') Upload Photo
+          label(for='imgUrl') 1. Select an Image
+          button(type='submit' class='uploadImageButton clickable-link') 2. Upload and Save
     div.account-window__details-container
       div.account-window__details-header-div
       h1 Edit Your Account Info
@@ -23,6 +23,6 @@ block content
         +field('First Name:', 'firstName', user.firstName)
         +field('Last Name:', 'lastName', user.lastName)
         +field('Email Address:', 'email', user.email)
-        button(type="submit") Submit Changes
+        button(type="submit" class='clickable-link') Submit Changes
       //- a(href='./account/delete' class='clickable-link').account-window__delete-button Save changes
   +footerHeight

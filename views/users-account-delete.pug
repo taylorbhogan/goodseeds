@@ -6,5 +6,6 @@ block content
     div
       form(action=`/users/account/delete` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        button(type='submit' class='clickable-link') Delete Account
-        a(href=`/users/account` role='button' class='clickable-link') Cancel
+        div.delete-buttons
+          button(type='submit' class='clickable-link') Delete Account
+          a(href=`/users/account` role='button' class='clickable-link') Cancel
