@@ -121,7 +121,8 @@ router.get('/delete-shelf/:id', csrfProtection, asyncHandler(async(req, res, nex
   const userId = req.session.auth.userId
 
   if(shelf == null || shelf.userId.toString() !== userId.toString()) {
-    res.redirect('/404')
+    res.render('404')
+    return
   }
 
   res.render('delete-shelf', {shelf, shelfId, csrfToken: req.csrfToken()})
