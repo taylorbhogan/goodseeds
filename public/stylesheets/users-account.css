@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .account-window_profile-image-info-container{
@@ -30,11 +30,15 @@
 .account-window__details-container {
   border: 2px solid black;
   border-radius: 2rem;
-  margin-left: 40px;
+  margin-left: 100px;
   padding: 40px;
-  width: 700px;
+  width: 35vw;
   display: flex;
   flex-direction: column;
+}
+
+.account-window__details-container * {
+  margin-bottom: 3;
 }
 
 .account-window__detail-div{
@@ -65,17 +69,6 @@
   color: black;
 }
 
-.account-window__delete-button{
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  border-radius: 7px;
-}
-
-.account-window__delete-button:hover{
-  background-color: rgba(255, 0, 0, 0.349);
-}
-
 .account-window__details-value{
   font-size: 20px;
 }
@@ -87,4 +80,11 @@
 
 .edit-link{
   text-decoration: none;
+}
+
+.flexRight{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 25px;
 }

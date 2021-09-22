@@ -41,10 +41,6 @@
   position: relative;
 }
 
-#plant-showcase{
-  margin-bottom: 20px;
-}
-
 .plant-card--hover:hover{
   transform: translateY(-7px);
 }
