@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PlantToShelf.associate = function(models) {
     PlantToShelf.belongsTo(models.Plant, {foreignKey: 'plantId'})
+    PlantToShelf.hasMany(models.Note, {foreignKey: 'plantToShelfId'})
   };
   return PlantToShelf;
 };
