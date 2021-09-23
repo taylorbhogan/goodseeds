@@ -1,3 +1,4 @@
+
 .page-container{
   display: flex;
   flex-direction: column;
@@ -128,4 +129,12 @@
 
 .left, .right{
   width: 30%;
+}
+
+.note-card{
+  width: 30vw;
+  font-size: 1.4rem;
+  padding: 12px;
+  border-radius: var(--cardBorderRadius);
+  box-shadow: var(--cardBoxShadow);
 }

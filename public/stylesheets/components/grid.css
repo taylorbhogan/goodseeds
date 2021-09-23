@@ -36,7 +36,7 @@
   flex-direction: column;
   overflow-wrap: normal;
   margin: 50px 30px 50px 30px;
-  box-shadow: -.4rem 0 2rem #999;
+  box-shadow: var(--cardBoxShadow);
   border-radius: 20px;
   position: relative;
 }

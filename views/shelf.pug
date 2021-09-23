@@ -16,7 +16,10 @@ block content
               img(src=reference.Plant.imgUrl, alt="Picture goes here", class="plant-image")
               //- img(src=`/images/plants/${reference.Plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
               div
-                a(class='plant-name' href=`/plants/${reference.Plant.id}`)= reference.Plant.name
+                if shelf.userId === user.id
+                  a(class='plant-name' href=`/plants/personal/${reference.id}`)= reference.Plant.name
+                else
+                  a(class='plant-name' href=`/plants/${reference.Plant.id}`)= reference.Plant.name
               div
                 p(class="plant-scientific-name")= reference.Plant.scientificName
               div(name=`${reference.plantId}` value=`${reference.Plant.id}`)

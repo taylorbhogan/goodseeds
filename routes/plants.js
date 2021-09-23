@@ -131,6 +131,27 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     res.render('plants-id', { plant, reviews, usersShelves, user, starRating, csrfToken: req.csrfToken() } )
 }));
 
+router.get('/personal/:id', csrfProtection, asyncHandler(async(req, res, next) => {
+    const plantToShelf = await db.PlantToShelf.findByPk(req.params.id)
+    const plant = await db.Plant.findByPk(plantToShelf.plantId);
+    const notes = await db.Note.findAll({
+        where: {
+            plantToShelfId: req.params.id
+        }
+    })
+    if(plant == null) {
+        res.redirect('/404')
+      }
+
+    let user;
+    if (req.session.auth) {
+        const userId = req.session.auth.userId
+        user = await db.User.findByPk(userId);
+      }
+
+    res.render('plants-id-personal', { plant, user, notes, csrfToken: req.csrfToken() } )
+}));
+
 router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
     const {selectedshelf} = req.body;
 

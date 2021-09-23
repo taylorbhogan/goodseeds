@@ -3,7 +3,9 @@
   --green2: seagreen;
   --gold: gold;
   --footerHeight: 75px;
-  --warningRedBright: rgb(214, 93, 93)
+  --warningRedBright: rgb(214, 93, 93);
+  --cardBorderRadius: 20px;
+  --cardBoxShadow: -.4rem 0 2rem #999;
 }
 
 body{

@@ -1,0 +1,19 @@
+extends layout.pug
+include utils.pug
+block content
+  div.page-container
+    dov.plant-top-container
+      container.plant-id-container
+          div#plant001
+          div.plant-container__left-div
+              div(class="plant-card")
+                img(src=plant.imgUrl, alt="Picture goes here", class="plant-image")
+                //- img(src=`/images/plants/${plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
+                div
+                    a(class="plant-name" href=`/plants/${plant.id}`)= plant.name
+                div
+                    p(class="plant-scientific-name")= plant.scientificName
+      container.plant-container__right-div
+        h1 Notes from the Garden
+          each note in notes
+            p.note-card #{note.text}
