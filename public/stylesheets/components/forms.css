@@ -115,3 +115,7 @@ textarea {
 .uploadImageButton{
   margin-top: 15px;
 }
+
+.noteForm{
+  width: 100%;
+}

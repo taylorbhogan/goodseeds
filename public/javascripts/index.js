@@ -1,6 +1,43 @@
 // const db = require('../../db/models');
 
 window.addEventListener("load", (event) => {
+  // Test Add Notes
+  const addNoteButton = document.querySelector('#addNoteButton')
+  const noteForm = document.querySelector('#noteForm')
+
+  if (addNoteButton){
+
+    const addNote = async event => {
+      event.preventDefault();
+      const formData = new FormData(noteForm);
+      const note = formData.get('note')
+      const plantToShelfId = +window.location.pathname.split('/')[3]
+      const res = await fetch(`/plants/personal/${plantToShelfId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ note })
+      })
+      const data = await res.json();
+      noteForm.reset();
+
+      const noteContainer = document.querySelector('#noteContainer')
+      const newNote = document.createElement('div')
+      newNote.setAttribute('class','note-card')
+      const noteText = document.createElement('p')
+      noteText.innerText = data.text
+      const noteDate = document.createElement('p')
+      noteDate.innerText = data.createdAt
+      newNote.append(noteText, noteDate)
+      noteContainer.appendChild(newNote)
+    }
+
+    addNoteButton.addEventListener('click', addNote)
+  }
+
+  // Test Add Notes
+
   const commentList = document.querySelector('#addCommentButton');
   const commentForm = document.querySelector('.comment-form')
   // const signupButton = document.querySelector('#signup-button')

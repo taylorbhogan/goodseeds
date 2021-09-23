@@ -15,5 +15,12 @@ block content
                     p(class="plant-scientific-name")= plant.scientificName
       container.plant-container__right-div
         h1 Notes from the Garden
+        form(id='noteForm')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          +field('note', 'note', note)
+          button(type='submit' id='addNoteButton') Add Note
+        div#noteContainer
           each note in notes
-            p.note-card #{note.text}
+            div.note-card
+              p #{note.text}
+              p #{note.createdAt}

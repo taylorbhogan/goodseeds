@@ -132,7 +132,8 @@ router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
 }));
 
 router.get('/personal/:id', csrfProtection, asyncHandler(async(req, res, next) => {
-    const plantToShelf = await db.PlantToShelf.findByPk(req.params.id)
+    const plantToShelfId = req.params.id
+    const plantToShelf = await db.PlantToShelf.findByPk(plantToShelfId)
     const plant = await db.Plant.findByPk(plantToShelf.plantId);
     const notes = await db.Note.findAll({
         where: {
@@ -149,8 +150,26 @@ router.get('/personal/:id', csrfProtection, asyncHandler(async(req, res, next) =
         user = await db.User.findByPk(userId);
       }
 
-    res.render('plants-id-personal', { plant, user, notes, csrfToken: req.csrfToken() } )
+    res.render('plants-id-personal', { plant, user, notes, plantToShelfId, csrfToken: req.csrfToken() } )
 }));
+
+router.post('/personal/:plantToShelfId',
+// csrfProtection,
+requireAuth,
+asyncHandler(async(req, res, next) => {
+    const note = req.body.note;
+    const plantToShelfId = req.params.plantToShelfId;
+
+    const newNote = db.Note.build({
+        text: note,
+        plantToShelfId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    })
+    await newNote.save();
+    res.json(newNote)
+
+}))
 
 router.post('/:id', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
     const {selectedshelf} = req.body;
