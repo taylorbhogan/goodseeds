@@ -39,6 +39,7 @@
   box-shadow: -.4rem 0 2rem #999;
   border-radius: 20px;
   position: relative;
+  padding-bottom: 60px;
 }
 
 #plant-showcase{

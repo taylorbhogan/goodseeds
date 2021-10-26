@@ -7,11 +7,12 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
 
 mixin validationErrorSummary(errors)
   if errors
-    div
-      p The following error(s) occurred:
-      ul
-        each error in errors
-          li= error
+    div(class='errors-container')
+      div(class='form-errors')
+        ul
+          each error in errors
+            li= error
+
 
 mixin footerHeight
   div(id='footer-height')
