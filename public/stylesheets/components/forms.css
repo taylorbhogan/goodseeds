@@ -115,3 +115,18 @@ textarea {
 .uploadImageButton{
   margin-top: 15px;
 }
+
+.errors-container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-errors{
+  background-color: #dadada;
+  width: 500px;
+  border: 2px solid black;
+  border-radius: 7px;
+  padding: 20px 30px;
+  color:red
+}
