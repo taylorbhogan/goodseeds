@@ -23,10 +23,6 @@ html
         nav.right-nav
           if locals.authenticated
             div.welcome-message-div
-              //- a(href=`/users/${user.id}/shelves` class="navbar__account-link")
-              //-   div.welcome-message-drop Hi, #{user.username}!
-              //- a(href=`/users/${user.id}/shelves` class="navbar__account-link")
-              //-   div Let's get planting.
               a(href=`/users/${user.id}/shelves` id="dom-username-source" class="navbar__account-link") Hi, #{user.username}
               a(href=`/users/${user.id}/shelves` class="navbar__account-link") Let's get planting.
 

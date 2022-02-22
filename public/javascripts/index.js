@@ -1,10 +1,6 @@
-// const db = require('../../db/models');
-
 window.addEventListener("load", (event) => {
   const commentList = document.querySelector('#addCommentButton');
   const commentForm = document.querySelector('.comment-form')
-  // const signupButton = document.querySelector('#signup-button')
-  // const signupForm = document.querySelector('#signup-form')
 
   //method to find the ID of the current shelf
   if (commentList) {
@@ -32,11 +28,6 @@ window.addEventListener("load", (event) => {
       }
     }
 
-    // const rightNavSpan = document.querySelector('.spanTag')
-    // const spanContent = rightNavSpan.textContent;
-    // const spanContent = "this is the spanContent variable"
-
-
     const rightNavSpan = document.querySelector('#dom-username-source')
     const spanContent = rightNavSpan.textContent;
 
@@ -48,19 +39,9 @@ window.addEventListener("load", (event) => {
 
     const shelfId = findId(currentUrl);
 
-
-    // const grabUser = async(data) => {
-    //   const user = await db.User.findByPk(data.userId)
-    //   return user.username
-    // }
-
-
     //displays all current comments for a shelf
     const receiveComment = (data) => {
       const comments = document.querySelector('.comment-list-container')
-
-      const timeElapsed = Date.now();
-      const today = new Date(timeElapsed)
 
       const username = findUsername(spanContent);
 
@@ -104,16 +85,5 @@ window.addEventListener("load", (event) => {
 
     //on the click of the button, adds the information in the text field, and posts it as a comment
     commentList.addEventListener('click', addComment)
-
-
-    // const signUp = async (e) => {
-    //   e.preventDefault()
-    //   console.log('---------------inside signUp--------');
-    //   const formData = new FormData(signupForm);
-    //   console.log('---------------formData------------');
-    //   console.log(formData);
-    // }
-
-    // signupButton.addEventListener('click', signUp)
   }
 })

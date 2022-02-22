@@ -14,7 +14,6 @@ block content
           each reference in plantsToShelves
             div(class="plant-card")
               img(src=reference.Plant.imgUrl, alt="Picture goes here", class="plant-image")
-              //- img(src=`/images/plants/${reference.Plant.imgUrl}.jpeg`, alt="Picture goes here", class="plant-image")
               div
                 a(class='plant-name' href=`/plants/${reference.Plant.id}`)= reference.Plant.name
               div
@@ -42,7 +41,3 @@ block content
                         span  wrote:
                         p= comment.commentText
                         div= `Written on ${comment.createdAt} `
-                          //- if comment.User.id === user.id
-                          //-   span
-                          //-     a.edit(href=`/plants/reviews/edit/` class='clickable-link') ✏️
-                          //-     a.edit(href=`/plants/reviews/delete/` class='clickable-link') 🗑️

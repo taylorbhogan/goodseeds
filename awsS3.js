@@ -1,21 +1,17 @@
 const AWS = require("aws-sdk");
-// name of your bucket here
 const NAME_OF_BUCKET = "goodseeds-by-gnamma";
 
 const multer = require("multer");
 
-//  make sure to set environment variables in production for:
+//  aws automatically uses environment variables for:
 //  AWS_ACCESS_KEY_ID
 //  AWS_SECRET_ACCESS_KEY
-//  and aws will automatically use those environment variables
 
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
-  // console.log('-------inside singlePublicFileUpload-------------');
-  // console.log('file--------------------',file);
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
@@ -40,7 +36,7 @@ const multiplePublicFileUpload = async (files) => {
   );
 };
 
-// --------------------------- Prviate UPLOAD ------------------------
+// --------------------------- Private UPLOAD ------------------------
 
 const singlePrivateFileUpload = async (file) => {
   const { originalname, mimetype, buffer } = await file;

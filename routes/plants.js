@@ -20,7 +20,6 @@ router.get('/new', requireAuth, csrfProtection, asyncHandler(async(req, res, nex
 }))
 
 router.post('/new',
-// csrfProtection,
 asyncHandler(async(req, res, next) => {
     const { name, scientificName, imgUrl } = req.body;
 
@@ -38,14 +37,7 @@ asyncHandler(async(req, res, next) => {
     const usersShelves = [];
     const starRating = '☆☆☆☆☆'
 
-    // console.log('--------------plant------------------>',plant);
-    // console.log('--------------ID------------------>',plant.id);
-
     res.redirect(`/plants/${plant.id}`)
-
-    // res.render('plants-id', { plant, reviews, usersShelves, user, starRating,
-        // csrfToken: req.csrfToken()
-    // } )
 }))
 
 router.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
