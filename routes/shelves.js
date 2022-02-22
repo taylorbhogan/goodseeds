@@ -6,10 +6,6 @@ const { requireAuth } = require('../auth');
 
 router.use(requireAuth)
 
-router.delete('/:id', requireAuth, asyncHandler(async(req, res)=> {
-  // backend logic goes here
-}))
-
 //displays shelf: with: comments, plants associated with this shelf
 router.get('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
     const shelf = await db.Shelf.findByPk(req.params.id);
@@ -63,19 +59,6 @@ router.post('/:id', asyncHandler(async(req,res,next) => {
 
 
 }))
-/* IT'S BROKEN
-router.delete('/:id', csrfProtection, asyncHandler(async(req, res, next) => {
-  const shelf = await db.Shelf.findByPk(req.params.id);
-  console.log(shelf)
-  const plantsToShelves = await db.PlantToShelf.findAll({
-    where: {
-      shelfId: shelf.id
-    },
-    include: {
-      model: db.Plant
-    }
-
-  }) */
 
 // delete form to delete association of plants to shelf in the PlantstoShelves table in database
 router.get('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -104,11 +87,6 @@ router.post('/planttoshelf/:id', csrfProtection, asyncHandler(async(req, res, ne
   const plant = await db.Plant.findByPk(reference.plantId);
   const shelf = await db.Shelf.findByPk(reference.shelfId);
   const shelfIdcloneToReferenceLater = reference.shelfId
-  // console.log(reference)
-  //check permissions
-  const userId = req.session.auth.userId
-  // console.log(userId)
-  // console.log(shelf.userId)
 
   await reference.destroy();
   res.redirect(`/shelves/${shelfIdcloneToReferenceLater}`)

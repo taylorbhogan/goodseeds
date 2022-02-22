@@ -4,15 +4,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { sequelize } = require('./db/models');
-const session = require('express-session'); //done
+const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const plantsRouter = require('./routes/plants');
 const shelvesRouter = require('./routes/shelves');
 const { sessionSecret } = require('./config');
-const {loginUser, restoreUser, logoutUser, requireAuth} = require('./auth.js');
-//const cors = require('cors');
+const { restoreUser } = require('./auth.js');
 
 const app = express();
 
@@ -25,8 +24,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use(cors());
-// set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
 app.use(
@@ -39,6 +36,7 @@ app.use(
   );
 
 app.use(restoreUser);
+
 // create Session table if it doesn't already exist
 store.sync();
 

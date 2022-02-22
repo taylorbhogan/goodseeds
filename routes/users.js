@@ -89,9 +89,7 @@ GET /users/:id/shelves page
 Displays list of all of the logged in user's shelves
 */
 router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-  // console.log('RES.LOCALS ', res.locals.user.firstName)
   const loggedInUser = res.locals.user
-  // console.log("--TBH--loggedInUser--TBH--",loggedInUser);
   const userToDisplay = await db.User.findByPk(req.params.id);
   const shelves = await db.Shelf.findAll({
     where: {
@@ -270,9 +268,6 @@ Edits user info then redirects to /users/account page
 */
 router.post(
   '/edit',
-  // singleMulterUpload('image'),
-  // csrfProtection,
-  // signupValidators,
   asyncHandler(async(req, res, next) =>{
 
   const user = await db.User.findByPk(res.locals.user.id)
@@ -284,17 +279,12 @@ router.post(
     email,
   } = req.body;
 
-  // const imgUrl = await singlePublicFileUpload(req.file)
-
   await user.update({
     username,
     firstName,
     lastName,
     email,
-    // imgUrl,
   })
-
-  // const signupErrors = validationResult(req)
 
     await user.save();
     res.redirect('/users/account');
@@ -335,7 +325,6 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     if (passwordMatch) {
       loginUser(req,res,user);
 
-      //  res.redirect('/');
       return res.redirect('/users/account');
     }
   }
@@ -363,26 +352,9 @@ router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) =>
   res.render('users-id-shelves', {tempUser, shelves, csrfToken: req.csrfToken()})
 }))
 
-// router.get('/:id/shelves', csrfProtection, asyncHandler(async(req, res, next) => {
-//   // console.log('RES.LOCALS ', res.locals.user.firstName)
-//   const loggedInUser = res.locals.user
-//   // console.log("--TBH--loggedInUser--TBH--",loggedInUser);
-//   const userToDisplay = await db.User.findByPk(req.params.id);
-//   const shelves = await db.Shelf.findAll({
-//     where: {
-//       userId: req.params.id
-//     }
-//   });
-//   res.render('users-id-shelves', {userToDisplay, loggedInUser, shelves, csrfToken: req.csrfToken()})
-// }))
-
 router.get('/account', asyncHandler(async(req, res, next) => {
 
   res.render('users-account')
 }))
-
-
-
-  //perhaps delete shelf in /shelves/:id. dont know how I would get the shelf ID
 
 module.exports = router;
